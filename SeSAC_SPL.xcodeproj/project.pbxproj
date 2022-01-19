@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		6CF6EBD952D5A7DE7A59C09F /* Pods_SeSAC_SPL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46BC3B35DAD8705B465AD200 /* Pods_SeSAC_SPL.framework */; };
+		B433B8BD2798253700AEA607 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B8BC2798253700AEA607 /* AuthView.swift */; };
+		B433B8C127982BBD00AEA607 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B8C027982BBD00AEA607 /* OnboardingViewController.swift */; };
+		B433B8C527982F7600AEA607 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B8C427982F7600AEA607 /* UIView+Extension.swift */; };
+		B433B8C82798306600AEA607 /* OnboardingSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B8C72798306600AEA607 /* OnboardingSlide.swift */; };
+		B433B8CA279831C400AEA607 /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B8C9279831C400AEA607 /* OnboardingCollectionViewCell.swift */; };
+		B433B8CC279833CE00AEA607 /* ReusableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B8CB279833CE00AEA607 /* ReusableView+Extension.swift */; };
 		B43741052797E756005E1CC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43741042797E756005E1CC7 /* AppDelegate.swift */; };
 		B43741072797E756005E1CC7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43741062797E756005E1CC7 /* SceneDelegate.swift */; };
 		B43741092797E756005E1CC7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43741082797E756005E1CC7 /* ViewController.swift */; };
@@ -22,6 +28,12 @@
 /* Begin PBXFileReference section */
 		203B7D23B7EE22BF58E91AD1 /* Pods-SeSAC_SPL.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeSAC_SPL.debug.xcconfig"; path = "Target Support Files/Pods-SeSAC_SPL/Pods-SeSAC_SPL.debug.xcconfig"; sourceTree = "<group>"; };
 		46BC3B35DAD8705B465AD200 /* Pods_SeSAC_SPL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SeSAC_SPL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B433B8BC2798253700AEA607 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
+		B433B8C027982BBD00AEA607 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		B433B8C427982F7600AEA607 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		B433B8C72798306600AEA607 /* OnboardingSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSlide.swift; sourceTree = "<group>"; };
+		B433B8C9279831C400AEA607 /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
+		B433B8CB279833CE00AEA607 /* ReusableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReusableView+Extension.swift"; sourceTree = "<group>"; };
 		B43741012797E756005E1CC7 /* SeSAC_SPL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSAC_SPL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B43741042797E756005E1CC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B43741062797E756005E1CC7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -57,6 +69,32 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B433B8BA2798240900AEA607 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B437410A2797E756005E1CC7 /* Main.storyboard */,
+				B433B8C9279831C400AEA607 /* OnboardingCollectionViewCell.swift */,
+				B433B8BC2798253700AEA607 /* AuthView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B433B8BB2798252A00AEA607 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B433B8C027982BBD00AEA607 /* OnboardingViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B433B8C62798305D00AEA607 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B433B8C72798306600AEA607 /* OnboardingSlide.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		B43740F82797E756005E1CC7 = {
 			isa = PBXGroup;
 			children = (
@@ -78,9 +116,11 @@
 		B43741032797E756005E1CC7 /* SeSAC_SPL */ = {
 			isa = PBXGroup;
 			children = (
-				B437411B2797EAA9005E1CC7 /* SeSAC_SPL.entitlements */,
+				B433B8C62798305D00AEA607 /* Model */,
+				B433B8BA2798240900AEA607 /* View */,
+				B433B8BB2798252A00AEA607 /* Controller */,
 				B43741082797E756005E1CC7 /* ViewController.swift */,
-				B437410A2797E756005E1CC7 /* Main.storyboard */,
+				B437411B2797EAA9005E1CC7 /* SeSAC_SPL.entitlements */,
 				B43741192797EA7F005E1CC7 /* GoogleService-Info.plist */,
 				B437411C2797F0FF005E1CC7 /* Extension */,
 				B43741182797E984005E1CC7 /* Resource */,
@@ -105,6 +145,8 @@
 			children = (
 				B43741202797FAFF005E1CC7 /* R.generated.swift */,
 				B437411D2797F10F005E1CC7 /* UIFont+Extension.swift */,
+				B433B8C427982F7600AEA607 /* UIView+Extension.swift */,
+				B433B8CB279833CE00AEA607 /* ReusableView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -256,8 +298,14 @@
 			files = (
 				B43741092797E756005E1CC7 /* ViewController.swift in Sources */,
 				B43741052797E756005E1CC7 /* AppDelegate.swift in Sources */,
+				B433B8C527982F7600AEA607 /* UIView+Extension.swift in Sources */,
+				B433B8CC279833CE00AEA607 /* ReusableView+Extension.swift in Sources */,
+				B433B8BD2798253700AEA607 /* AuthView.swift in Sources */,
 				B43741212797FAFF005E1CC7 /* R.generated.swift in Sources */,
+				B433B8C127982BBD00AEA607 /* OnboardingViewController.swift in Sources */,
 				B437411E2797F10F005E1CC7 /* UIFont+Extension.swift in Sources */,
+				B433B8CA279831C400AEA607 /* OnboardingCollectionViewCell.swift in Sources */,
+				B433B8C82798306600AEA607 /* OnboardingSlide.swift in Sources */,
 				B43741072797E756005E1CC7 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
