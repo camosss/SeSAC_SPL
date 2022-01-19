@@ -8,9 +8,6 @@
 import UIKit
 import FirebaseAuth
 
-// TODO
-// 버튼 유효성 검사 (rx 적용)
-
 class ViewController: UIViewController {
 
     // MARK: - IBOutlet
@@ -30,7 +27,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.timerLabel.isHidden = true
+        timerLabel.textColor = R.color.green()
+        timerLabel.font = UIFont.Display1_R20
     }
     
     // MARK: - Helper

@@ -15,6 +15,8 @@
 		B437410E2797E758005E1CC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B437410D2797E758005E1CC7 /* Assets.xcassets */; };
 		B43741112797E758005E1CC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B437410F2797E758005E1CC7 /* LaunchScreen.storyboard */; };
 		B437411A2797EA7F005E1CC7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B43741192797EA7F005E1CC7 /* GoogleService-Info.plist */; };
+		B437411E2797F10F005E1CC7 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B437411D2797F10F005E1CC7 /* UIFont+Extension.swift */; };
+		B43741212797FAFF005E1CC7 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43741202797FAFF005E1CC7 /* R.generated.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		B43741122797E758005E1CC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B43741192797EA7F005E1CC7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B437411B2797EAA9005E1CC7 /* SeSAC_SPL.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SeSAC_SPL.entitlements; sourceTree = "<group>"; };
+		B437411D2797F10F005E1CC7 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
+		B43741202797FAFF005E1CC7 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		F3473E80664E30059C9CFC26 /* Pods-SeSAC_SPL.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeSAC_SPL.release.xcconfig"; path = "Target Support Files/Pods-SeSAC_SPL/Pods-SeSAC_SPL.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -78,6 +82,7 @@
 				B43741082797E756005E1CC7 /* ViewController.swift */,
 				B437410A2797E756005E1CC7 /* Main.storyboard */,
 				B43741192797EA7F005E1CC7 /* GoogleService-Info.plist */,
+				B437411C2797F0FF005E1CC7 /* Extension */,
 				B43741182797E984005E1CC7 /* Resource */,
 			);
 			path = SeSAC_SPL;
@@ -93,6 +98,15 @@
 				B43741122797E758005E1CC7 /* Info.plist */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		B437411C2797F0FF005E1CC7 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				B43741202797FAFF005E1CC7 /* R.generated.swift */,
+				B437411D2797F10F005E1CC7 /* UIFont+Extension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		C57D1C8BA086EA77486AC432 /* Pods */ = {
@@ -112,6 +126,7 @@
 			buildConfigurationList = B43741152797E758005E1CC7 /* Build configuration list for PBXNativeTarget "SeSAC_SPL" */;
 			buildPhases = (
 				27B6AABF831FD9173B480487 /* [CP] Check Pods Manifest.lock */,
+				B437411F2797F871005E1CC7 /* ShellScript */,
 				B43740FD2797E756005E1CC7 /* Sources */,
 				B43740FE2797E756005E1CC7 /* Frameworks */,
 				B43740FF2797E756005E1CC7 /* Resources */,
@@ -196,6 +211,25 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		B437411F2797F871005E1CC7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				$SRCROOT/R.generated.swift,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
+		};
 		E8666514B7EE293F413D27C3 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -222,6 +256,8 @@
 			files = (
 				B43741092797E756005E1CC7 /* ViewController.swift in Sources */,
 				B43741052797E756005E1CC7 /* AppDelegate.swift in Sources */,
+				B43741212797FAFF005E1CC7 /* R.generated.swift in Sources */,
+				B437411E2797F10F005E1CC7 /* UIFont+Extension.swift in Sources */,
 				B43741072797E756005E1CC7 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
