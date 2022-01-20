@@ -14,6 +14,10 @@
 		B433B8C82798306600AEA607 /* OnboardingSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B8C72798306600AEA607 /* OnboardingSlide.swift */; };
 		B433B8CA279831C400AEA607 /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B8C9279831C400AEA607 /* OnboardingCollectionViewCell.swift */; };
 		B433B8CC279833CE00AEA607 /* ReusableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B8CB279833CE00AEA607 /* ReusableView+Extension.swift */; };
+		B433B8CF2798636400AEA607 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B8CE2798636400AEA607 /* String+Extension.swift */; };
+		B433B8EE2799195900AEA607 /* VerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B8ED2799195900AEA607 /* VerificationViewController.swift */; };
+		B433B8F027991D7900AEA607 /* OnboardingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B8EF27991D7900AEA607 /* OnboardingService.swift */; };
+		B433B8F227991E4800AEA607 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B433B8F127991E4800AEA607 /* Onboarding.storyboard */; };
 		B43741052797E756005E1CC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43741042797E756005E1CC7 /* AppDelegate.swift */; };
 		B43741072797E756005E1CC7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43741062797E756005E1CC7 /* SceneDelegate.swift */; };
 		B43741092797E756005E1CC7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43741082797E756005E1CC7 /* ViewController.swift */; };
@@ -34,6 +38,10 @@
 		B433B8C72798306600AEA607 /* OnboardingSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSlide.swift; sourceTree = "<group>"; };
 		B433B8C9279831C400AEA607 /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
 		B433B8CB279833CE00AEA607 /* ReusableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReusableView+Extension.swift"; sourceTree = "<group>"; };
+		B433B8CE2798636400AEA607 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		B433B8ED2799195900AEA607 /* VerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewController.swift; sourceTree = "<group>"; };
+		B433B8EF27991D7900AEA607 /* OnboardingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingService.swift; sourceTree = "<group>"; };
+		B433B8F127991E4800AEA607 /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		B43741012797E756005E1CC7 /* SeSAC_SPL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSAC_SPL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B43741042797E756005E1CC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B43741062797E756005E1CC7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,9 +80,8 @@
 		B433B8BA2798240900AEA607 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B437410A2797E756005E1CC7 /* Main.storyboard */,
+				B433B8D0279863D300AEA607 /* CustomView */,
 				B433B8C9279831C400AEA607 /* OnboardingCollectionViewCell.swift */,
-				B433B8BC2798253700AEA607 /* AuthView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -83,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				B433B8C027982BBD00AEA607 /* OnboardingViewController.swift */,
+				B433B8ED2799195900AEA607 /* VerificationViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -93,6 +101,31 @@
 				B433B8C72798306600AEA607 /* OnboardingSlide.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		B433B8D0279863D300AEA607 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				B433B8BC2798253700AEA607 /* AuthView.swift */,
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
+		B433B8EC2799193500AEA607 /* StoryBoard */ = {
+			isa = PBXGroup;
+			children = (
+				B437410A2797E756005E1CC7 /* Main.storyboard */,
+				B433B8F127991E4800AEA607 /* Onboarding.storyboard */,
+			);
+			path = StoryBoard;
+			sourceTree = "<group>";
+		};
+		B433B8F3279923A000AEA607 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				B433B8EF27991D7900AEA607 /* OnboardingService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		B43740F82797E756005E1CC7 = {
@@ -117,11 +150,13 @@
 			isa = PBXGroup;
 			children = (
 				B433B8C62798305D00AEA607 /* Model */,
+				B433B8EC2799193500AEA607 /* StoryBoard */,
 				B433B8BA2798240900AEA607 /* View */,
 				B433B8BB2798252A00AEA607 /* Controller */,
 				B43741082797E756005E1CC7 /* ViewController.swift */,
 				B437411B2797EAA9005E1CC7 /* SeSAC_SPL.entitlements */,
 				B43741192797EA7F005E1CC7 /* GoogleService-Info.plist */,
+				B433B8F3279923A000AEA607 /* Service */,
 				B437411C2797F0FF005E1CC7 /* Extension */,
 				B43741182797E984005E1CC7 /* Resource */,
 			);
@@ -147,6 +182,7 @@
 				B437411D2797F10F005E1CC7 /* UIFont+Extension.swift */,
 				B433B8C427982F7600AEA607 /* UIView+Extension.swift */,
 				B433B8CB279833CE00AEA607 /* ReusableView+Extension.swift */,
+				B433B8CE2798636400AEA607 /* String+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -222,6 +258,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B43741112797E758005E1CC7 /* LaunchScreen.storyboard in Resources */,
+				B433B8F227991E4800AEA607 /* Onboarding.storyboard in Resources */,
 				B437411A2797EA7F005E1CC7 /* GoogleService-Info.plist in Resources */,
 				B437410E2797E758005E1CC7 /* Assets.xcassets in Resources */,
 				B437410C2797E756005E1CC7 /* Main.storyboard in Resources */,
@@ -296,10 +333,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B433B8EE2799195900AEA607 /* VerificationViewController.swift in Sources */,
 				B43741092797E756005E1CC7 /* ViewController.swift in Sources */,
 				B43741052797E756005E1CC7 /* AppDelegate.swift in Sources */,
 				B433B8C527982F7600AEA607 /* UIView+Extension.swift in Sources */,
 				B433B8CC279833CE00AEA607 /* ReusableView+Extension.swift in Sources */,
+				B433B8CF2798636400AEA607 /* String+Extension.swift in Sources */,
+				B433B8F027991D7900AEA607 /* OnboardingService.swift in Sources */,
 				B433B8BD2798253700AEA607 /* AuthView.swift in Sources */,
 				B43741212797FAFF005E1CC7 /* R.generated.swift in Sources */,
 				B433B8C127982BBD00AEA607 /* OnboardingViewController.swift in Sources */,

@@ -6,13 +6,21 @@
 //
 
 import UIKit
+import SnapKit
 import TextFieldEffects
 
 class AuthView: UIView {
     
     // MARK: - Properties
     
-    
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "당신 근처의 새싹농장"
+        label.textColor = .black
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        return label
+    }()
     
     
     // MARK: - Lifecycle
@@ -29,7 +37,10 @@ class AuthView: UIView {
     // MARK: - Helper
     
     func setupConstraints() {
-        
+        addSubview(titleLabel)
+        titleLabel.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
     
 }

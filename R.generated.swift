@@ -89,12 +89,14 @@ struct R: Rswift.Validatable {
   }
 
   #if os(iOS) || os(tvOS)
-  /// This `R.storyboard` struct is generated, and contains static references to 2 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 3 storyboards.
   struct storyboard {
     /// Storyboard `LaunchScreen`.
     static let launchScreen = _R.storyboard.launchScreen()
     /// Storyboard `Main`.
     static let main = _R.storyboard.main()
+    /// Storyboard `Onboarding`.
+    static let onboarding = _R.storyboard.onboarding()
 
     #if os(iOS) || os(tvOS)
     /// `UIStoryboard(name: "LaunchScreen", bundle: ...)`
@@ -107,6 +109,13 @@ struct R: Rswift.Validatable {
     /// `UIStoryboard(name: "Main", bundle: ...)`
     static func main(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.main)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIStoryboard(name: "Onboarding", bundle: ...)`
+    static func onboarding(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.onboarding)
     }
     #endif
 
@@ -513,6 +522,9 @@ struct _R: Rswift.Validatable {
       #if os(iOS) || os(tvOS)
       try main.validate()
       #endif
+      #if os(iOS) || os(tvOS)
+      try onboarding.validate()
+      #endif
     }
 
     #if os(iOS) || os(tvOS)
@@ -540,10 +552,32 @@ struct _R: Rswift.Validatable {
 
       static func validate() throws {
         if #available(iOS 11.0, tvOS 11.0, *) {
-          if UIKit.UIColor(named: "black", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'black' is used in storyboard 'Main', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "gray5", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'gray5' is used in storyboard 'Main', but couldn't be loaded.") }
-          if UIKit.UIColor(named: "green", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'green' is used in storyboard 'Main', but couldn't be loaded.") }
         }
+      }
+
+      fileprivate init() {}
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    struct onboarding: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
+      typealias InitialController = OnboardingViewController
+
+      let bundle = R.hostingBundle
+      let name = "Onboarding"
+      let onboardingViewController = StoryboardViewControllerResource<OnboardingViewController>(identifier: "OnboardingViewController")
+
+      func onboardingViewController(_: Void = ()) -> OnboardingViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: onboardingViewController)
+      }
+
+      static func validate() throws {
+        if #available(iOS 11.0, tvOS 11.0, *) {
+          if UIKit.UIColor(named: "black", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'black' is used in storyboard 'Onboarding', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "gray5", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'gray5' is used in storyboard 'Onboarding', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "green", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'green' is used in storyboard 'Onboarding', but couldn't be loaded.") }
+        }
+        if _R.storyboard.onboarding().onboardingViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'onboardingViewController' could not be loaded from storyboard 'Onboarding' as 'OnboardingViewController'.") }
       }
 
       fileprivate init() {}

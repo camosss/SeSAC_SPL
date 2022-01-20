@@ -35,9 +35,8 @@ class OnboardingViewController: UIViewController {
     // MARK: - Action
     
     @IBAction func startButtonClicked(_ sender: UIButton) {
-        
+        dismiss(animated: true, completion: nil)
     }
-    
 }
 
 // MARK: - UICollectionViewDataSource, UICollectionViewDelegate

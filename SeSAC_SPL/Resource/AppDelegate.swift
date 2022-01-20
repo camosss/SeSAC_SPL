@@ -11,10 +11,15 @@ import UserNotifications
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    var hasAlreadyLaunched: Bool!
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        hasAlreadyLaunched = UserDefaults.standard.bool(forKey: "hasAlreadyLaunched")
+        hasAlreadyLaunched ? hasAlreadyLaunched = true : UserDefaults.standard.set(true, forKey: "hasAlreadyLaunched")
+
         FirebaseApp.configure()
-        
         UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .sound, .alert]) { granted, error in
             DispatchQueue.main.async {
                 application.registerForRemoteNotifications()
@@ -23,6 +28,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
+    
+    func sethasAlreadyLaunched() {
+        hasAlreadyLaunched = true
+    }
+    
 
     // MARK: UISceneSession Lifecycle
 
