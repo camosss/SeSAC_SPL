@@ -20,12 +20,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         hasAlreadyLaunched ? hasAlreadyLaunched = true : UserDefaults.standard.set(true, forKey: "hasAlreadyLaunched")
 
         FirebaseApp.configure()
+        UIBarButtonItem.appearance().tintColor = .black
         UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .sound, .alert]) { granted, error in
             DispatchQueue.main.async {
                 application.registerForRemoteNotifications()
             }
         }
-        
         return true
     }
     

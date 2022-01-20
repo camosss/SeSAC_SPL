@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		6CF6EBD952D5A7DE7A59C09F /* Pods_SeSAC_SPL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46BC3B35DAD8705B465AD200 /* Pods_SeSAC_SPL.framework */; };
+		B40CA671279967F600B233D7 /* BirthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40CA670279967F600B233D7 /* BirthViewController.swift */; };
+		B40CA67327999D1F00B233D7 /* BirthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40CA67227999D1F00B233D7 /* BirthView.swift */; };
 		B433B8BD2798253700AEA607 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B8BC2798253700AEA607 /* AuthView.swift */; };
 		B433B8C127982BBD00AEA607 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B8C027982BBD00AEA607 /* OnboardingViewController.swift */; };
 		B433B8C527982F7600AEA607 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B8C427982F7600AEA607 /* UIView+Extension.swift */; };
@@ -18,6 +20,12 @@
 		B433B8EE2799195900AEA607 /* VerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B8ED2799195900AEA607 /* VerificationViewController.swift */; };
 		B433B8F027991D7900AEA607 /* OnboardingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B8EF27991D7900AEA607 /* OnboardingService.swift */; };
 		B433B8F227991E4800AEA607 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B433B8F127991E4800AEA607 /* Onboarding.storyboard */; };
+		B433B8FD279949AA00AEA607 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B8FC279949AA00AEA607 /* Utility.swift */; };
+		B433B90027994C5100AEA607 /* ConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B8FF27994C5100AEA607 /* ConfirmationViewController.swift */; };
+		B433B9022799558B00AEA607 /* NickNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B9012799558B00AEA607 /* NickNameViewController.swift */; };
+		B433B9042799561700AEA607 /* EmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B9032799561700AEA607 /* EmailViewController.swift */; };
+		B433B9062799567700AEA607 /* GenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B9052799567700AEA607 /* GenderViewController.swift */; };
+		B433B9082799570C00AEA607 /* GenderButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B9072799570C00AEA607 /* GenderButton+Extension.swift */; };
 		B43741052797E756005E1CC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43741042797E756005E1CC7 /* AppDelegate.swift */; };
 		B43741072797E756005E1CC7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43741062797E756005E1CC7 /* SceneDelegate.swift */; };
 		B43741092797E756005E1CC7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43741082797E756005E1CC7 /* ViewController.swift */; };
@@ -32,6 +40,8 @@
 /* Begin PBXFileReference section */
 		203B7D23B7EE22BF58E91AD1 /* Pods-SeSAC_SPL.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeSAC_SPL.debug.xcconfig"; path = "Target Support Files/Pods-SeSAC_SPL/Pods-SeSAC_SPL.debug.xcconfig"; sourceTree = "<group>"; };
 		46BC3B35DAD8705B465AD200 /* Pods_SeSAC_SPL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SeSAC_SPL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B40CA670279967F600B233D7 /* BirthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthViewController.swift; sourceTree = "<group>"; };
+		B40CA67227999D1F00B233D7 /* BirthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthView.swift; sourceTree = "<group>"; };
 		B433B8BC2798253700AEA607 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		B433B8C027982BBD00AEA607 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		B433B8C427982F7600AEA607 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
@@ -42,6 +52,12 @@
 		B433B8ED2799195900AEA607 /* VerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewController.swift; sourceTree = "<group>"; };
 		B433B8EF27991D7900AEA607 /* OnboardingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingService.swift; sourceTree = "<group>"; };
 		B433B8F127991E4800AEA607 /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
+		B433B8FC279949AA00AEA607 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		B433B8FF27994C5100AEA607 /* ConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationViewController.swift; sourceTree = "<group>"; };
+		B433B9012799558B00AEA607 /* NickNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NickNameViewController.swift; sourceTree = "<group>"; };
+		B433B9032799561700AEA607 /* EmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailViewController.swift; sourceTree = "<group>"; };
+		B433B9052799567700AEA607 /* GenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderViewController.swift; sourceTree = "<group>"; };
+		B433B9072799570C00AEA607 /* GenderButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GenderButton+Extension.swift"; sourceTree = "<group>"; };
 		B43741012797E756005E1CC7 /* SeSAC_SPL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSAC_SPL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B43741042797E756005E1CC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B43741062797E756005E1CC7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,7 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				B433B8C027982BBD00AEA607 /* OnboardingViewController.swift */,
-				B433B8ED2799195900AEA607 /* VerificationViewController.swift */,
+				B433B8FE27994C0C00AEA607 /* Auth */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -107,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				B433B8BC2798253700AEA607 /* AuthView.swift */,
+				B40CA67227999D1F00B233D7 /* BirthView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -126,6 +143,19 @@
 				B433B8EF27991D7900AEA607 /* OnboardingService.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		B433B8FE27994C0C00AEA607 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				B433B8ED2799195900AEA607 /* VerificationViewController.swift */,
+				B433B8FF27994C5100AEA607 /* ConfirmationViewController.swift */,
+				B433B9012799558B00AEA607 /* NickNameViewController.swift */,
+				B40CA670279967F600B233D7 /* BirthViewController.swift */,
+				B433B9032799561700AEA607 /* EmailViewController.swift */,
+				B433B9052799567700AEA607 /* GenderViewController.swift */,
+			);
+			path = Auth;
 			sourceTree = "<group>";
 		};
 		B43740F82797E756005E1CC7 = {
@@ -183,6 +213,8 @@
 				B433B8C427982F7600AEA607 /* UIView+Extension.swift */,
 				B433B8CB279833CE00AEA607 /* ReusableView+Extension.swift */,
 				B433B8CE2798636400AEA607 /* String+Extension.swift */,
+				B433B8FC279949AA00AEA607 /* Utility.swift */,
+				B433B9072799570C00AEA607 /* GenderButton+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -333,20 +365,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B433B9082799570C00AEA607 /* GenderButton+Extension.swift in Sources */,
 				B433B8EE2799195900AEA607 /* VerificationViewController.swift in Sources */,
 				B43741092797E756005E1CC7 /* ViewController.swift in Sources */,
 				B43741052797E756005E1CC7 /* AppDelegate.swift in Sources */,
+				B433B9022799558B00AEA607 /* NickNameViewController.swift in Sources */,
 				B433B8C527982F7600AEA607 /* UIView+Extension.swift in Sources */,
 				B433B8CC279833CE00AEA607 /* ReusableView+Extension.swift in Sources */,
+				B433B8FD279949AA00AEA607 /* Utility.swift in Sources */,
+				B433B90027994C5100AEA607 /* ConfirmationViewController.swift in Sources */,
 				B433B8CF2798636400AEA607 /* String+Extension.swift in Sources */,
+				B433B9042799561700AEA607 /* EmailViewController.swift in Sources */,
 				B433B8F027991D7900AEA607 /* OnboardingService.swift in Sources */,
 				B433B8BD2798253700AEA607 /* AuthView.swift in Sources */,
 				B43741212797FAFF005E1CC7 /* R.generated.swift in Sources */,
+				B40CA67327999D1F00B233D7 /* BirthView.swift in Sources */,
 				B433B8C127982BBD00AEA607 /* OnboardingViewController.swift in Sources */,
 				B437411E2797F10F005E1CC7 /* UIFont+Extension.swift in Sources */,
 				B433B8CA279831C400AEA607 /* OnboardingCollectionViewCell.swift in Sources */,
+				B40CA671279967F600B233D7 /* BirthViewController.swift in Sources */,
 				B433B8C82798306600AEA607 /* OnboardingSlide.swift in Sources */,
 				B43741072797E756005E1CC7 /* SceneDelegate.swift in Sources */,
+				B433B9062799567700AEA607 /* GenderViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

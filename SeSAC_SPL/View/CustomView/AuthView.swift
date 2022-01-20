@@ -7,21 +7,56 @@
 
 import UIKit
 import SnapKit
-import TextFieldEffects
+
+protocol AuthViewDelegate: AnyObject {
+    func handleNextButtonAction()
+}
 
 class AuthView: UIView {
     
     // MARK: - Properties
     
-    private let titleLabel: UILabel = {
+    weak var delegate: AuthViewDelegate?
+    
+    let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "당신 근처의 새싹농장"
-        label.textColor = .black
+        label.textColor = R.color.black()
         label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.numberOfLines = 0
+        label.font = UIFont.systemFont(ofSize: 20)
         return label
     }()
     
+    let subTitleLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = R.color.gray7()
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.font = UIFont.systemFont(ofSize: 16)
+        return label
+    }()
+    
+    let inputTextField: UITextField = {
+        let tf = UITextField()
+        tf.font = UIFont.systemFont(ofSize: 14)
+        return tf
+    }()
+    
+    lazy var inputContainerView: UIView = {
+        let view = Utility.inputContainerView(textField: inputTextField)
+        return view
+    }()
+    
+    let nextButton: UIButton = {
+        let button = UIButton()
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = R.color.green()
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        button.cornerRadius = 8
+        button.heightAnchor.constraint(equalToConstant: 48).isActive = true
+        button.addTarget(self, action: #selector(nextButtonClicked), for: .touchUpInside)
+        return button
+    }()
     
     // MARK: - Lifecycle
     
@@ -34,13 +69,37 @@ class AuthView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Action
+    
+    @objc func nextButtonClicked() {
+        delegate?.handleNextButtonAction()
+    }
+    
     // MARK: - Helper
     
     func setupConstraints() {
-        addSubview(titleLabel)
-        titleLabel.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+        let stack = UIStackView(arrangedSubviews: [titleLabel, subTitleLabel])
+        stack.axis = .vertical
+        stack.spacing = 8
+        
+        addSubview(stack)
+        stack.snp.makeConstraints { make in
+            make.top.equalTo(185)
+            make.centerX.equalToSuperview()
+        }
+        
+        addSubview(inputContainerView)
+        inputContainerView.snp.makeConstraints { make in
+            make.top.equalTo(subTitleLabel.snp.bottom).offset(76)
+            make.leading.equalTo(28)
+            make.trailing.equalTo(-28)
+        }
+        
+        addSubview(nextButton)
+        nextButton.snp.makeConstraints { make in
+            make.top.equalTo(inputContainerView.snp.bottom).offset(72)
+            make.leading.equalTo(16)
+            make.trailing.equalTo(-16)
         }
     }
-    
 }

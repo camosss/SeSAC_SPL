@@ -16,7 +16,6 @@ class VerificationViewController: UIViewController {
     let onboardingService = OnboardingService()
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
-    
     // MARK: - Lifecycle
     
     override func loadView() {
@@ -25,7 +24,8 @@ class VerificationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .orange
+        view.backgroundColor = .white
+        configureAuthView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -44,4 +44,21 @@ class VerificationViewController: UIViewController {
         present(onboardingVC, animated: false)
     }
     
+    func configureAuthView() {
+        authView.delegate = self
+        authView.subTitleLabel.isHidden = true
+        
+        authView.titleLabel.text = "새싹 서비스 이용을 위해\n휴대폰 번호를 입력해주세요"
+        authView.inputTextField.placeholder = "휴대폰 번호(-없이 숫자만 입력)"
+        authView.nextButton.setTitle("인증 문자 받기", for: .normal)
+    }
+}
+
+// MARK: - AuthViewDelegate
+
+extension VerificationViewController: AuthViewDelegate {
+    func handleNextButtonAction() {
+        let controller = ConfirmationViewController()
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
 }
