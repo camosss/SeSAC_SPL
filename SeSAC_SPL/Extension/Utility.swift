@@ -35,4 +35,37 @@ class Utility {
         
         return view
     }
+    
+    static func textField(withPlaceholder placeholder: String) -> UITextField {
+        let tf = UITextField()
+        tf.textColor = .black
+        tf.textAlignment = .center
+        tf.font = UIFont.systemFont(ofSize: 14)
+        tf.attributedPlaceholder = NSAttributedString(string: placeholder,
+                                                      attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        return tf
+    }
+    
+    // MARK: - Label
+    
+    static func label(text: String, textColor: UIColor!, fontSize: CGFloat) -> UILabel {
+        let label = UILabel()
+        label.text = text
+        label.textColor = textColor
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: fontSize)
+        return label
+    }
+    
+    // MARK: - Button
+    
+    static func button() -> UIButton {
+        let button = UIButton(type: .system)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = R.color.green()
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        button.cornerRadius = 8
+        button.heightAnchor.constraint(equalToConstant: 48).isActive = true
+        return button
+    }
 }

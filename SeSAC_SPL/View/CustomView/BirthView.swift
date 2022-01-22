@@ -16,94 +16,31 @@ class BirthView: UIView {
     // MARK: - Properties
     
     weak var delegate: BirthViewDelegate?
-
-    let titleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "생년월일을 알려주세요"
-        label.textColor = R.color.black()
-        label.textAlignment = .center
-        label.numberOfLines = 0
-        label.font = UIFont.systemFont(ofSize: 20)
-        return label
-    }()
     
-    let yearTextField: UITextField = {
-        let tf = UITextField()
-        tf.placeholder = "0000"
-        tf.textAlignment = .center
-        tf.font = UIFont.systemFont(ofSize: 14)
-        return tf
-    }()
-    
-    let monthTextField: UITextField = {
-        let tf = UITextField()
-        tf.placeholder = "00"
-        tf.textAlignment = .center
-        tf.font = UIFont.systemFont(ofSize: 14)
-        return tf
-    }()
-    
-    let dayTextField: UITextField = {
-        let tf = UITextField()
-        tf.placeholder = "00"
-        tf.textAlignment = .center
-        tf.font = UIFont.systemFont(ofSize: 14)
-        return tf
-    }()
+    let yearTextField = Utility.textField(withPlaceholder: "0000")
+    let monthTextField = Utility.textField(withPlaceholder: "00")
+    let dayTextField = Utility.textField(withPlaceholder: "00")
     
     lazy var yearTextFieldContainerView: UIView = {
         let view = Utility.inputContainerView(textField: yearTextField)
-        view.widthAnchor.constraint(equalToConstant: 120).isActive = true
         return view
     }()
-    
     lazy var monthTextFieldContainerView: UIView = {
         let view = Utility.inputContainerView(textField: monthTextField)
-        view.widthAnchor.constraint(equalToConstant: 80).isActive = true
         return view
     }()
-    
     lazy var dayTextFieldContainerView: UIView = {
         let view = Utility.inputContainerView(textField: dayTextField)
-        view.widthAnchor.constraint(equalToConstant: 80).isActive = true
         return view
     }()
     
-    private let yearLabel: UILabel = {
-        let label = UILabel()
-        label.text = "년"
-        label.textColor = R.color.black()
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 16)
-        return label
-    }()
-    
-    private let monthLabel: UILabel = {
-        let label = UILabel()
-        label.text = "월"
-        label.textColor = R.color.black()
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 16)
-        return label
-    }()
-    
-    private let dayLabel: UILabel = {
-        let label = UILabel()
-        label.text = "일"
-        label.textColor = R.color.black()
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 16)
-        return label
-    }()
+    private let titleLabel = Utility.label(text: "생년월일을 알려주세요", textColor: R.color.black(), fontSize: 20)
+    private let yearLabel = Utility.label(text: "년", textColor: R.color.black(), fontSize: 16)
+    private let monthLabel = Utility.label(text: "월", textColor: R.color.black(), fontSize: 16)
+    private let dayLabel = Utility.label(text: "일", textColor: R.color.black(), fontSize: 16)
     
     let nextButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("다음", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = R.color.green()
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-        button.cornerRadius = 8
-        button.heightAnchor.constraint(equalToConstant: 48).isActive = true
+        let button = Utility.button()
         button.addTarget(self, action: #selector(nextButtonClicked), for: .touchUpInside)
         return button
     }()
@@ -137,6 +74,7 @@ class BirthView: UIView {
         let stack = UIStackView(arrangedSubviews: [yearTextFieldContainerView, yearLabel, monthTextFieldContainerView, monthLabel, dayTextFieldContainerView, dayLabel])
         stack.axis = .horizontal
         stack.spacing = 10
+        stack.distribution = .fillEqually
         
         addSubview(stack)
         stack.snp.makeConstraints { make in
@@ -153,5 +91,3 @@ class BirthView: UIView {
         }
     }
 }
-
-

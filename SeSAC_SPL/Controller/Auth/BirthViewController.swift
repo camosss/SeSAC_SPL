@@ -22,7 +22,14 @@ class BirthViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        configureBirthView()
+    }
+    
+    // MARK: - Helper
+    
+    func configureBirthView() {
         birthView.delegate = self
+        birthView.nextButton.setTitle("다음", for: .normal)
     }
 }
 

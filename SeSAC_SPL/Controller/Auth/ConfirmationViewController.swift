@@ -17,21 +17,13 @@ class ConfirmationViewController: UIViewController {
     var limitTime = 60
     
     private let timerLabel: UILabel = {
-        let label = UILabel()
-        label.text = "00:00"
-        label.textColor = R.color.green()
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 14)
+        let label = Utility.label(text: "00:00", textColor: R.color.green(), fontSize: 14)
         return label
     }()
     
     private let reSendButton: UIButton = {
-        let button = UIButton()
+        let button = Utility.button()
         button.setTitle("재전송", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-        button.backgroundColor = R.color.green()
-        button.cornerRadius = 8
         button.addTarget(self, action: #selector(resendButtonClicked), for: .touchUpInside)
         return button
     }()
@@ -73,7 +65,6 @@ class ConfirmationViewController: UIViewController {
             make.top.equalTo(authView.inputContainerView)
             make.trailing.equalTo(-16)
             make.width.equalTo(72)
-            make.height.equalTo(50)
         }
         
         authView.addSubview(timerLabel)

@@ -19,20 +19,14 @@ class AuthView: UIView {
     weak var delegate: AuthViewDelegate?
     
     let titleLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = R.color.black()
-        label.textAlignment = .center
+        let label = Utility.label(text: "", textColor: R.color.black(), fontSize: 20)
         label.numberOfLines = 0
-        label.font = UIFont.systemFont(ofSize: 20)
         return label
     }()
     
     let subTitleLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = R.color.gray7()
-        label.textAlignment = .center
+        let label = Utility.label(text: "", textColor: R.color.gray7(), fontSize: 16)
         label.numberOfLines = 0
-        label.font = UIFont.systemFont(ofSize: 16)
         return label
     }()
     
@@ -48,12 +42,7 @@ class AuthView: UIView {
     }()
     
     let nextButton: UIButton = {
-        let button = UIButton()
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = R.color.green()
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-        button.cornerRadius = 8
-        button.heightAnchor.constraint(equalToConstant: 48).isActive = true
+        let button = Utility.button()
         button.addTarget(self, action: #selector(nextButtonClicked), for: .touchUpInside)
         return button
     }()
