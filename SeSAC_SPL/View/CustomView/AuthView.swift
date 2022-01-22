@@ -47,6 +47,8 @@ class AuthView: UIView {
         return button
     }()
     
+    lazy var stack = Utility.stackView(axis: .vertical, spacing: 8, distribution: .fillEqually, arrangedSubviews: [titleLabel, subTitleLabel])
+    
     // MARK: - Lifecycle
     
     override init(frame: CGRect) {
@@ -67,10 +69,6 @@ class AuthView: UIView {
     // MARK: - Helper
     
     func setupConstraints() {
-        let stack = UIStackView(arrangedSubviews: [titleLabel, subTitleLabel])
-        stack.axis = .vertical
-        stack.spacing = 8
-        
         addSubview(stack)
         stack.snp.makeConstraints { make in
             make.top.equalTo(185)

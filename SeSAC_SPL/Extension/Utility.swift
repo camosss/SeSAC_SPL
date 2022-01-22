@@ -68,4 +68,22 @@ class Utility {
         button.heightAnchor.constraint(equalToConstant: 48).isActive = true
         return button
     }
+    
+    // MARK: - StackView
+    
+    static func stackView(axis: NSLayoutConstraint.Axis, spacing: CGFloat, distribution: UIStackView.Distribution, arrangedSubviews: [UIView]) -> UIStackView {
+        let stack = UIStackView(arrangedSubviews: arrangedSubviews)
+        stack.axis = axis
+        stack.spacing = spacing
+        stack.distribution = distribution
+        return stack
+    }
+    
+    static func dateStackView(_ arrangedSubviews: [UIView]) -> UIStackView {
+        let stack = UIStackView(arrangedSubviews: arrangedSubviews)
+        stack.axis = .horizontal
+        stack.spacing = 4
+        stack.distribution = .fillProportionally
+        return stack
+    }
 }

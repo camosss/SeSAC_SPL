@@ -45,6 +45,14 @@ class BirthView: UIView {
         return button
     }()
     
+    // MARK: - StackView
+    
+    lazy var yearStack = Utility.dateStackView([yearTextFieldContainerView, yearLabel])
+    lazy var monthStack = Utility.dateStackView([monthTextFieldContainerView, monthLabel])
+    lazy var dayStack = Utility.dateStackView([dayTextFieldContainerView, dayLabel])
+
+    lazy var birthStack = Utility.stackView(axis: .horizontal, spacing: 10, distribution: .fillEqually, arrangedSubviews: [yearStack, monthStack, dayStack])
+    
     // MARK: - Lifecycle
 
     override init(frame: CGRect) {
@@ -71,21 +79,17 @@ class BirthView: UIView {
             make.centerX.equalToSuperview()
         }
         
-        let stack = UIStackView(arrangedSubviews: [yearTextFieldContainerView, yearLabel, monthTextFieldContainerView, monthLabel, dayTextFieldContainerView, dayLabel])
-        stack.axis = .horizontal
-        stack.spacing = 10
-        stack.distribution = .fillEqually
-        
-        addSubview(stack)
-        stack.snp.makeConstraints { make in
+        addSubview(birthStack)
+        birthStack.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(76)
             make.leading.equalTo(28)
             make.trailing.equalTo(-28)
+            
         }
         
         addSubview(nextButton)
         nextButton.snp.makeConstraints { make in
-            make.top.equalTo(stack.snp.bottom).offset(72)
+            make.top.equalTo(dayStack.snp.bottom).offset(72)
             make.leading.equalTo(16)
             make.trailing.equalTo(-16)
         }
