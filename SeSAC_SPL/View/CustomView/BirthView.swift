@@ -17,22 +17,13 @@ class BirthView: UIView {
     
     weak var delegate: BirthViewDelegate?
     
-    let yearTextField = Utility.textField(withPlaceholder: "0000")
-    let monthTextField = Utility.textField(withPlaceholder: "00")
-    let dayTextField = Utility.textField(withPlaceholder: "00")
+    let yearTextField = Utility.birthTextField(withPlaceholder: "0000")
+    let monthTextField = Utility.birthTextField(withPlaceholder: "00")
+    let dayTextField = Utility.birthTextField(withPlaceholder: "00")
     
-    lazy var yearTextFieldContainerView: UIView = {
-        let view = Utility.inputContainerView(textField: yearTextField)
-        return view
-    }()
-    lazy var monthTextFieldContainerView: UIView = {
-        let view = Utility.inputContainerView(textField: monthTextField)
-        return view
-    }()
-    lazy var dayTextFieldContainerView: UIView = {
-        let view = Utility.inputContainerView(textField: dayTextField)
-        return view
-    }()
+    lazy var yearTextFieldContainerView = Utility.inputContainerView(textField: yearTextField)
+    lazy var monthTextFieldContainerView = Utility.inputContainerView(textField: monthTextField)
+    lazy var dayTextFieldContainerView = Utility.inputContainerView(textField: dayTextField)
     
     private let titleLabel = Utility.label(text: "생년월일을 알려주세요", textColor: R.color.black(), fontSize: 20)
     private let yearLabel = Utility.label(text: "년", textColor: R.color.black(), fontSize: 16)
@@ -82,16 +73,13 @@ class BirthView: UIView {
         addSubview(birthStack)
         birthStack.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(76)
-            make.leading.equalTo(28)
-            make.trailing.equalTo(-28)
-            
+            make.leading.trailing.equalToSuperview().inset(28)
         }
         
         addSubview(nextButton)
         nextButton.snp.makeConstraints { make in
             make.top.equalTo(dayStack.snp.bottom).offset(72)
-            make.leading.equalTo(16)
-            make.trailing.equalTo(-16)
+            make.leading.trailing.equalToSuperview().inset(16)
         }
     }
 }

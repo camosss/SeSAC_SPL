@@ -78,15 +78,13 @@ class AuthView: UIView {
         addSubview(inputContainerView)
         inputContainerView.snp.makeConstraints { make in
             make.top.equalTo(subTitleLabel.snp.bottom).offset(76)
-            make.leading.equalTo(28)
-            make.trailing.equalTo(-28)
+            make.leading.trailing.equalToSuperview().inset(28)
         }
         
         addSubview(nextButton)
         nextButton.snp.makeConstraints { make in
             make.top.equalTo(inputContainerView.snp.bottom).offset(72)
-            make.leading.equalTo(16)
-            make.trailing.equalTo(-16)
+            make.leading.trailing.equalToSuperview().inset(16)
         }
     }
 }

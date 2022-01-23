@@ -16,11 +16,8 @@ class ConfirmationViewController: UIViewController {
     var timer: Timer!
     var limitTime = 60
     
-    private let timerLabel: UILabel = {
-        let label = Utility.label(text: "00:00", textColor: R.color.green(), fontSize: 14)
-        return label
-    }()
-    
+    private let timerLabel = Utility.label(text: "00:00", textColor: R.color.green(), fontSize: 14)
+
     private let reSendButton: UIButton = {
         let button = Utility.button()
         button.setTitle("재전송", for: .normal)

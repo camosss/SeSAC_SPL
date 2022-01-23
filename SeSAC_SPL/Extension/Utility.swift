@@ -36,10 +36,11 @@ class Utility {
         return view
     }
     
-    static func textField(withPlaceholder placeholder: String) -> UITextField {
+    static func birthTextField(withPlaceholder placeholder: String) -> UITextField {
         let tf = UITextField()
         tf.textColor = .black
         tf.textAlignment = .center
+        tf.isEnabled = false
         tf.font = UIFont.systemFont(ofSize: 14)
         tf.attributedPlaceholder = NSAttributedString(string: placeholder,
                                                       attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
