@@ -10,5 +10,9 @@ import Foundation
 protocol CommonViewModel {
     associatedtype Input
     associatedtype Output
-    func transform(input: Input) -> Output
+    
+    func phoneNumberTransform(input: Input) -> Output
+    func certificationTransform(input: Input) -> Output
+    func nickNameTransform(input: Input) -> Output
+    func emailTransform(input: Input) -> Output
 }

@@ -6,18 +6,26 @@
 //
 
 import UIKit
+import RxSwift
+
+enum TapBtn {
+    case man
+    case woman
+}
 
 class GenderViewController: UIViewController {
     
     // MARK: - Properties
     
+    var genderValue: Int = -1
+    
     let authView = AuthView()
+    let disposeBag = DisposeBag()
     
     let manButton: GenderButton = {
         let button = GenderButton()
         button.genderImageView.image = UIImage(systemName: "person.fill")
         button.genderLabel.text = "남자"
-        button.addTarget(self, action: #selector(manButtonClicked), for: .touchUpInside)
         return button
     }()
     
@@ -25,7 +33,6 @@ class GenderViewController: UIViewController {
         let button = GenderButton()
         button.genderImageView.image = UIImage(systemName: "person")
         button.genderLabel.text = "여자"
-        button.addTarget(self, action: #selector(womanButtonClicked), for: .touchUpInside)
         return button
     }()
     
@@ -49,16 +56,7 @@ class GenderViewController: UIViewController {
         view.backgroundColor = .white
         configureAuthView()
         configureGenderView()
-    }
-    
-    // MARK: - Action
-    
-    @objc func manButtonClicked() {
-        print("man")
-    }
-    
-    @objc func womanButtonClicked() {
-        print("woman")
+        handleTapGenderBtn()
     }
     
     // MARK: - Helper
@@ -79,9 +77,32 @@ class GenderViewController: UIViewController {
             make.leading.trailing.equalToSuperview().inset(16)
         }
     }
+    
+    func handleTapGenderBtn() {
+        Observable.merge(
+            manButton.rx.tap.map { _ in TapBtn.man },
+            womanButton.rx.tap.map { _ in TapBtn.woman }
+        ).subscribe(onNext: {
+            switch $0 {
+            case .man:
+                self.genderValue = 1
+                Utility.switchButton(self.manButton, self.womanButton)
+                print("Tap man btn", self.genderValue)
+            case .woman:
+                self.genderValue = 0
+                Utility.switchButton(self.womanButton, self.manButton)
+                print("Tap woman btn", self.genderValue)
+            }
+        }).disposed(by: disposeBag)
+    }
+    
+    func handleButtonEvent() {
+    
+    }
 }
 
 // MARK: - AuthViewDelegate
+
 extension GenderViewController: AuthViewDelegate {
     func handleNextButtonAction() {
         let controller = MyInfoViewController()

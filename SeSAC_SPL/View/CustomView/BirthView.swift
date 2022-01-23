@@ -31,7 +31,7 @@ class BirthView: UIView {
     private let dayLabel = Utility.label(text: "일", textColor: R.color.black(), fontSize: 16)
     
     let nextButton: UIButton = {
-        let button = Utility.button()
+        let button = Utility.button(backgroundColor: R.color.gray6())
         button.addTarget(self, action: #selector(nextButtonClicked), for: .touchUpInside)
         return button
     }()

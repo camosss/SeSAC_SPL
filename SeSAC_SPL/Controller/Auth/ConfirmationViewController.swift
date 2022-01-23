@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 import FirebaseAuth
 
 class ConfirmationViewController: UIViewController {
@@ -13,6 +14,8 @@ class ConfirmationViewController: UIViewController {
     // MARK: - Properties
     
     let authView = AuthView()
+    let viewModel = ValidationViewModel()
+    let disposeBag = DisposeBag()
     
     var timer: Timer!
     var limitTime = 60
@@ -20,7 +23,7 @@ class ConfirmationViewController: UIViewController {
     private let timerLabel = Utility.label(text: "", textColor: R.color.green(), fontSize: 14)
 
     private let reSendButton: UIButton = {
-        let button = Utility.button()
+        let button = Utility.button(backgroundColor: R.color.green())
         button.setTitle("재전송", for: .normal)
         button.addTarget(self, action: #selector(resendButtonClicked), for: .touchUpInside)
         return button
@@ -37,6 +40,7 @@ class ConfirmationViewController: UIViewController {
         configureAuthView()
         configureConfirmationView()
         startTimer()
+        handleButtonEvent()
     }
     
     // MARK: - Action
@@ -48,8 +52,6 @@ class ConfirmationViewController: UIViewController {
     // MARK: - Helper
     
     func configureAuthView() {
-        authView.delegate = self
-        
         authView.titleLabel.text = "인증번호가 문자로 전송되었어요"
         authView.subTitleLabel.text = "(최대 소모 20초)"
         authView.inputTextField.placeholder = "인증번호 입력"
@@ -71,6 +73,32 @@ class ConfirmationViewController: UIViewController {
             make.trailing.equalTo(reSendButton.snp.leading).offset(-20)
             make.centerY.equalTo(authView.inputContainerView)
         }
+    }
+    
+    func handleButtonEvent() {
+        
+        let input = ValidationViewModel.Input(text: authView.inputTextField.rx.text, tap: authView.nextButton.rx.tap)
+        let output = viewModel.certificationTransform(input: input)
+        
+        output.validStatus
+            .map { $0 ? R.color.green() : R.color.gray6() }
+            .bind(to: authView.nextButton.rx.backgroundColor)
+            .disposed(by: disposeBag)
+        
+        output.validStatus
+            .bind(to: authView.nextButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+
+        output.validText
+            .asDriver()
+            .drive(authView.inputTextField.rx.text)
+            .disposed(by: disposeBag)
+
+        output.sceneTransition
+            .subscribe { _ in
+                let controller = NickNameViewController()
+                self.navigationController?.pushViewController(controller, animated: true)
+            }.disposed(by: disposeBag)
     }
     
     // MARK: - Helper (Timer)
@@ -98,15 +126,5 @@ class ConfirmationViewController: UIViewController {
     func stopTimer() {
         self.timerLabel.isHidden = true
         self.timer.invalidate()
-    }
-}
-
-// MARK: - AuthViewDelegate
-extension ConfirmationViewController: AuthViewDelegate {
-    func handleNextButtonAction() {
-        stopTimer()
-        
-        let controller = NickNameViewController()
-        self.navigationController?.pushViewController(controller, animated: true)
     }
 }

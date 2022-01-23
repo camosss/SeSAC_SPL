@@ -60,14 +60,22 @@ class Utility {
     
     // MARK: - Button
     
-    static func button() -> UIButton {
+    static func button(backgroundColor: UIColor!) -> UIButton {
         let button = UIButton(type: .system)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = R.color.green()
+        button.backgroundColor = backgroundColor
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         button.cornerRadius = 8
         button.heightAnchor.constraint(equalToConstant: 48).isActive = true
         return button
+    }
+    
+    static func switchButton(_ clicked: UIButton, _ unclicked: UIButton) {
+        clicked.backgroundColor = R.color.whitegreen()
+        
+        unclicked.backgroundColor = R.color.white()
+        unclicked.layer.borderColor = R.color.gray3()?.cgColor
+        unclicked.layer.borderWidth = 1
     }
     
     // MARK: - StackView

@@ -28,7 +28,7 @@ class GenderButton: UIButton {
         
         layer.cornerRadius = 8
         layer.borderWidth = 1
-        layer.borderColor = UIColor.systemGray5.cgColor
+        layer.borderColor = R.color.gray3()?.cgColor
     }
     
     

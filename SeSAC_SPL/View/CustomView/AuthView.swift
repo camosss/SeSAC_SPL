@@ -42,7 +42,7 @@ class AuthView: UIView {
     }()
     
     let nextButton: UIButton = {
-        let button = Utility.button()
+        let button = Utility.button(backgroundColor: R.color.green())
         button.addTarget(self, action: #selector(nextButtonClicked), for: .touchUpInside)
         return button
     }()

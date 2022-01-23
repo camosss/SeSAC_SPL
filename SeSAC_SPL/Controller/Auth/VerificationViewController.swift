@@ -15,7 +15,6 @@ class VerificationViewController: UIViewController {
     // MARK: - Properties
     
     let authView = AuthView()
-    let viewModel = VerificationViewModel()
     let disposeBag = DisposeBag()
 
     let onboardingService = OnboardingService()
@@ -31,26 +30,7 @@ class VerificationViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         configureAuthView()
-//        handleButtonEvent()
-        
-        let vaildation = authView.inputTextField.rx.text
-            .orEmpty
-            .map { $0.count >= 5 } // count 테스트
-//            .share(replay: 1, scope: .whileConnected)
-
-        vaildation
-            .bind(to: authView.nextButton.rx.isEnabled)
-            .disposed(by: disposeBag)
-
-        vaildation
-            .map {$0 ? 1:0.3}
-            .bind(to: authView.nextButton.rx.alpha)
-            .disposed(by: disposeBag)
-
-        authView.nextButton.rx.tap
-            .subscribe { _ in
-                print("구독")
-            }.disposed(by: disposeBag)
+        handleButtonEvent()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -80,29 +60,28 @@ class VerificationViewController: UIViewController {
     }
     
     func handleButtonEvent() {
-        
-        let input = VerificationViewModel.Input(text: authView.inputTextField.rx.text, tap: authView.nextButton.rx.tap)
-        let output = viewModel.transform(input: input)
-        
-        output.validStatus
-            .map {$0 ? 1:0.3}
-            .bind(to: authView.nextButton.rx.alpha)
-            .disposed(by: disposeBag)
-        
-        output.validStatus
-            .bind(to: authView.nextButton.rx.isEnabled)
-            .disposed(by: disposeBag)
-
-        output.validText
-            .asDriver()
-            .drive(authView.inputTextField.rx.text)
-            .disposed(by: disposeBag)
-
-        output.sceneTransition
-            .subscribe { _ in
-                let controller = ConfirmationViewController()
-                self.navigationController?.pushViewController(controller, animated: true)
-            }.disposed(by: disposeBag)
+//        let input = VerificationViewModel.Input(text: authView.inputTextField.rx.text, tap: authView.nextButton.rx.tap)
+//        let output = viewModel.transform(input: input)
+//
+//        output.validStatus
+//            .map { $0 ? R.color.green() : R.color.gray6() }
+//            .bind(to: authView.nextButton.rx.backgroundColor)
+//            .disposed(by: disposeBag)
+//
+//        output.validStatus
+//            .bind(to: authView.nextButton.rx.isEnabled)
+//            .disposed(by: disposeBag)
+//
+//        output.validText
+//            .asDriver()
+//            .drive(authView.inputTextField.rx.text)
+//            .disposed(by: disposeBag)
+//
+//        output.sceneTransition
+//            .subscribe { _ in
+//                let controller = ConfirmationViewController()
+//                self.navigationController?.pushViewController(controller, animated: true)
+//            }.disposed(by: disposeBag)
     }
     
 }
@@ -114,8 +93,8 @@ extension VerificationViewController: AuthViewDelegate {
         let phoneNumber = Utility.makeRequestPhoneNumber(authView.inputTextField.text ?? "")
         print(phoneNumber)
         
-//        let controller = ConfirmationViewController()
-//        self.navigationController?.pushViewController(controller, animated: true)
+        let controller = ConfirmationViewController()
+        self.navigationController?.pushViewController(controller, animated: true)
     }
 }
 

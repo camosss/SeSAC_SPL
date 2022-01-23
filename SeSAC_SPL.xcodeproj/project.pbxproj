@@ -11,10 +11,10 @@
 		B40CA671279967F600B233D7 /* BirthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40CA670279967F600B233D7 /* BirthViewController.swift */; };
 		B40CA67327999D1F00B233D7 /* BirthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40CA67227999D1F00B233D7 /* BirthView.swift */; };
 		B40CA679279D21BB00B233D7 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40CA678279D21BB00B233D7 /* Date+Extension.swift */; };
-		B40CA680279D6B0600B233D7 /* VerificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40CA67F279D6B0600B233D7 /* VerificationViewModel.swift */; };
 		B40CA682279D6BA600B233D7 /* MyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40CA681279D6BA600B233D7 /* MyInfoViewController.swift */; };
 		B40CA684279D6EB900B233D7 /* CommonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40CA683279D6EB900B233D7 /* CommonViewModel.swift */; };
 		B40CA686279D78C400B233D7 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40CA685279D78C400B233D7 /* UITextField+Extension.swift */; };
+		B40CA688279DA88700B233D7 /* ValidationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40CA687279DA88600B233D7 /* ValidationViewModel.swift */; };
 		B433B8BD2798253700AEA607 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B8BC2798253700AEA607 /* AuthView.swift */; };
 		B433B8C127982BBD00AEA607 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B8C027982BBD00AEA607 /* OnboardingViewController.swift */; };
 		B433B8C527982F7600AEA607 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B8C427982F7600AEA607 /* UIView+Extension.swift */; };
@@ -47,10 +47,10 @@
 		B40CA670279967F600B233D7 /* BirthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthViewController.swift; sourceTree = "<group>"; };
 		B40CA67227999D1F00B233D7 /* BirthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthView.swift; sourceTree = "<group>"; };
 		B40CA678279D21BB00B233D7 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
-		B40CA67F279D6B0600B233D7 /* VerificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewModel.swift; sourceTree = "<group>"; };
 		B40CA681279D6BA600B233D7 /* MyInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoViewController.swift; sourceTree = "<group>"; };
 		B40CA683279D6EB900B233D7 /* CommonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewModel.swift; sourceTree = "<group>"; };
 		B40CA685279D78C400B233D7 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		B40CA687279DA88600B233D7 /* ValidationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationViewModel.swift; sourceTree = "<group>"; };
 		B433B8BC2798253700AEA607 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		B433B8C027982BBD00AEA607 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		B433B8C427982F7600AEA607 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
@@ -105,7 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				B40CA683279D6EB900B233D7 /* CommonViewModel.swift */,
-				B40CA67F279D6B0600B233D7 /* VerificationViewModel.swift */,
+				B40CA687279DA88600B233D7 /* ValidationViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -401,6 +401,7 @@
 				B433B8F027991D7900AEA607 /* OnboardingService.swift in Sources */,
 				B433B8BD2798253700AEA607 /* AuthView.swift in Sources */,
 				B43741212797FAFF005E1CC7 /* R.generated.swift in Sources */,
+				B40CA688279DA88700B233D7 /* ValidationViewModel.swift in Sources */,
 				B40CA67327999D1F00B233D7 /* BirthView.swift in Sources */,
 				B433B8C127982BBD00AEA607 /* OnboardingViewController.swift in Sources */,
 				B437411E2797F10F005E1CC7 /* UIFont+Extension.swift in Sources */,
@@ -408,7 +409,6 @@
 				B40CA684279D6EB900B233D7 /* CommonViewModel.swift in Sources */,
 				B40CA671279967F600B233D7 /* BirthViewController.swift in Sources */,
 				B433B8C82798306600AEA607 /* OnboardingSlide.swift in Sources */,
-				B40CA680279D6B0600B233D7 /* VerificationViewModel.swift in Sources */,
 				B40CA686279D78C400B233D7 /* UITextField+Extension.swift in Sources */,
 				B43741072797E756005E1CC7 /* SceneDelegate.swift in Sources */,
 				B433B9062799567700AEA607 /* GenderViewController.swift in Sources */,

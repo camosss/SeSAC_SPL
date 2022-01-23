@@ -31,6 +31,8 @@ class BirthViewController: UIViewController {
     // MARK: - Action
     
     @objc func datePickerValueChanged(sender: UIDatePicker) {
+        handleNextButton()
+        
         let dateString = sender.date.toString(dateValue: sender.date)
         let dateArray = dateString.split(separator: " ").map{ String($0) }
         
@@ -44,6 +46,7 @@ class BirthViewController: UIViewController {
     func configureBirthView() {
         birthView.delegate = self
         birthView.nextButton.setTitle("다음", for: .normal)
+        birthView.nextButton.isEnabled = false
     }
     
     func configureDatePicker() {
@@ -52,6 +55,11 @@ class BirthViewController: UIViewController {
             make.bottom.equalTo(self.view.safeAreaLayoutGuide)
             make.leading.trailing.equalToSuperview().inset(16)
         }
+    }
+    
+    func handleNextButton() {
+        birthView.nextButton.isEnabled = true
+        birthView.nextButton.backgroundColor = R.color.green()
     }
     
     func handleDatePicker() {
