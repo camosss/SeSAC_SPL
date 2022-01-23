@@ -11,13 +11,13 @@
 		B40CA671279967F600B233D7 /* BirthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40CA670279967F600B233D7 /* BirthViewController.swift */; };
 		B40CA67327999D1F00B233D7 /* BirthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40CA67227999D1F00B233D7 /* BirthView.swift */; };
 		B40CA679279D21BB00B233D7 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40CA678279D21BB00B233D7 /* Date+Extension.swift */; };
+		B40CA67B279D3B3700B233D7 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40CA67A279D3B3700B233D7 /* UITextField+Extension.swift */; };
 		B433B8BD2798253700AEA607 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B8BC2798253700AEA607 /* AuthView.swift */; };
 		B433B8C127982BBD00AEA607 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B8C027982BBD00AEA607 /* OnboardingViewController.swift */; };
 		B433B8C527982F7600AEA607 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B8C427982F7600AEA607 /* UIView+Extension.swift */; };
 		B433B8C82798306600AEA607 /* OnboardingSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B8C72798306600AEA607 /* OnboardingSlide.swift */; };
 		B433B8CA279831C400AEA607 /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B8C9279831C400AEA607 /* OnboardingCollectionViewCell.swift */; };
 		B433B8CC279833CE00AEA607 /* ReusableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B8CB279833CE00AEA607 /* ReusableView+Extension.swift */; };
-		B433B8CF2798636400AEA607 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B8CE2798636400AEA607 /* String+Extension.swift */; };
 		B433B8EE2799195900AEA607 /* VerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B8ED2799195900AEA607 /* VerificationViewController.swift */; };
 		B433B8F027991D7900AEA607 /* OnboardingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B8EF27991D7900AEA607 /* OnboardingService.swift */; };
 		B433B8F227991E4800AEA607 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B433B8F127991E4800AEA607 /* Onboarding.storyboard */; };
@@ -44,13 +44,13 @@
 		B40CA670279967F600B233D7 /* BirthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthViewController.swift; sourceTree = "<group>"; };
 		B40CA67227999D1F00B233D7 /* BirthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthView.swift; sourceTree = "<group>"; };
 		B40CA678279D21BB00B233D7 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		B40CA67A279D3B3700B233D7 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		B433B8BC2798253700AEA607 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		B433B8C027982BBD00AEA607 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		B433B8C427982F7600AEA607 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		B433B8C72798306600AEA607 /* OnboardingSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSlide.swift; sourceTree = "<group>"; };
 		B433B8C9279831C400AEA607 /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
 		B433B8CB279833CE00AEA607 /* ReusableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReusableView+Extension.swift"; sourceTree = "<group>"; };
-		B433B8CE2798636400AEA607 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		B433B8ED2799195900AEA607 /* VerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewController.swift; sourceTree = "<group>"; };
 		B433B8EF27991D7900AEA607 /* OnboardingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingService.swift; sourceTree = "<group>"; };
 		B433B8F127991E4800AEA607 /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
@@ -215,9 +215,9 @@
 				B437411D2797F10F005E1CC7 /* UIFont+Extension.swift */,
 				B433B8C427982F7600AEA607 /* UIView+Extension.swift */,
 				B433B8CB279833CE00AEA607 /* ReusableView+Extension.swift */,
-				B433B8CE2798636400AEA607 /* String+Extension.swift */,
 				B433B9072799570C00AEA607 /* GenderButton+Extension.swift */,
 				B40CA678279D21BB00B233D7 /* Date+Extension.swift */,
+				B40CA67A279D3B3700B233D7 /* UITextField+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -239,7 +239,7 @@
 			buildConfigurationList = B43741152797E758005E1CC7 /* Build configuration list for PBXNativeTarget "SeSAC_SPL" */;
 			buildPhases = (
 				27B6AABF831FD9173B480487 /* [CP] Check Pods Manifest.lock */,
-				B437411F2797F871005E1CC7 /* ShellScript */,
+				B437411F2797F871005E1CC7 /* Run Script */,
 				B43740FD2797E756005E1CC7 /* Sources */,
 				B43740FE2797E756005E1CC7 /* Frameworks */,
 				B43740FF2797E756005E1CC7 /* Resources */,
@@ -325,7 +325,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B437411F2797F871005E1CC7 /* ShellScript */ = {
+		B437411F2797F871005E1CC7 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -335,6 +335,7 @@
 			);
 			inputPaths = (
 			);
+			name = "Run Script";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -378,7 +379,6 @@
 				B433B8CC279833CE00AEA607 /* ReusableView+Extension.swift in Sources */,
 				B433B8FD279949AA00AEA607 /* Utility.swift in Sources */,
 				B433B90027994C5100AEA607 /* ConfirmationViewController.swift in Sources */,
-				B433B8CF2798636400AEA607 /* String+Extension.swift in Sources */,
 				B433B9042799561700AEA607 /* EmailViewController.swift in Sources */,
 				B433B8F027991D7900AEA607 /* OnboardingService.swift in Sources */,
 				B433B8BD2798253700AEA607 /* AuthView.swift in Sources */,
@@ -389,6 +389,7 @@
 				B433B8CA279831C400AEA607 /* OnboardingCollectionViewCell.swift in Sources */,
 				B40CA671279967F600B233D7 /* BirthViewController.swift in Sources */,
 				B433B8C82798306600AEA607 /* OnboardingSlide.swift in Sources */,
+				B40CA67B279D3B3700B233D7 /* UITextField+Extension.swift in Sources */,
 				B43741072797E756005E1CC7 /* SceneDelegate.swift in Sources */,
 				B433B9062799567700AEA607 /* GenderViewController.swift in Sources */,
 			);

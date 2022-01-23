@@ -11,6 +11,7 @@ class GenderButton: UIButton {
     
     let genderImageView: UIImageView = {
         let image = UIImageView()
+        image.contentMode = .scaleAspectFit
         return image
     }()
     

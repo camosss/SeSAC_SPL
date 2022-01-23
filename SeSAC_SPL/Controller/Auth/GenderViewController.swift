@@ -76,8 +76,7 @@ class GenderViewController: UIViewController {
         authView.addSubview(genderStack)
         genderStack.snp.makeConstraints { make in
             make.top.equalTo(authView.subTitleLabel.snp.bottom).offset(32)
-            make.leading.equalTo(16)
-            make.trailing.equalTo(-16)
+            make.leading.trailing.equalToSuperview().inset(16)
         }
     }
 }

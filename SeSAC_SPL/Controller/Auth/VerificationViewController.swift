@@ -46,6 +46,7 @@ class VerificationViewController: UIViewController {
     
     func configureAuthView() {
         authView.delegate = self
+        authView.inputTextField.delegate = self
         authView.subTitleLabel.isHidden = true
         
         authView.titleLabel.text = "새싹 서비스 이용을 위해\n휴대폰 번호를 입력해주세요"
@@ -62,3 +63,13 @@ extension VerificationViewController: AuthViewDelegate {
         self.navigationController?.pushViewController(controller, animated: true)
     }
 }
+
+// MARK: - UITextFieldDelegate
+
+extension VerificationViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        textField.formatPhoneNumber(range: range, string: string)
+        return false
+    }
+}
+
