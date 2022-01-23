@@ -84,6 +84,9 @@ class GenderViewController: UIViewController {
 // MARK: - AuthViewDelegate
 extension GenderViewController: AuthViewDelegate {
     func handleNextButtonAction() {
-        print("next")
+        let controller = MyInfoViewController()
+        
+        view.window?.rootViewController = controller
+        view.window?.makeKeyAndVisible()
     }
 }

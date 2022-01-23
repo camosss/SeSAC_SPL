@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ConfirmationViewController: UIViewController {
     
@@ -16,7 +17,7 @@ class ConfirmationViewController: UIViewController {
     var timer: Timer!
     var limitTime = 60
     
-    private let timerLabel = Utility.label(text: "00:00", textColor: R.color.green(), fontSize: 14)
+    private let timerLabel = Utility.label(text: "", textColor: R.color.green(), fontSize: 14)
 
     private let reSendButton: UIButton = {
         let button = Utility.button()
@@ -35,6 +36,7 @@ class ConfirmationViewController: UIViewController {
         super.viewDidLoad()
         configureAuthView()
         configureConfirmationView()
+        startTimer()
     }
     
     // MARK: - Action
@@ -70,11 +72,40 @@ class ConfirmationViewController: UIViewController {
             make.centerY.equalTo(authView.inputContainerView)
         }
     }
+    
+    // MARK: - Helper (Timer)
+    
+    func startTimer() {
+        timerLabel.isHidden = false
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { _ in
+            self.limitTime -= 1
+            self.updateTimerLabel()
+        })
+    }
+    
+    func updateTimerLabel() {
+        let minutes = self.limitTime / 60
+        let seconds = self.limitTime % 60
+        
+        if self.limitTime > 0 {
+            self.timerLabel.text = String(format: "%02d:%02d", minutes, seconds)
+        } else {
+            self.timerLabel.isHidden = true
+            self.timer.invalidate()
+        }
+    }
+    
+    func stopTimer() {
+        self.timerLabel.isHidden = true
+        self.timer.invalidate()
+    }
 }
 
 // MARK: - AuthViewDelegate
 extension ConfirmationViewController: AuthViewDelegate {
     func handleNextButtonAction() {
+        stopTimer()
+        
         let controller = NickNameViewController()
         self.navigationController?.pushViewController(controller, animated: true)
     }

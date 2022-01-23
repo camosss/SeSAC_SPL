@@ -87,4 +87,17 @@ class Utility {
         stack.distribution = .fillProportionally
         return stack
     }
+    
+    // MARK: - etc
+    
+    static func makeRequestPhoneNumber(_ number: String) -> String {
+        if number != "" {
+            let phoneNumber = number.replacingOccurrences(of: "-", with: "")
+            let startIdx = phoneNumber.index(phoneNumber.startIndex, offsetBy: 1)
+            let result = String(phoneNumber[startIdx...])
+            return "+\(82)\(result)"
+        } else {
+            return "error"
+        }
+    }
 }
