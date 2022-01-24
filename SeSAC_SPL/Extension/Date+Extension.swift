@@ -14,4 +14,10 @@ extension Date {
         dateFormatter.dateFormat = "yyyy MM dd"
         return dateFormatter.string(from: dateValue)
     }
+    
+    func toBirthString(dateValue: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        return dateFormatter.string(from: dateValue)
+    }
 }

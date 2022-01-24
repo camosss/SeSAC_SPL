@@ -78,26 +78,23 @@ class GenderViewController: UIViewController {
         }
     }
     
+    func processTapBtn(value: Int, clicked: UIButton, unclicked: UIButton) {
+        genderValue = value
+        Utility.switchButton(clicked, unclicked)
+        authView.nextButton.backgroundColor = R.color.green()
+        print("Tap btn", self.genderValue)
+    }
+    
     func handleTapGenderBtn() {
         Observable.merge(
             manButton.rx.tap.map { _ in TapBtn.man },
             womanButton.rx.tap.map { _ in TapBtn.woman }
         ).subscribe(onNext: {
             switch $0 {
-            case .man:
-                self.genderValue = 1
-                Utility.switchButton(self.manButton, self.womanButton)
-                print("Tap man btn", self.genderValue)
-            case .woman:
-                self.genderValue = 0
-                Utility.switchButton(self.womanButton, self.manButton)
-                print("Tap woman btn", self.genderValue)
+            case .man: self.processTapBtn(value: 1, clicked: self.manButton, unclicked: self.womanButton)
+            case .woman: self.processTapBtn(value: 0, clicked: self.womanButton, unclicked: self.manButton)
             }
         }).disposed(by: disposeBag)
-    }
-    
-    func handleButtonEvent() {
-    
     }
 }
 
@@ -105,8 +102,9 @@ class GenderViewController: UIViewController {
 
 extension GenderViewController: AuthViewDelegate {
     func handleNextButtonAction() {
-        let controller = MyInfoViewController()
+        UserDefaults.standard.set(genderValue, forKey: "gender")
         
+        let controller = MyInfoViewController()
         view.window?.rootViewController = controller
         view.window?.makeKeyAndVisible()
     }

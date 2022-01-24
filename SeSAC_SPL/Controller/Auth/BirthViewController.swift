@@ -6,13 +6,18 @@
 //
 
 import UIKit
+import RxSwift
 
 class BirthViewController: UIViewController {
     
     // MARK: - Properties
-    
+        
     let birthView = BirthView()
+    let viewModel = ValidationViewModel()
+    let disposeBag = DisposeBag()
     let datePicker = UIDatePicker()
+    
+    var birthDateString = ""
 
     // MARK: - Lifecycle
     
@@ -32,6 +37,7 @@ class BirthViewController: UIViewController {
     
     @objc func datePickerValueChanged(sender: UIDatePicker) {
         handleNextButton()
+        birthDateString = (sender.date).toBirthString(dateValue: sender.date)
         
         let dateString = sender.date.toString(dateValue: sender.date)
         let dateArray = dateString.split(separator: " ").map{ String($0) }
@@ -75,6 +81,8 @@ class BirthViewController: UIViewController {
 
 extension BirthViewController: BirthViewDelegate {
     func handleNextButtonAction() {
+        UserDefaults.standard.set(birthDateString, forKey: "birth")
+
         let controller = EmailViewController()
         self.navigationController?.pushViewController(controller, animated: true)
     }

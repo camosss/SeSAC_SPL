@@ -44,6 +44,8 @@ class EmailViewController: UIViewController {
         let output = viewModel.emailTransform(input: input)
         
         Utility.handleButtonEvent(authView: authView, output: output, disposeBag: disposeBag) {
+            UserDefaults.standard.set(self.authView.inputTextField.text, forKey: "email")
+
             let controller = GenderViewController()
             self.navigationController?.pushViewController(controller, animated: true)
         }

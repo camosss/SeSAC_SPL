@@ -45,6 +45,8 @@ class NickNameViewController: UIViewController {
         let output = viewModel.nickNameTransform(input: input)
         
         Utility.handleButtonEvent(authView: authView, output: output, disposeBag: disposeBag) {
+            UserDefaults.standard.set(self.authView.inputTextField.text, forKey: "nickName")
+
             let controller = BirthViewController()
             self.navigationController?.pushViewController(controller, animated: true)
         }
