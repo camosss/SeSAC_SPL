@@ -24,14 +24,14 @@ class GenderViewController: UIViewController {
     
     let manButton: GenderButton = {
         let button = GenderButton()
-        button.genderImageView.image = UIImage(systemName: "person.fill")
+        button.genderImageView.image = R.image.man()
         button.genderLabel.text = "남자"
         return button
     }()
     
     let womanButton: GenderButton = {
         let button = GenderButton()
-        button.genderImageView.image = UIImage(systemName: "person")
+        button.genderImageView.image = R.image.woman()
         button.genderLabel.text = "여자"
         return button
     }()

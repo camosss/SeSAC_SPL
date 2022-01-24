@@ -14,6 +14,7 @@ class ConfirmationViewController: UIViewController {
     // MARK: - Properties
     
     let authView = AuthView()
+    let authViewModel = VerificationViewModel()
     let viewModel = ValidationViewModel()
     let disposeBag = DisposeBag()
     
@@ -75,30 +76,39 @@ class ConfirmationViewController: UIViewController {
         }
     }
     
-    func handleButtonEvent() {
+    func getVerificationCode(onSuccess: @escaping () -> ()) {
+        guard let verificationID = UserDefaults.standard.string(forKey: "authVerificationID") else {
+            self.view.makeToast("전화번호 인증을 실패했습니다."); return
+        }
         
+        guard let verificationCode = authView.inputTextField.text else {
+            self.view.makeToast("인증번호를 입력하세요."); return
+        }
+        
+        if authViewModel.isVaildVerificationCode(code: authView.inputTextField.text) == false {
+            self.view.makeToast("6자리의 숫자로 된 인증번호를 입력해주세요."); return
+        } else {
+            authViewModel.getVerificationCode(verificationID: verificationID, verificationCode: verificationCode) { _, error in
+                if error != nil { self.view.makeToast("에러가 발생했습니다. 잠시 후 다시 시도해주세요"); return }
+                
+                print("인증번호 받기 성공", verificationCode)
+                
+                self.stopTimer()
+                onSuccess()
+            }
+        }
+    }
+    
+    func handleButtonEvent() {
         let input = ValidationViewModel.Input(text: authView.inputTextField.rx.text, tap: authView.nextButton.rx.tap)
         let output = viewModel.certificationTransform(input: input)
         
-        output.validStatus
-            .map { $0 ? R.color.green() : R.color.gray6() }
-            .bind(to: authView.nextButton.rx.backgroundColor)
-            .disposed(by: disposeBag)
-        
-        output.validStatus
-            .bind(to: authView.nextButton.rx.isEnabled)
-            .disposed(by: disposeBag)
-
-        output.validText
-            .asDriver()
-            .drive(authView.inputTextField.rx.text)
-            .disposed(by: disposeBag)
-
-        output.sceneTransition
-            .subscribe { _ in
+        Utility.handleButtonEvent(authView: authView, output: output, disposeBag: disposeBag) {
+            self.getVerificationCode {
                 let controller = NickNameViewController()
                 self.navigationController?.pushViewController(controller, animated: true)
-            }.disposed(by: disposeBag)
+            }
+        }
     }
     
     // MARK: - Helper (Timer)
@@ -118,6 +128,7 @@ class ConfirmationViewController: UIViewController {
         if self.limitTime > 0 {
             self.timerLabel.text = String(format: "%02d:%02d", minutes, seconds)
         } else {
+            self.view.makeToast("시간 초과로 휴대폰 번호 인증을 실패했습니다.")
             self.timerLabel.isHidden = true
             self.timer.invalidate()
         }

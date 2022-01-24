@@ -44,24 +44,9 @@ class NickNameViewController: UIViewController {
         let input = ValidationViewModel.Input(text: authView.inputTextField.rx.text, tap: authView.nextButton.rx.tap)
         let output = viewModel.nickNameTransform(input: input)
         
-        output.validStatus
-            .map { $0 ? R.color.green() : R.color.gray6() }
-            .bind(to: authView.nextButton.rx.backgroundColor)
-            .disposed(by: disposeBag)
-        
-        output.validStatus
-            .bind(to: authView.nextButton.rx.isEnabled)
-            .disposed(by: disposeBag)
-
-        output.validText
-            .asDriver()
-            .drive(authView.inputTextField.rx.text)
-            .disposed(by: disposeBag)
-
-        output.sceneTransition
-            .subscribe { _ in
-                let controller = BirthViewController()
-                self.navigationController?.pushViewController(controller, animated: true)
-            }.disposed(by: disposeBag)
+        Utility.handleButtonEvent(authView: authView, output: output, disposeBag: disposeBag) {
+            let controller = BirthViewController()
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
     }
 }

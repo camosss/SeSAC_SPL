@@ -454,6 +454,57 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
+  /// This `R.image` struct is generated, and contains static references to 5 images.
+  struct image {
+    /// Image `Onboarding1`.
+    static let onboarding1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "Onboarding1")
+    /// Image `Onboarding2`.
+    static let onboarding2 = Rswift.ImageResource(bundle: R.hostingBundle, name: "Onboarding2")
+    /// Image `Onboarding3`.
+    static let onboarding3 = Rswift.ImageResource(bundle: R.hostingBundle, name: "Onboarding3")
+    /// Image `man`.
+    static let man = Rswift.ImageResource(bundle: R.hostingBundle, name: "man")
+    /// Image `woman`.
+    static let woman = Rswift.ImageResource(bundle: R.hostingBundle, name: "woman")
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "Onboarding1", bundle: ..., traitCollection: ...)`
+    static func onboarding1(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.onboarding1, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "Onboarding2", bundle: ..., traitCollection: ...)`
+    static func onboarding2(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.onboarding2, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "Onboarding3", bundle: ..., traitCollection: ...)`
+    static func onboarding3(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.onboarding3, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "man", bundle: ..., traitCollection: ...)`
+    static func man(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.man, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "woman", bundle: ..., traitCollection: ...)`
+    static func woman(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.woman, compatibleWith: traitCollection)
+    }
+    #endif
+
+    fileprivate init() {}
+  }
+
   /// This `R.info` struct is generated, and contains static references to 1 properties.
   struct info {
     struct uiApplicationSceneManifest {
@@ -576,6 +627,7 @@ struct _R: Rswift.Validatable {
           if UIKit.UIColor(named: "black", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'black' is used in storyboard 'Onboarding', but couldn't be loaded.") }
           if UIKit.UIColor(named: "gray5", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'gray5' is used in storyboard 'Onboarding', but couldn't be loaded.") }
           if UIKit.UIColor(named: "green", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'green' is used in storyboard 'Onboarding', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "white", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'white' is used in storyboard 'Onboarding', but couldn't be loaded.") }
         }
         if _R.storyboard.onboarding().onboardingViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'onboardingViewController' could not be loaded from storyboard 'Onboarding' as 'OnboardingViewController'.") }
       }

@@ -26,9 +26,9 @@ class OnboardingViewController: UIViewController {
         super.viewDidLoad()
 
         slides = [
-            OnboardingSlide(title: "위치 기반으로 빠르게\n주위 친구를 확인", image: UIImage(named: "1")!),
-            OnboardingSlide(title: "관심사가 같은 친구를\n찾을 수 있어요", image: UIImage(named: "2")!),
-            OnboardingSlide(title: "SeSAC Friends", image: UIImage(named: "3")!)
+            OnboardingSlide(title: "위치 기반으로 빠르게\n주위 친구를 확인", image: R.image.onboarding1()!),
+            OnboardingSlide(title: "관심사가 같은 친구를\n찾을 수 있어요", image: R.image.onboarding2()!),
+            OnboardingSlide(title: "SeSAC Friends", image: R.image.onboarding3()!)
         ]
     }
     

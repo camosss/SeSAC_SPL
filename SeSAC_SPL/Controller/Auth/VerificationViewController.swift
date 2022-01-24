@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Toast_Swift
+
 import RxSwift
 import RxCocoa
 import FirebaseAuth
@@ -15,11 +17,15 @@ class VerificationViewController: UIViewController {
     // MARK: - Properties
     
     let authView = AuthView()
+    let authViewModel = VerificationViewModel()
+    let viewModel = ValidationViewModel()
     let disposeBag = DisposeBag()
 
     let onboardingService = OnboardingService()
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
+    lazy var phoneNumber = Utility.makeRequestPhoneNumber(authView.inputTextField.text ?? "")
+
     // MARK: - Lifecycle
     
     override func loadView() {
@@ -30,7 +36,6 @@ class VerificationViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         configureAuthView()
-        handleButtonEvent()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -59,42 +64,33 @@ class VerificationViewController: UIViewController {
         authView.nextButton.setTitle("인증 문자 받기", for: .normal)
     }
     
-    func handleButtonEvent() {
-//        let input = VerificationViewModel.Input(text: authView.inputTextField.rx.text, tap: authView.nextButton.rx.tap)
-//        let output = viewModel.transform(input: input)
-//
-//        output.validStatus
-//            .map { $0 ? R.color.green() : R.color.gray6() }
-//            .bind(to: authView.nextButton.rx.backgroundColor)
-//            .disposed(by: disposeBag)
-//
-//        output.validStatus
-//            .bind(to: authView.nextButton.rx.isEnabled)
-//            .disposed(by: disposeBag)
-//
-//        output.validText
-//            .asDriver()
-//            .drive(authView.inputTextField.rx.text)
-//            .disposed(by: disposeBag)
-//
-//        output.sceneTransition
-//            .subscribe { _ in
-//                let controller = ConfirmationViewController()
-//                self.navigationController?.pushViewController(controller, animated: true)
-//            }.disposed(by: disposeBag)
+    func requestVerification(completion: @escaping () -> ()) {
+        if authViewModel.isValidPhoneNumber(phone: authView.inputTextField.text) == false {
+            self.view.makeToast("유효하지 않은 전화번호 형식입니다. 다시 한번 입력해주세요.")
+        } else {
+            authViewModel.requestVerificationCode(phoneNumber: phoneNumber) { verificationID, error in
+                if error == nil {
+                    print("verificationID: \(verificationID ?? "")")
+                    completion()
+                } else {
+                    print("Phone Varification Error: \(error.debugDescription)")
+                    self.view.makeToast("에러가 발생했습니다.\n다시 시도해주세요")
+                }
+            }
+        }
     }
-    
 }
 
 // MARK: - AuthViewDelegate
 
 extension VerificationViewController: AuthViewDelegate {
     func handleNextButtonAction() {
-        let phoneNumber = Utility.makeRequestPhoneNumber(authView.inputTextField.text ?? "")
-        print(phoneNumber)
+        print("phoneNumber \(phoneNumber)")
         
-        let controller = ConfirmationViewController()
-        self.navigationController?.pushViewController(controller, animated: true)
+        requestVerification {
+            let controller = ConfirmationViewController()
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
     }
 }
 
