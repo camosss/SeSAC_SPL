@@ -26,7 +26,7 @@ class ValidationViewModel: CommonViewModel {
     func phoneNumberTransform(input: Input) -> Output {
         let result = input.text
             .orEmpty
-            .map { $0.count > 5 }
+            .map { $0.isValidPhoneNumber() }
             .share(replay: 1, scope: .whileConnected)
         return Output(validStatus: result, validText: validText, sceneTransition: input.tap)
     }
@@ -34,7 +34,7 @@ class ValidationViewModel: CommonViewModel {
     func certificationTransform(input: Input) -> Output {
         let result = input.text
             .orEmpty
-            .map { $0.count == 6 }
+            .map { $0.isVaildVerificationCode() }
             .share(replay: 1, scope: .whileConnected)
         return Output(validStatus: result, validText: validText, sceneTransition: input.tap)
     }
@@ -50,7 +50,7 @@ class ValidationViewModel: CommonViewModel {
     func emailTransform(input: Input) -> Output {
         let result = input.text
             .orEmpty
-            .map { $0.contains("@") && $0.contains(".") }
+            .map { $0.isVaildEmail() }
             .share(replay: 1, scope: .whileConnected)
         return Output(validStatus: result, validText: validText, sceneTransition: input.tap)
     }

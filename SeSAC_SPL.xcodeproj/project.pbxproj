@@ -16,6 +16,8 @@
 		B40CA686279D78C400B233D7 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40CA685279D78C400B233D7 /* UITextField+Extension.swift */; };
 		B40CA688279DA88700B233D7 /* ValidationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40CA687279DA88600B233D7 /* ValidationViewModel.swift */; };
 		B40CA68D279E8C4F00B233D7 /* VerificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40CA68C279E8C4F00B233D7 /* VerificationViewModel.swift */; };
+		B420EF0F279EC9A30084AE6A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B420EF0E279EC9A30084AE6A /* User.swift */; };
+		B420EF11279ECCB80084AE6A /* RegularExpression+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B420EF10279ECCB80084AE6A /* RegularExpression+Extension.swift */; };
 		B433B8BD2798253700AEA607 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B8BC2798253700AEA607 /* AuthView.swift */; };
 		B433B8C127982BBD00AEA607 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B8C027982BBD00AEA607 /* OnboardingViewController.swift */; };
 		B433B8C527982F7600AEA607 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B8C427982F7600AEA607 /* UIView+Extension.swift */; };
@@ -53,6 +55,8 @@
 		B40CA685279D78C400B233D7 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		B40CA687279DA88600B233D7 /* ValidationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationViewModel.swift; sourceTree = "<group>"; };
 		B40CA68C279E8C4F00B233D7 /* VerificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewModel.swift; sourceTree = "<group>"; };
+		B420EF0E279EC9A30084AE6A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		B420EF10279ECCB80084AE6A /* RegularExpression+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RegularExpression+Extension.swift"; sourceTree = "<group>"; };
 		B433B8BC2798253700AEA607 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		B433B8C027982BBD00AEA607 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		B433B8C427982F7600AEA607 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
@@ -144,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				B433B8C72798306600AEA607 /* OnboardingSlide.swift */,
+				B420EF0E279EC9A30084AE6A /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -246,6 +251,7 @@
 				B433B9072799570C00AEA607 /* GenderButton+Extension.swift */,
 				B40CA678279D21BB00B233D7 /* Date+Extension.swift */,
 				B40CA685279D78C400B233D7 /* UITextField+Extension.swift */,
+				B420EF10279ECCB80084AE6A /* RegularExpression+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -417,6 +423,8 @@
 				B40CA67327999D1F00B233D7 /* BirthView.swift in Sources */,
 				B433B8C127982BBD00AEA607 /* OnboardingViewController.swift in Sources */,
 				B437411E2797F10F005E1CC7 /* UIFont+Extension.swift in Sources */,
+				B420EF11279ECCB80084AE6A /* RegularExpression+Extension.swift in Sources */,
+				B420EF0F279EC9A30084AE6A /* User.swift in Sources */,
 				B433B8CA279831C400AEA607 /* OnboardingCollectionViewCell.swift in Sources */,
 				B40CA684279D6EB900B233D7 /* CommonViewModel.swift in Sources */,
 				B40CA671279967F600B233D7 /* BirthViewController.swift in Sources */,

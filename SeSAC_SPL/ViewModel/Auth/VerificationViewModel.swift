@@ -9,22 +9,10 @@ import Foundation
 import FirebaseAuth
 
 class VerificationViewModel {
-        
-    // MARK: - Check Validation
     
-    func isValidPhoneNumber(phone: String?) -> Bool {
-        let phoneNumRegEx = "[0-1]{3}[-]+[0-9]{3,4}[-]+[0-9]{4}"
-        let phoneNumTest = NSPredicate(format:"SELF MATCHES %@", phoneNumRegEx)
-        return phoneNumTest.evaluate(with: phone)
-    }
+    var idToken = ""
+//    var fcmToken = UserDefaults.standard.string(forKey: "FCMToken")!
     
-    func isVaildVerificationCode(code: String?) -> Bool {
-        guard code != nil else { return false }
-        
-        let codeRegEx = "([0-9]{6})"
-        let pred = NSPredicate(format:"SELF MATCHES %@", codeRegEx)
-        return pred.evaluate(with: code)
-    }
     
     // MARK: - Request, Get Verification Code
     
@@ -35,6 +23,7 @@ class VerificationViewModel {
             .verifyPhoneNumber(phoneNumber, uiDelegate: nil) { verificationID, error in
                 guard let error = error else {
                     UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
+                    UserDefaults.standard.set(phoneNumber, forKey: "phoneNumber")
                     completion(verificationID, nil)
                     return
                 }
@@ -53,7 +42,22 @@ class VerificationViewModel {
             if error == nil {
                 print("Login Success!!!")
                 
-                UserDefaults.standard.set(true, forKey: "VerificationCompleted")
+//                let currentUser = Auth.auth().currentUser
+//                currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
+//
+//                    if let error = error {
+//                        completion(success ,error); return
+//                    }
+//
+//                    if let idToken = idToken {
+//                        print("idToken: ", idToken)
+//                        self.idToken = idToken
+//                        UserDefaults.standard.set(idToken, forKey: "idToken")
+//                    }
+//                    completion(success, nil)
+//                }
+                
+                UserDefaults.standard.set(true, forKey: "verificationCompleted")
                 completion(success, nil)
 
             } else {

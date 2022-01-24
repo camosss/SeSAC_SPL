@@ -85,17 +85,12 @@ class ConfirmationViewController: UIViewController {
             self.view.makeToast("인증번호를 입력하세요."); return
         }
         
-        if authViewModel.isVaildVerificationCode(code: authView.inputTextField.text) == false {
-            self.view.makeToast("6자리의 숫자로 된 인증번호를 입력해주세요."); return
-        } else {
-            authViewModel.getVerificationCode(verificationID: verificationID, verificationCode: verificationCode) { _, error in
-                if error != nil { self.view.makeToast("에러가 발생했습니다. 잠시 후 다시 시도해주세요"); return }
-                
-                print("인증번호 받기 성공", verificationCode)
-                
-                self.stopTimer()
-                onSuccess()
-            }
+        authViewModel.getVerificationCode(verificationID: verificationID, verificationCode: verificationCode) { _, error in
+            if error != nil { self.view.makeToast("에러가 발생했습니다. 잠시 후 다시 시도해주세요"); return }
+            
+            print("인증번호 받기 성공", verificationCode)
+            self.stopTimer()
+            onSuccess()
         }
     }
     
