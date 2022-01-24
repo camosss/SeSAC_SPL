@@ -65,19 +65,19 @@ class VerificationViewController: UIViewController {
     }
     
     func requestVerification(completion: @escaping () -> ()) {
-            authViewModel.requestVerificationCode(phoneNumber: phoneNumber) { verificationID, error in
-                if error == nil {
-                    print("verificationID: \(verificationID ?? "")")
-                    completion()
+        authViewModel.requestVerificationCode(phoneNumber: phoneNumber) { verificationID, error in
+            if error == nil {
+                print("verificationID: \(verificationID ?? "")")
+                completion()
+            } else {
+                print("Phone Varification Error: \(error.debugDescription)")
+                
+                if error?.localizedDescription == "Invalid format." {
+                    self.view.makeToast("유효하지 않은 전화번호 형식입니다. 다시 한번 입력해주세요.")
                 } else {
-                    print("Phone Varification Error: \(error.debugDescription)")
-                    
-                    if error?.localizedDescription == "Invalid format." {
-                        self.view.makeToast("유효하지 않은 전화번호 형식입니다. 다시 한번 입력해주세요.")
-                    } else {
-                        self.view.makeToast("에러가 발생했습니다.\n다시 시도해주세요")
-                    }
+                    self.view.makeToast("에러가 발생했습니다.\n다시 시도해주세요")
                 }
+            }
         }
     }
 }

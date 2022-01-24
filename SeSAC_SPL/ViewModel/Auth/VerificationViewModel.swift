@@ -7,12 +7,11 @@
 
 import Foundation
 import FirebaseAuth
+import Alamofire
 
 class VerificationViewModel {
     
     var idToken = ""
-//    var fcmToken = UserDefaults.standard.string(forKey: "FCMToken")!
-    
     
     // MARK: - Request, Get Verification Code
     
@@ -42,27 +41,54 @@ class VerificationViewModel {
             if error == nil {
                 print("Login Success!!!")
                 
-//                let currentUser = Auth.auth().currentUser
-//                currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
-//
-//                    if let error = error {
-//                        completion(success ,error); return
-//                    }
-//
-//                    if let idToken = idToken {
-//                        print("idToken: ", idToken)
-//                        self.idToken = idToken
-//                        UserDefaults.standard.set(idToken, forKey: "idToken")
-//                    }
-//                    completion(success, nil)
-//                }
-                
-                UserDefaults.standard.set(true, forKey: "verificationCompleted")
-                completion(success, nil)
+                self.getIDTokenRefresh {
+                    completion(success ,error); return
+                } onSuccess: {
+                    completion(success, nil)
+                }
 
             } else {
                 completion(nil, error)
                 print("getVerificationCode Error: ",error.debugDescription)
+            }
+        }
+    }
+    
+    func getIDTokenRefresh(onError: @escaping () -> (), onSuccess: @escaping () -> ()) {
+        let currentUser = Auth.auth().currentUser
+        currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
+
+            if let _ = error {
+                onError(); return
+            }
+
+            if let idToken = idToken {
+                print("idToken: ", idToken)
+                UserDefaults.standard.set(idToken, forKey: "idToken")
+                onSuccess()
+            }
+        }
+    }
+    
+    func convertRootViewController(view: UIView, controller: UIViewController) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            let nav = UINavigationController(rootViewController: controller)
+            view.window?.rootViewController = nav
+            view.window?.makeKeyAndVisible()
+        }
+    }
+    
+    // MARK: - API
+    
+    func getUserInfo(completion: @escaping (User?, AFError?, Int?) -> Void) {
+        let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
+        print("check idToken \(idToken)")
+        APIService.getUserInfo(idToken: idToken) { user, error, statusCode in
+            print("statusCode:", statusCode ?? 0)
+            if let user = user {
+                completion(user, nil, statusCode)
+            } else {
+                completion(nil, error, statusCode)
             }
         }
     }

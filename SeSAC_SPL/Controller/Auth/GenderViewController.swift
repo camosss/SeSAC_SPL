@@ -82,7 +82,6 @@ class GenderViewController: UIViewController {
         genderValue = value
         Utility.switchButton(clicked, unclicked)
         authView.nextButton.backgroundColor = R.color.green()
-        print("Tap btn", self.genderValue)
     }
     
     func handleTapGenderBtn() {
