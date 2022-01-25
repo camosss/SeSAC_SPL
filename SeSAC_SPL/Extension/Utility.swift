@@ -42,7 +42,7 @@ class Utility {
         tf.textColor = .black
         tf.textAlignment = .center
         tf.isEnabled = false
-        tf.font = UIFont.systemFont(ofSize: 14)
+        tf.font = R.font.notoSansKRRegular(size: 14)
         tf.attributedPlaceholder = NSAttributedString(string: placeholder,
                                                       attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         return tf
@@ -50,12 +50,20 @@ class Utility {
     
     // MARK: - Label
     
-    static func label(text: String, textColor: UIColor!, fontSize: CGFloat) -> UILabel {
+    static func label(text: String, textColor: UIColor!) -> UILabel {
         let label = UILabel()
         label.text = text
         label.textColor = textColor
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: fontSize)
+        return label
+    }
+    
+    static func birthLabel(text: String, textColor: UIColor!) -> UILabel {
+        let label = UILabel()
+        label.text = text
+        label.textColor = textColor
+        label.textAlignment = .center
+        label.font = R.font.notoSansKRRegular(size: 16)
         return label
     }
     
@@ -65,18 +73,10 @@ class Utility {
         let button = UIButton(type: .system)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = backgroundColor
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         button.cornerRadius = 8
+        button.titleLabel?.font = R.font.notoSansKRRegular(size: 14)
         button.heightAnchor.constraint(equalToConstant: 48).isActive = true
         return button
-    }
-    
-    static func switchButton(_ clicked: UIButton, _ unclicked: UIButton) {
-        clicked.backgroundColor = R.color.whitegreen()
-        
-        unclicked.backgroundColor = R.color.white()
-        unclicked.layer.borderColor = R.color.gray3()?.cgColor
-        unclicked.layer.borderWidth = 1
     }
     
     // MARK: - StackView

@@ -8,6 +8,6 @@
 import UIKit
 
 struct OnboardingSlide {
-    let title: String
+    let title: UIImage
     let image: UIImage
 }

@@ -10,9 +10,7 @@ import RxSwift
 import Toast_Swift
 
 class Helper {
-    
-    // MARK: - PhoneNuber
-    
+        
     static func makeRequestPhoneNumber(_ number: String) -> String {
         if number != "" {
             let phoneNumber = number.replacingOccurrences(of: "-", with: "")
@@ -22,6 +20,14 @@ class Helper {
         } else {
             return "error"
         }
+    }
+    
+    static func switchButton(_ clicked: UIButton, _ unclicked: UIButton) {
+        clicked.backgroundColor = R.color.whitegreen()
+        
+        unclicked.backgroundColor = R.color.white()
+        unclicked.layer.borderColor = R.color.gray3()?.cgColor
+        unclicked.layer.borderWidth = 1
     }
     
     // MARK: - Button Event

@@ -21,6 +21,8 @@
 		B420EF15279EF4350084AE6A /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B420EF14279EF4350084AE6A /* APIService.swift */; };
 		B420EF1D279FDC890084AE6A /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B420EF1C279FDC890084AE6A /* Helper.swift */; };
 		B420EF2127A04D460084AE6A /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B420EF2027A04D460084AE6A /* String+Extension.swift */; };
+		B420EF2827A0529A0084AE6A /* NotoSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = B420EF2627A0529A0084AE6A /* NotoSansKR-Medium.otf */; };
+		B420EF2927A0529A0084AE6A /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B420EF2727A0529A0084AE6A /* NotoSansKR-Regular.otf */; };
 		B433B8BD2798253700AEA607 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B8BC2798253700AEA607 /* AuthView.swift */; };
 		B433B8C127982BBD00AEA607 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B8C027982BBD00AEA607 /* OnboardingViewController.swift */; };
 		B433B8C527982F7600AEA607 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B8C427982F7600AEA607 /* UIView+Extension.swift */; };
@@ -38,11 +40,9 @@
 		B433B9082799570C00AEA607 /* GenderButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B9072799570C00AEA607 /* GenderButton+Extension.swift */; };
 		B43741052797E756005E1CC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43741042797E756005E1CC7 /* AppDelegate.swift */; };
 		B43741072797E756005E1CC7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43741062797E756005E1CC7 /* SceneDelegate.swift */; };
-		B437410C2797E756005E1CC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B437410A2797E756005E1CC7 /* Main.storyboard */; };
 		B437410E2797E758005E1CC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B437410D2797E758005E1CC7 /* Assets.xcassets */; };
 		B43741112797E758005E1CC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B437410F2797E758005E1CC7 /* LaunchScreen.storyboard */; };
 		B437411A2797EA7F005E1CC7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B43741192797EA7F005E1CC7 /* GoogleService-Info.plist */; };
-		B437411E2797F10F005E1CC7 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B437411D2797F10F005E1CC7 /* UIFont+Extension.swift */; };
 		B43741212797FAFF005E1CC7 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43741202797FAFF005E1CC7 /* R.generated.swift */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +62,8 @@
 		B420EF14279EF4350084AE6A /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		B420EF1C279FDC890084AE6A /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		B420EF2027A04D460084AE6A /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		B420EF2627A0529A0084AE6A /* NotoSansKR-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Medium.otf"; sourceTree = SOURCE_ROOT; };
+		B420EF2727A0529A0084AE6A /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Regular.otf"; sourceTree = SOURCE_ROOT; };
 		B433B8BC2798253700AEA607 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		B433B8C027982BBD00AEA607 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		B433B8C427982F7600AEA607 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
@@ -80,13 +82,11 @@
 		B43741012797E756005E1CC7 /* SeSAC_SPL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSAC_SPL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B43741042797E756005E1CC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B43741062797E756005E1CC7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B437410B2797E756005E1CC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B437410D2797E758005E1CC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B43741102797E758005E1CC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B43741122797E758005E1CC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B43741192797EA7F005E1CC7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B437411B2797EAA9005E1CC7 /* SeSAC_SPL.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SeSAC_SPL.entitlements; sourceTree = "<group>"; };
-		B437411D2797F10F005E1CC7 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		B43741202797FAFF005E1CC7 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		F3473E80664E30059C9CFC26 /* Pods-SeSAC_SPL.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeSAC_SPL.release.xcconfig"; path = "Target Support Files/Pods-SeSAC_SPL/Pods-SeSAC_SPL.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -153,7 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				B433B8D0279863D300AEA607 /* CustomView */,
-				B433B8C9279831C400AEA607 /* OnboardingCollectionViewCell.swift */,
+				B433B8EC2799193500AEA607 /* Onboarding */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -186,13 +186,13 @@
 			path = CustomView;
 			sourceTree = "<group>";
 		};
-		B433B8EC2799193500AEA607 /* StoryBoard */ = {
+		B433B8EC2799193500AEA607 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				B437410A2797E756005E1CC7 /* Main.storyboard */,
 				B433B8F127991E4800AEA607 /* Onboarding.storyboard */,
+				B433B8C9279831C400AEA607 /* OnboardingCollectionViewCell.swift */,
 			);
-			path = StoryBoard;
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		B433B8F3279923A000AEA607 /* Service */ = {
@@ -235,7 +235,6 @@
 			isa = PBXGroup;
 			children = (
 				B433B8C62798305D00AEA607 /* Model */,
-				B433B8EC2799193500AEA607 /* StoryBoard */,
 				B433B8BA2798240900AEA607 /* View */,
 				B40CA67E279D6AEC00B233D7 /* ViewModel */,
 				B433B8BB2798252A00AEA607 /* Controller */,
@@ -257,6 +256,8 @@
 				B437410D2797E758005E1CC7 /* Assets.xcassets */,
 				B437410F2797E758005E1CC7 /* LaunchScreen.storyboard */,
 				B43741122797E758005E1CC7 /* Info.plist */,
+				B420EF2627A0529A0084AE6A /* NotoSansKR-Medium.otf */,
+				B420EF2727A0529A0084AE6A /* NotoSansKR-Regular.otf */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -268,7 +269,6 @@
 				B420EF1C279FDC890084AE6A /* Helper.swift */,
 				B43741202797FAFF005E1CC7 /* R.generated.swift */,
 				B420EF2027A04D460084AE6A /* String+Extension.swift */,
-				B437411D2797F10F005E1CC7 /* UIFont+Extension.swift */,
 				B433B8C427982F7600AEA607 /* UIView+Extension.swift */,
 				B433B8CB279833CE00AEA607 /* ReusableView+Extension.swift */,
 				B433B9072799570C00AEA607 /* GenderButton+Extension.swift */,
@@ -348,11 +348,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B420EF2827A0529A0084AE6A /* NotoSansKR-Medium.otf in Resources */,
 				B43741112797E758005E1CC7 /* LaunchScreen.storyboard in Resources */,
 				B433B8F227991E4800AEA607 /* Onboarding.storyboard in Resources */,
 				B437411A2797EA7F005E1CC7 /* GoogleService-Info.plist in Resources */,
 				B437410E2797E758005E1CC7 /* Assets.xcassets in Resources */,
-				B437410C2797E756005E1CC7 /* Main.storyboard in Resources */,
+				B420EF2927A0529A0084AE6A /* NotoSansKR-Regular.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,7 +447,6 @@
 				B40CA688279DA88700B233D7 /* ValidationViewModel.swift in Sources */,
 				B40CA67327999D1F00B233D7 /* BirthView.swift in Sources */,
 				B433B8C127982BBD00AEA607 /* OnboardingViewController.swift in Sources */,
-				B437411E2797F10F005E1CC7 /* UIFont+Extension.swift in Sources */,
 				B420EF11279ECCB80084AE6A /* RegularExpression+Extension.swift in Sources */,
 				B420EF0F279EC9A30084AE6A /* User.swift in Sources */,
 				B433B8CA279831C400AEA607 /* OnboardingCollectionViewCell.swift in Sources */,
@@ -462,14 +462,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		B437410A2797E756005E1CC7 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B437410B2797E756005E1CC7 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		B437410F2797E758005E1CC7 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -611,7 +603,7 @@
 				INFOPLIST_FILE = SeSAC_SPL/Resource/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = Onboarding;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -641,7 +633,7 @@
 				INFOPLIST_FILE = SeSAC_SPL/Resource/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = Onboarding;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

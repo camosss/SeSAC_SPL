@@ -25,10 +25,15 @@ class BirthView: UIView {
     lazy var monthTextFieldContainerView = Utility.inputContainerView(textField: monthTextField)
     lazy var dayTextFieldContainerView = Utility.inputContainerView(textField: dayTextField)
     
-    private let titleLabel = Utility.label(text: "생년월일을 알려주세요", textColor: R.color.black(), fontSize: 20)
-    private let yearLabel = Utility.label(text: "년", textColor: R.color.black(), fontSize: 16)
-    private let monthLabel = Utility.label(text: "월", textColor: R.color.black(), fontSize: 16)
-    private let dayLabel = Utility.label(text: "일", textColor: R.color.black(), fontSize: 16)
+    private let titleLabel: UILabel = {
+        let label = Utility.label(text: "생년월일을 알려주세요", textColor: R.color.black())
+        label.font = R.font.notoSansKRRegular(size: 50)
+        return label
+    }()
+    
+    private let yearLabel = Utility.birthLabel(text: "년", textColor: R.color.black())
+    private let monthLabel = Utility.birthLabel(text: "월", textColor: R.color.black())
+    private let dayLabel = Utility.birthLabel(text: "일", textColor: R.color.black())
     
     let nextButton: UIButton = {
         let button = Utility.button(backgroundColor: R.color.gray6())

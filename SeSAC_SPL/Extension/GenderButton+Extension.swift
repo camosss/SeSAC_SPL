@@ -18,6 +18,7 @@ class GenderButton: UIButton {
     let genderLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
+        label.font = R.font.notoSansKRRegular(size: 16)
         return label
     }()
     

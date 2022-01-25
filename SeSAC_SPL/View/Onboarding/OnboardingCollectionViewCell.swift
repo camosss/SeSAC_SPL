@@ -11,12 +11,12 @@ class OnboardingCollectionViewCell: UICollectionViewCell {
     
     static let identifier = String(describing: OnboardingCollectionViewCell.self)
     
+    @IBOutlet weak var slideTitleImageView: UIImageView!
     @IBOutlet weak var slideImageView: UIImageView!
-    @IBOutlet weak var slideTitleLabel: UILabel!
     
     func setup(_ slide: OnboardingSlide) {
+        slideTitleImageView.image = slide.title
         slideImageView.image = slide.image
-        slideTitleLabel.text = slide.title
     }
     
 }

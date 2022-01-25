@@ -33,7 +33,6 @@ class VerificationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
         configureAuthView()
         displayOnboardingView()
         handleButtonEvent()
@@ -53,6 +52,7 @@ class VerificationViewController: UIViewController {
     }
     
     func configureAuthView() {
+        view.backgroundColor = .white
         authView.subTitleLabel.isHidden = true
         
         authView.titleLabel.text = "새싹 서비스 이용을 위해\n휴대폰 번호를 입력해주세요"

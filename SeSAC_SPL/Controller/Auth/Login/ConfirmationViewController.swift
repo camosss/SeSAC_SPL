@@ -23,7 +23,11 @@ class ConfirmationViewController: UIViewController {
     
     var phoneNumber = ""
     
-    private let timerLabel = Utility.label(text: "", textColor: R.color.green(), fontSize: 14)
+    private let timerLabel: UILabel = {
+        let label = Utility.label(text: "", textColor: R.color.green())
+        label.font = R.font.notoSansKRMedium(size: 14)
+        return label
+    }()
 
     private let reSendButton: UIButton = {
         let button = Utility.button(backgroundColor: R.color.green())

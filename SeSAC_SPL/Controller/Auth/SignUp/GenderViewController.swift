@@ -81,7 +81,7 @@ class GenderViewController: UIViewController {
     
     func processTapBtn(value: Int, clicked: UIButton, unclicked: UIButton) {
         genderValue = value
-        Utility.switchButton(clicked, unclicked)
+        Helper.switchButton(clicked, unclicked)
         authView.nextButton.backgroundColor = R.color.green()
     }
     

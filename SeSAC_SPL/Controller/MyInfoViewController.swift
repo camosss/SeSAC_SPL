@@ -32,7 +32,6 @@ class MyInfoViewController: UIViewController {
             make.center.equalToSuperview()
             make.width.equalTo(200)
         }
-        
     }
     
     @objc func withdrawButtonClicked() {
@@ -57,7 +56,6 @@ class MyInfoViewController: UIViewController {
                     print("Error Code:", statusCode ?? 0)
                 }
             }
-            
         }
     }
 }

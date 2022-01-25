@@ -85,16 +85,15 @@ struct R: Rswift.Validatable {
   }
 
   static func validate() throws {
+    try font.validate()
     try intern.validate()
   }
 
   #if os(iOS) || os(tvOS)
-  /// This `R.storyboard` struct is generated, and contains static references to 3 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 2 storyboards.
   struct storyboard {
     /// Storyboard `LaunchScreen`.
     static let launchScreen = _R.storyboard.launchScreen()
-    /// Storyboard `Main`.
-    static let main = _R.storyboard.main()
     /// Storyboard `Onboarding`.
     static let onboarding = _R.storyboard.onboarding()
 
@@ -102,13 +101,6 @@ struct R: Rswift.Validatable {
     /// `UIStoryboard(name: "LaunchScreen", bundle: ...)`
     static func launchScreen(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.launchScreen)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    /// `UIStoryboard(name: "Main", bundle: ...)`
-    static func main(_: Void = ()) -> UIKit.UIStoryboard {
-      return UIKit.UIStoryboard(resource: R.storyboard.main)
     }
     #endif
 
@@ -440,10 +432,14 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.file` struct is generated, and contains static references to 1 files.
+  /// This `R.file` struct is generated, and contains static references to 3 files.
   struct file {
     /// Resource file `GoogleService-Info.plist`.
     static let googleServiceInfoPlist = Rswift.FileResource(bundle: R.hostingBundle, name: "GoogleService-Info", pathExtension: "plist")
+    /// Resource file `NotoSansKR-Medium.otf`.
+    static let notoSansKRMediumOtf = Rswift.FileResource(bundle: R.hostingBundle, name: "NotoSansKR-Medium", pathExtension: "otf")
+    /// Resource file `NotoSansKR-Regular.otf`.
+    static let notoSansKRRegularOtf = Rswift.FileResource(bundle: R.hostingBundle, name: "NotoSansKR-Regular", pathExtension: "otf")
 
     /// `bundle.url(forResource: "GoogleService-Info", withExtension: "plist")`
     static func googleServiceInfoPlist(_: Void = ()) -> Foundation.URL? {
@@ -451,10 +447,47 @@ struct R: Rswift.Validatable {
       return fileResource.bundle.url(forResource: fileResource)
     }
 
+    /// `bundle.url(forResource: "NotoSansKR-Medium", withExtension: "otf")`
+    static func notoSansKRMediumOtf(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.notoSansKRMediumOtf
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "NotoSansKR-Regular", withExtension: "otf")`
+    static func notoSansKRRegularOtf(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.notoSansKRRegularOtf
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 5 images.
+  /// This `R.font` struct is generated, and contains static references to 2 fonts.
+  struct font: Rswift.Validatable {
+    /// Font `NotoSansKR-Medium`.
+    static let notoSansKRMedium = Rswift.FontResource(fontName: "NotoSansKR-Medium")
+    /// Font `NotoSansKR-Regular`.
+    static let notoSansKRRegular = Rswift.FontResource(fontName: "NotoSansKR-Regular")
+
+    /// `UIFont(name: "NotoSansKR-Medium", size: ...)`
+    static func notoSansKRMedium(size: CGFloat) -> UIKit.UIFont? {
+      return UIKit.UIFont(resource: notoSansKRMedium, size: size)
+    }
+
+    /// `UIFont(name: "NotoSansKR-Regular", size: ...)`
+    static func notoSansKRRegular(size: CGFloat) -> UIKit.UIFont? {
+      return UIKit.UIFont(resource: notoSansKRRegular, size: size)
+    }
+
+    static func validate() throws {
+      if R.font.notoSansKRMedium(size: 42) == nil { throw Rswift.ValidationError(description:"[R.swift] Font 'NotoSansKR-Medium' could not be loaded, is 'NotoSansKR-Medium.otf' added to the UIAppFonts array in this targets Info.plist?") }
+      if R.font.notoSansKRRegular(size: 42) == nil { throw Rswift.ValidationError(description:"[R.swift] Font 'NotoSansKR-Regular' could not be loaded, is 'NotoSansKR-Regular.otf' added to the UIAppFonts array in this targets Info.plist?") }
+    }
+
+    fileprivate init() {}
+  }
+
+  /// This `R.image` struct is generated, and contains static references to 8 images.
   struct image {
     /// Image `Onboarding1`.
     static let onboarding1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "Onboarding1")
@@ -462,6 +495,12 @@ struct R: Rswift.Validatable {
     static let onboarding2 = Rswift.ImageResource(bundle: R.hostingBundle, name: "Onboarding2")
     /// Image `Onboarding3`.
     static let onboarding3 = Rswift.ImageResource(bundle: R.hostingBundle, name: "Onboarding3")
+    /// Image `OnboardingText1`.
+    static let onboardingText1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "OnboardingText1")
+    /// Image `OnboardingText2`.
+    static let onboardingText2 = Rswift.ImageResource(bundle: R.hostingBundle, name: "OnboardingText2")
+    /// Image `OnboardingText3`.
+    static let onboardingText3 = Rswift.ImageResource(bundle: R.hostingBundle, name: "OnboardingText3")
     /// Image `man`.
     static let man = Rswift.ImageResource(bundle: R.hostingBundle, name: "man")
     /// Image `woman`.
@@ -485,6 +524,27 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "Onboarding3", bundle: ..., traitCollection: ...)`
     static func onboarding3(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.onboarding3, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "OnboardingText1", bundle: ..., traitCollection: ...)`
+    static func onboardingText1(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.onboardingText1, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "OnboardingText2", bundle: ..., traitCollection: ...)`
+    static func onboardingText2(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.onboardingText2, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "OnboardingText3", bundle: ..., traitCollection: ...)`
+    static func onboardingText3(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.onboardingText3, compatibleWith: traitCollection)
     }
     #endif
 
@@ -519,7 +579,7 @@ struct R: Rswift.Validatable {
             static let _key = "Default Configuration"
             static let uiSceneConfigurationName = infoPlistString(path: ["UIApplicationSceneManifest", "UISceneConfigurations", "UIWindowSceneSessionRoleApplication", "Default Configuration"], key: "UISceneConfigurationName") ?? "Default Configuration"
             static let uiSceneDelegateClassName = infoPlistString(path: ["UIApplicationSceneManifest", "UISceneConfigurations", "UIWindowSceneSessionRoleApplication", "Default Configuration"], key: "UISceneDelegateClassName") ?? "$(PRODUCT_MODULE_NAME).SceneDelegate"
-            static let uiSceneStoryboardFile = infoPlistString(path: ["UIApplicationSceneManifest", "UISceneConfigurations", "UIWindowSceneSessionRoleApplication", "Default Configuration"], key: "UISceneStoryboardFile") ?? "Main"
+            static let uiSceneStoryboardFile = infoPlistString(path: ["UIApplicationSceneManifest", "UISceneConfigurations", "UIWindowSceneSessionRoleApplication", "Default Configuration"], key: "UISceneStoryboardFile") ?? "Onboarding"
 
             fileprivate init() {}
           }
@@ -571,9 +631,6 @@ struct _R: Rswift.Validatable {
       try launchScreen.validate()
       #endif
       #if os(iOS) || os(tvOS)
-      try main.validate()
-      #endif
-      #if os(iOS) || os(tvOS)
       try onboarding.validate()
       #endif
     }
@@ -584,22 +641,6 @@ struct _R: Rswift.Validatable {
 
       let bundle = R.hostingBundle
       let name = "LaunchScreen"
-
-      static func validate() throws {
-        if #available(iOS 11.0, tvOS 11.0, *) {
-        }
-      }
-
-      fileprivate init() {}
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
-    struct main: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
-      typealias InitialController = OnboardingViewController
-
-      let bundle = R.hostingBundle
-      let name = "Main"
 
       static func validate() throws {
         if #available(iOS 11.0, tvOS 11.0, *) {

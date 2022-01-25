@@ -19,20 +19,22 @@ class AuthView: UIView {
     weak var delegate: AuthViewDelegate?
     
     let titleLabel: UILabel = {
-        let label = Utility.label(text: "", textColor: R.color.black(), fontSize: 20)
+        let label = Utility.label(text: "", textColor: R.color.black())
+        label.font = R.font.notoSansKRRegular(size: 50)
         label.numberOfLines = 0
         return label
     }()
     
     let subTitleLabel: UILabel = {
-        let label = Utility.label(text: "", textColor: R.color.gray7(), fontSize: 16)
+        let label = Utility.label(text: "", textColor: R.color.gray7())
+        label.font = R.font.notoSansKRRegular(size: 16)
         label.numberOfLines = 0
         return label
     }()
     
     let inputTextField: UITextField = {
         let tf = UITextField()
-        tf.font = UIFont.systemFont(ofSize: 14)
+        tf.font = R.font.notoSansKRRegular(size: 14)
         return tf
     }()
     
