@@ -110,7 +110,7 @@ class GenderViewController: UIViewController {
                 completion()
             case 202:
                 print("\(statusCode ?? 0) 사용할 수 없는 닉네임")
-                self.view.makeToast("사용할 수 없는 닉네임입니다.\n닉네임 설정 화면으로 이동합니다", position: .center)
+                self.view.makeToast("사용할 수 없는 닉네임입니다.\n닉네임 설정 화면으로 이동합니다.", position: .center)
                 self.authViewModel.convertRootViewController(view: self.view, controller: NickNameViewController())
 
             case 401:

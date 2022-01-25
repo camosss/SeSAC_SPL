@@ -82,6 +82,7 @@ extension VerificationViewController: AuthViewDelegate {
         
         requestVerification {
             let controller = ConfirmationViewController()
+            controller.phoneNumber = self.phoneNumber
             self.navigationController?.pushViewController(controller, animated: true)
         }
     }

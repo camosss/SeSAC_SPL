@@ -9,8 +9,6 @@ import UIKit
 import RxSwift
 import FirebaseAuth
 
-import Alamofire
-
 class ConfirmationViewController: UIViewController {
     
     // MARK: - Properties
@@ -22,6 +20,8 @@ class ConfirmationViewController: UIViewController {
     
     var timer: Timer!
     var limitTime = 60
+    
+    var phoneNumber = ""
     
     private let timerLabel = Utility.label(text: "", textColor: R.color.green(), fontSize: 14)
 
@@ -49,7 +49,22 @@ class ConfirmationViewController: UIViewController {
     // MARK: - Action
     
     @objc func resendButtonClicked() {
-        print("resend")
+        stopTimer()
+        
+        authViewModel.requestVerificationCode(phoneNumber: phoneNumber) { verificationID, error in
+            if error == nil {
+                print("verificationID: \(verificationID ?? "")")
+                self.startTimer()
+            } else {
+                print("Phone Varification Error: \(error.debugDescription)")
+                
+                if error?.localizedDescription == "Invalid format." {
+                    self.view.makeToast("유효하지 않은 전화번호 형식입니다. 다시 한번 입력해주세요.", position: .center)
+                } else {
+                    self.view.makeToast("에러가 발생했습니다.\n다시 시도해주세요", position: .center)
+                }
+            }
+        }
     }
     
     // MARK: - Helper
@@ -131,7 +146,7 @@ class ConfirmationViewController: UIViewController {
     // MARK: - Helper (Timer)
     
     func startTimer() {
-        timerLabel.isHidden = false
+        self.timerLabel.isHidden = false
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { _ in
             self.limitTime -= 1
             self.updateTimerLabel()
@@ -152,7 +167,7 @@ class ConfirmationViewController: UIViewController {
     }
     
     func stopTimer() {
-        self.timerLabel.isHidden = true
-        self.timer.invalidate()
+        timer.invalidate()
+        limitTime = 60
     }
 }

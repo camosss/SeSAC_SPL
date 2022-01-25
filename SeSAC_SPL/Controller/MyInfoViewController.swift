@@ -33,10 +33,6 @@ class MyInfoViewController: UIViewController {
             make.width.equalTo(200)
         }
         
-        // UserDefaults 저장된 객체 목록
-        for (key, value) in UserDefaults.standard.dictionaryRepresentation() {
-          print("\(key) = \(value) \n")
-        }
     }
     
     @objc func withdrawButtonClicked() {
@@ -46,8 +42,13 @@ class MyInfoViewController: UIViewController {
             }
             
             self.view.makeToast("회원 탈퇴 Code : \(statuscode ?? 0)", position: .center)
-            UserDefaults.standard.string(forKey: "FCMToken")
+            UserDefaults.standard.removeObject(forKey: "FCMToken")
+            UserDefaults.standard.removeObject(forKey: "idToken")
             
+            // FCM 토큰 갱신
+            
+            // 전화번호 입력으로 넘어가기 (온보딩)
+            self.authViewModel.convertRootViewController(view: self.view, controller: VerificationViewController())
             
         }
     }

@@ -39,7 +39,6 @@ class EmailViewController: UIViewController {
     }
     
     func handleButtonEvent() {
-        
         let input = ValidationViewModel.Input(text: authView.inputTextField.rx.text, tap: authView.nextButton.rx.tap)
         let output = viewModel.emailTransform(input: input)
         
