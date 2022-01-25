@@ -47,12 +47,12 @@ class APIService {
         let gender = UserDefaults.standard.integer(forKey: "gender")
         
         let parameters : Parameters = [
-            "phoneNumber" : phoneNumber,
-            "FCMtoken" : FCMtoken,
-            "nick" : nick,
-            "birth" : birth,
-            "email" : email,
-            "gender" : gender
+            "phoneNumber": phoneNumber,
+            "FCMtoken": FCMtoken,
+            "nick": nick,
+            "birth": birth,
+            "email": email,
+            "gender": gender
         ]
         
         AF.request(Endpoint.user.url.absoluteString, method: .post, parameters: parameters, headers: headers).responseString { response in
@@ -71,7 +71,8 @@ class APIService {
         }
     }
     
-    static func withdrawSignUp(idToken: String, completion: @escaping (Int?, Error?) -> Void){
+    static func withdrawSignUp(idToken: String, completion: @escaping (Error?, Int?) -> Void) {
+        
         let headers: HTTPHeaders = [
             "idtoken": idToken,
             "Content-Type": "application/x-www-form-urlencoded"
@@ -80,11 +81,41 @@ class APIService {
         AF.request(Endpoint.user_withdraw.url.absoluteString, method: .post, headers: headers).responseString { response in
             switch response.result {
             case .success(_):
-                completion(response.response?.statusCode, nil)
+                completion(nil, response.response?.statusCode)
+                
             case .failure(let error):
                 print(error)
-                completion(nil, error)
+                completion(error, nil)
             }
         }
-    }    
+    }
+    
+    static func updateFCMtoken(idToken: String, completion: @escaping (Error?, Int?) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "idtoken": idToken
+        ]
+        
+        let FCMtoken = UserDefaults.standard.string(forKey: "FCMToken") ?? ""
+
+        let parameters : Parameters = [
+            "FCMtoken": FCMtoken
+        ]
+        
+        AF.request(Endpoint.user_update_fcm_token.url.absoluteString, method: .put, parameters: parameters, headers: headers).responseString { response in
+            
+            let statusCode = response.response?.statusCode
+            
+            switch response.result {
+            case .success(let value):
+                print("[updateFCMtoken] response success", value)
+                completion(nil, statusCode)
+                
+            case .failure(let error):
+                print("[updateFCMtoken] response error", error)
+                completion(error, nil)
+            }
+        }
+        
+    }
 }

@@ -10,7 +10,7 @@ import FirebaseAuth
 import Alamofire
 
 class AuthViewModel {
-    
+        
     // MARK: - Request, Get Verification Code
     
     func requestVerificationCode(phoneNumber: String, completion: @escaping (String?, Error?) -> Void) {
@@ -78,7 +78,7 @@ class AuthViewModel {
     
     // MARK: - API
     
-    func getMyUserInfo(completion: @escaping (User?, Error?, Int?) -> Void) {
+    func getUserInfo(completion: @escaping (User?, Error?, Int?) -> Void) {
         let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
 
         APIService.getUserInfo(idToken: idToken) { user, error, statusCode in
@@ -91,11 +91,26 @@ class AuthViewModel {
         }
     }
     
+    func signUpUserInfo(completion: @escaping (Error?, Int?) -> Void) {
+        let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
+
+        APIService.signUpUserInfo(idToken: idToken) { _, error, statusCode in
+            completion(error, statusCode)
+        }
+    }
     
-    func signUpMyUserInfo(completion: @escaping (Error?, Int?) -> Void) {
+    func withdrawSignUp(completion: @escaping (Error?, Int?) -> Void) {
+        let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
+
+        APIService.withdrawSignUp(idToken: idToken) { error, statusCode in
+            completion(error, statusCode)
+        }
+    }
+    
+    func updateFCMtoken(completion: @escaping (Error?, Int?) -> Void) {
         let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
         
-        APIService.signUpUserInfo(idToken: idToken) { _, error, statusCode in
+        APIService.updateFCMtoken(idToken: idToken) { error, statusCode in
             completion(error, statusCode)
         }
     }

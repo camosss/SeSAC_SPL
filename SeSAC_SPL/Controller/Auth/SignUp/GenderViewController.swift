@@ -98,7 +98,7 @@ class GenderViewController: UIViewController {
     }
     
     func signUpUser(completion: @escaping () -> ()) {
-        authViewModel.signUpMyUserInfo { error, statusCode in
+        authViewModel.signUpUserInfo { error, statusCode in
             switch statusCode {
             case 200:
                 print("\(statusCode ?? 0) 회원가입 성공")

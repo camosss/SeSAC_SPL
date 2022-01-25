@@ -36,19 +36,27 @@ class MyInfoViewController: UIViewController {
     }
     
     @objc func withdrawButtonClicked() {
-        APIService.withdrawSignUp(idToken: idToken) { statuscode, error in
+        
+        self.authViewModel.withdrawSignUp { error, statusCode in
             if let error = error {
                 print(error); return
             }
             
-            self.view.makeToast("회원 탈퇴 Code : \(statuscode ?? 0)", position: .center)
-            UserDefaults.standard.removeObject(forKey: "FCMToken")
-            UserDefaults.standard.removeObject(forKey: "idToken")
+            self.view.makeToast("회원 탈퇴 Code : \(statusCode ?? 0)", position: .center)
             
             // FCM 토큰 갱신
-            
-            // 전화번호 입력으로 넘어가기 (온보딩)
-            self.authViewModel.convertRootViewController(view: self.view, controller: VerificationViewController())
+            self.authViewModel.updateFCMtoken { error, statusCode in
+                switch statusCode {
+                case 200:
+                    print("\(statusCode ?? 0) 토큰 갱신 성공")
+
+                    // 번호 입력 화면으로 넘어가기 (온보딩)
+                    self.authViewModel.convertRootViewController(view: self.view, controller: VerificationViewController())
+
+                default:
+                    print("Error Code:", statusCode ?? 0)
+                }
+            }
             
         }
     }

@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: scene)
         
         let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
-        print("SceneDelegate", idToken)
+        print("SceneDelegate idToken", idToken)
         
         if idToken == "" { // 전화번호 인증 X
             self.window?.rootViewController = UINavigationController(rootViewController: VerificationViewController())

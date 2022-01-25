@@ -116,7 +116,7 @@ class ConfirmationViewController: UIViewController {
 
             print("인증번호 받기 성공", verificationCode)
 
-            self.authViewModel.getMyUserInfo { user, error, statusCode in
+            self.authViewModel.getUserInfo { user, error, statusCode in
                 switch statusCode {
                 case 200:
                     print("\(statusCode ?? 0) 성공")
