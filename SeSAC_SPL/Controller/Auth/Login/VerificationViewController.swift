@@ -7,7 +7,6 @@
 
 import UIKit
 import Toast_Swift
-
 import RxSwift
 import RxCocoa
 import FirebaseAuth
@@ -37,6 +36,13 @@ class VerificationViewController: UIViewController {
         view.backgroundColor = .white
         configureAuthView()
         displayOnboardingView()
+        handleButtonEvent()
+    }
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        let phoneNum = authView.inputTextField.text ?? ""
+        
+        textField.text = phoneNum.count <= 12 ? phoneNum.toPhoneNumberPattern(pattern: "###-###-####", replacmentCharacter: "#") : phoneNum.toPhoneNumberPattern(pattern: "###-####-####", replacmentCharacter: "#")
     }
     
     // MARK: - Helper
@@ -47,13 +53,26 @@ class VerificationViewController: UIViewController {
     }
     
     func configureAuthView() {
-        authView.delegate = self
-        authView.inputTextField.delegate = self
         authView.subTitleLabel.isHidden = true
         
         authView.titleLabel.text = "새싹 서비스 이용을 위해\n휴대폰 번호를 입력해주세요"
         authView.inputTextField.placeholder = "휴대폰 번호(-없이 숫자만 입력)"
         authView.nextButton.setTitle("인증 문자 받기", for: .normal)
+        
+        authView.inputTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+    }
+    
+    func handleButtonEvent() {
+        let input = ValidationViewModel.Input(text: authView.inputTextField.rx.text, tap: authView.nextButton.rx.tap)
+        let output = viewModel.phoneNumberTransform(input: input)
+        
+        Helper.handleButtonEvent(authView: authView, output: output, disposeBag: disposeBag) {
+            self.requestVerification {
+                let controller = ConfirmationViewController()
+                controller.phoneNumber = self.phoneNumber
+                self.navigationController?.pushViewController(controller, animated: true)
+            }
+        }
     }
     
     func requestVerification(completion: @escaping () -> ()) {
@@ -65,34 +84,11 @@ class VerificationViewController: UIViewController {
                 print("Phone Varification Error: \(error.debugDescription)")
                 
                 if error?.localizedDescription == "Invalid format." {
-                    self.view.makeToast("유효하지 않은 전화번호 형식입니다. 다시 한번 입력해주세요.", position: .center)
+                    self.view.makeToast("유효하지 않은 전화번호 형식입니다.", position: .center)
                 } else {
                     self.view.makeToast("에러가 발생했습니다.\n다시 시도해주세요", position: .center)
                 }
             }
         }
-    }
-}
-
-// MARK: - AuthViewDelegate
-
-extension VerificationViewController: AuthViewDelegate {
-    func handleNextButtonAction() {
-        print("phoneNumber \(phoneNumber)")
-        
-        requestVerification {
-            let controller = ConfirmationViewController()
-            controller.phoneNumber = self.phoneNumber
-            self.navigationController?.pushViewController(controller, animated: true)
-        }
-    }
-}
-
-// MARK: - UITextFieldDelegate
-
-extension VerificationViewController: UITextFieldDelegate {
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        textField.formatPhoneNumber(range: range, string: string)
-        return false
     }
 }
