@@ -102,21 +102,21 @@ class GenderViewController: UIViewController {
             switch statusCode {
             case 200:
                 print("\(statusCode ?? 0) 회원가입 성공")
-                self.view.makeToast("회원가입에 성공했습니다.\n홈 화면으로 이동합니다.")
+                self.view.makeToast("회원가입에 성공했습니다.", position: .center)
                 completion()
             case 201:
                 print("\(statusCode ?? 0) 이미 가입한 유저")
-                self.view.makeToast("이미 가입한 유저입니다.")
+                self.view.makeToast("이미 가입한 유저입니다.", position: .center)
                 completion()
             case 202:
                 print("\(statusCode ?? 0) 사용할 수 없는 닉네임")
-                self.view.makeToast("사용할 수 없는 닉네임입니다.\n닉네임 재설정 화면으로 이동합니다")                
+                self.view.makeToast("사용할 수 없는 닉네임입니다.\n닉네임 설정 화면으로 이동합니다", position: .center)
                 self.authViewModel.convertRootViewController(view: self.view, controller: NickNameViewController())
 
             case 401:
                 print("\(statusCode ?? 0) Firebase Token Error")
                 self.authViewModel.getIDTokenRefresh {
-                    self.view.makeToast("에러가 발생했습니다. 잠시 후 다시 시도해주세요."); return
+                    self.view.makeToast("에러가 발생했습니다. 잠시 후 다시 시도해주세요.", position: .center); return
                 } onSuccess: {
                     print("토큰 갱신 성공")
                 }

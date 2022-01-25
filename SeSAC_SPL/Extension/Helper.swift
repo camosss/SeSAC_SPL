@@ -7,11 +7,10 @@
 
 import Foundation
 import RxSwift
+import Toast_Swift
 
 class Helper {
     
-    var timer: Timer!
-
     // MARK: - PhoneNuber
     
     static func makeRequestPhoneNumber(_ number: String) -> String {
@@ -48,5 +47,4 @@ class Helper {
                 sceneTransition()
             }.disposed(by: disposeBag)
     }
-    
 }

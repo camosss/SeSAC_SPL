@@ -13,17 +13,10 @@ import UserNotifications
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    var hasAlreadyLaunched: Bool!
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         FirebaseApp.configure()
         UIBarButtonItem.appearance().tintColor = .black
-        
-        // MARK: - 온보딩
-        
-        hasAlreadyLaunched = UserDefaults.standard.bool(forKey: "hasAlreadyLaunched")
-        hasAlreadyLaunched ? hasAlreadyLaunched = true : UserDefaults.standard.set(true, forKey: "hasAlreadyLaunched")
         
         // MARK: - 원격 알림 등록
         
@@ -59,11 +52,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
-    
-    func sethasAlreadyLaunched() {
-        hasAlreadyLaunched = true
-    }
-    
 
     // MARK: - UISceneSession Lifecycle
 

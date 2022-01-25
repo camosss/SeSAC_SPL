@@ -89,15 +89,15 @@ class ConfirmationViewController: UIViewController {
     
     func getVerificationCode() {
         guard let verificationID = UserDefaults.standard.string(forKey: "authVerificationID") else {
-            self.view.makeToast("전화번호 인증을 실패했습니다."); return
+            self.view.makeToast("전화번호 인증을 실패했습니다.", position: .center); return
         }
         
         guard let verificationCode = authView.inputTextField.text else {
-            self.view.makeToast("인증번호를 입력하세요."); return
+            self.view.makeToast("인증번호를 입력하세요.", position: .center); return
         }
         
         authViewModel.getVerificationCode(verificationID: verificationID, verificationCode: verificationCode) { _, error in
-            if error != nil { self.view.makeToast("에러가 발생했습니다. 잠시 후 다시 시도해주세요"); return }
+            if error != nil { self.view.makeToast("에러가 발생했습니다. 잠시 후 다시 시도해주세요", position: .center); return }
 
             print("인증번호 받기 성공", verificationCode)
 
@@ -105,18 +105,18 @@ class ConfirmationViewController: UIViewController {
                 switch statusCode {
                 case 200:
                     print("\(statusCode ?? 0) 성공")
-                    self.view.makeToast("이미 가입된 회원입니다.\n홈 화면으로 이동합니다.")
+                    self.view.makeToast("이미 가입된 회원입니다.", position: .center)
                     self.authViewModel.convertRootViewController(view: self.view, controller: MyInfoViewController())
 
                 case 201:
                     print("\(statusCode ?? 0) 미가입 유저")
-                    self.view.makeToast("휴대폰 번호 인증에 성공했습니다.\n닉네임 설정 화면으로 이동합니다.")
+                    self.view.makeToast("휴대폰 번호 인증에 성공했습니다.", position: .center)
                     self.authViewModel.convertRootViewController(view: self.view, controller: NickNameViewController())
 
                 case 401:
                     print("\(statusCode ?? 0) Firebase Token Error")
                     self.authViewModel.getIDTokenRefresh {
-                        self.view.makeToast("에러가 발생했습니다. 잠시 후 다시 시도해주세요."); return
+                        self.view.makeToast("에러가 발생했습니다. 잠시 후 다시 시도해주세요.", position: .center); return
                     } onSuccess: {
                         print("토큰 갱신 성공")
                     }
@@ -145,7 +145,7 @@ class ConfirmationViewController: UIViewController {
         if self.limitTime > 0 {
             self.timerLabel.text = String(format: "%02d:%02d", minutes, seconds)
         } else {
-            self.view.makeToast("시간 초과로 휴대폰 번호 인증을 실패했습니다.")
+            self.view.makeToast("시간 초과로 휴대폰 번호 인증을 실패했습니다.", position: .center)
             self.timerLabel.isHidden = true
             self.timer.invalidate()
         }

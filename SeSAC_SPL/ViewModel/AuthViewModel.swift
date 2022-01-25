@@ -38,9 +38,9 @@ class AuthViewModel {
         Auth.auth().signIn(with: credential) { success, error in
             if error == nil {
                 print("Login Success!!!")
-                
+
                 self.getIDTokenRefresh {
-                    completion(success ,error); return
+                    completion(nil ,error); return
                 } onSuccess: {
                     completion(success, nil)
                 }

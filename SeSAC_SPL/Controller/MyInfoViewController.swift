@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import Alamofire
 
 class MyInfoViewController: UIViewController {
+    
+    let authViewModel = AuthViewModel()
     
     let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
 
@@ -30,21 +33,10 @@ class MyInfoViewController: UIViewController {
             make.width.equalTo(200)
         }
         
-        let fcmtoken = UserDefaults.standard.string(forKey: "FCMToken") ?? ""
-        let phoneNumber = UserDefaults.standard.string(forKey: "phoneNumber") ?? ""
-        let nickName = UserDefaults.standard.string(forKey: "nickName") ?? ""
-        let birth = UserDefaults.standard.string(forKey: "birth") ?? ""
-        let email = UserDefaults.standard.string(forKey: "email") ?? ""
-        let gender = UserDefaults.standard.integer(forKey: "gender")
-        let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
-        
-        print("fcmtoken:",fcmtoken)
-        print("phoneNumber:",phoneNumber)
-        print("nickName:",nickName)
-        print("birth:",birth)
-        print("email:",email)
-        print("gender:",gender)
-        print("idToken:",idToken)
+        // UserDefaults 저장된 객체 목록
+        for (key, value) in UserDefaults.standard.dictionaryRepresentation() {
+          print("\(key) = \(value) \n")
+        }
     }
     
     @objc func withdrawButtonClicked() {
@@ -53,7 +45,10 @@ class MyInfoViewController: UIViewController {
                 print(error); return
             }
             
-            self.view.makeToast("회원 탈퇴 Code : \(statuscode ?? 0)")
+            self.view.makeToast("회원 탈퇴 Code : \(statuscode ?? 0)", position: .center)
+            UserDefaults.standard.string(forKey: "FCMToken")
+            
+            
         }
     }
 }

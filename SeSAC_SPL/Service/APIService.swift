@@ -86,6 +86,5 @@ class APIService {
                 completion(nil, error)
             }
         }
-    }
-    
+    }    
 }

@@ -16,7 +16,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
-        window?.rootViewController = UINavigationController(rootViewController: VerificationViewController())
+        
+        let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
+        print("SceneDelegate", idToken)
+        
+        if idToken == "" { // 전화번호 인증 X
+            self.window?.rootViewController = UINavigationController(rootViewController: VerificationViewController())
+            
+        } else { // 전화번호 인증 O
+            APIService.getUserInfo(idToken: idToken) { user, error, statusCode in
+                switch statusCode {
+                case 200:
+                    self.window?.rootViewController = UINavigationController(rootViewController: MyInfoViewController())
+                default:
+                    print(statusCode ?? 0)
+                    self.window?.rootViewController = UINavigationController(rootViewController: NickNameViewController())
+                }
+            }
+        }
         window?.makeKeyAndVisible()
     }
     

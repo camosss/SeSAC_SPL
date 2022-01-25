@@ -36,15 +36,7 @@ class VerificationViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         configureAuthView()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        if !appDelegate.hasAlreadyLaunched {
-            appDelegate.sethasAlreadyLaunched()
-            displayOnboardingView()
-        }
+        displayOnboardingView()
     }
     
     // MARK: - Helper
@@ -73,9 +65,9 @@ class VerificationViewController: UIViewController {
                 print("Phone Varification Error: \(error.debugDescription)")
                 
                 if error?.localizedDescription == "Invalid format." {
-                    self.view.makeToast("유효하지 않은 전화번호 형식입니다. 다시 한번 입력해주세요.")
+                    self.view.makeToast("유효하지 않은 전화번호 형식입니다. 다시 한번 입력해주세요.", position: .center)
                 } else {
-                    self.view.makeToast("에러가 발생했습니다.\n다시 시도해주세요")
+                    self.view.makeToast("에러가 발생했습니다.\n다시 시도해주세요", position: .center)
                 }
             }
         }
