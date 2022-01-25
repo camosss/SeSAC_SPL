@@ -20,6 +20,7 @@ class GenderViewController: UIViewController {
     var genderValue: Int = -1
     
     let authView = AuthView()
+    let authViewModel = AuthViewModel()
     let disposeBag = DisposeBag()
     
     let manButton: GenderButton = {
@@ -95,6 +96,35 @@ class GenderViewController: UIViewController {
             }
         }).disposed(by: disposeBag)
     }
+    
+    func signUpUser(completion: @escaping () -> ()) {
+        authViewModel.signUpMyUserInfo { error, statusCode in
+            switch statusCode {
+            case 200:
+                print("\(statusCode ?? 0) 회원가입 성공")
+                self.view.makeToast("회원가입에 성공했습니다.\n홈 화면으로 이동합니다.")
+                completion()
+            case 201:
+                print("\(statusCode ?? 0) 이미 가입한 유저")
+                self.view.makeToast("이미 가입한 유저입니다.")
+                completion()
+            case 202:
+                print("\(statusCode ?? 0) 사용할 수 없는 닉네임")
+                self.view.makeToast("사용할 수 없는 닉네임입니다.\n닉네임 재설정 화면으로 이동합니다")                
+                self.authViewModel.convertRootViewController(view: self.view, controller: NickNameViewController())
+
+            case 401:
+                print("\(statusCode ?? 0) Firebase Token Error")
+                self.authViewModel.getIDTokenRefresh {
+                    self.view.makeToast("에러가 발생했습니다. 잠시 후 다시 시도해주세요."); return
+                } onSuccess: {
+                    print("토큰 갱신 성공")
+                }
+            default:
+                print("Error Code:", statusCode ?? 0)
+            }
+        }
+    }
 }
 
 // MARK: - AuthViewDelegate
@@ -103,8 +133,10 @@ extension GenderViewController: AuthViewDelegate {
     func handleNextButtonAction() {
         UserDefaults.standard.set(genderValue, forKey: "gender")
         
-        let controller = MyInfoViewController()
-        view.window?.rootViewController = controller
-        view.window?.makeKeyAndVisible()
+        self.signUpUser {
+            let controller = MyInfoViewController()
+            self.view.window?.rootViewController = controller
+            self.view.window?.makeKeyAndVisible()
+        }
     }
 }

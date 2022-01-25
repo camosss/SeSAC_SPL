@@ -1,5 +1,5 @@
 //
-//  EmailViewController.swift
+//  NickNameViewController.swift
 //  SeSAC_SPL
 //
 //  Created by 강호성 on 2022/01/20.
@@ -8,7 +8,7 @@
 import UIKit
 import RxSwift
 
-class EmailViewController: UIViewController {
+class NickNameViewController: UIViewController {
     
     // MARK: - Properties
     
@@ -32,21 +32,22 @@ class EmailViewController: UIViewController {
     // MARK: - Helper
     
     func configureAuthView() {
-        authView.titleLabel.text = "이메일을 입력해주세요"
-        authView.subTitleLabel.text = "휴대폰 번호 변경 시 인증을 위해 사용해요"
-        authView.inputTextField.placeholder = "SeSAC@email.com"
+        authView.subTitleLabel.isHidden = true
+
+        authView.titleLabel.text = "닉네임을 입력해주세요"
+        authView.inputTextField.placeholder = "10자 이내로 입력"
         authView.nextButton.setTitle("다음", for: .normal)
     }
     
     func handleButtonEvent() {
         
         let input = ValidationViewModel.Input(text: authView.inputTextField.rx.text, tap: authView.nextButton.rx.tap)
-        let output = viewModel.emailTransform(input: input)
+        let output = viewModel.nickNameTransform(input: input)
         
-        Utility.handleButtonEvent(authView: authView, output: output, disposeBag: disposeBag) {
-            UserDefaults.standard.set(self.authView.inputTextField.text, forKey: "email")
+        Helper.handleButtonEvent(authView: authView, output: output, disposeBag: disposeBag) {
+            UserDefaults.standard.set(self.authView.inputTextField.text, forKey: "nickName")
 
-            let controller = GenderViewController()
+            let controller = BirthViewController()
             self.navigationController?.pushViewController(controller, animated: true)
         }
     }

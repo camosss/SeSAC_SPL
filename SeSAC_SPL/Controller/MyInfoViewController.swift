@@ -49,6 +49,10 @@ class MyInfoViewController: UIViewController {
     
     @objc func withdrawButtonClicked() {
         APIService.withdrawSignUp(idToken: idToken) { statuscode, error in
+            if let error = error {
+                print(error); return
+            }
+            
             self.view.makeToast("회원 탈퇴 Code : \(statuscode ?? 0)")
         }
     }

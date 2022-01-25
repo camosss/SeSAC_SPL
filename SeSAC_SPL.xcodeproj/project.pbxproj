@@ -15,11 +15,12 @@
 		B40CA684279D6EB900B233D7 /* CommonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40CA683279D6EB900B233D7 /* CommonViewModel.swift */; };
 		B40CA686279D78C400B233D7 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40CA685279D78C400B233D7 /* UITextField+Extension.swift */; };
 		B40CA688279DA88700B233D7 /* ValidationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40CA687279DA88600B233D7 /* ValidationViewModel.swift */; };
-		B40CA68D279E8C4F00B233D7 /* VerificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40CA68C279E8C4F00B233D7 /* VerificationViewModel.swift */; };
+		B40CA68D279E8C4F00B233D7 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40CA68C279E8C4F00B233D7 /* AuthViewModel.swift */; };
 		B420EF0F279EC9A30084AE6A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B420EF0E279EC9A30084AE6A /* User.swift */; };
 		B420EF11279ECCB80084AE6A /* RegularExpression+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B420EF10279ECCB80084AE6A /* RegularExpression+Extension.swift */; };
 		B420EF13279EF3150084AE6A /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B420EF12279EF3150084AE6A /* Endpoint.swift */; };
 		B420EF15279EF4350084AE6A /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B420EF14279EF4350084AE6A /* APIService.swift */; };
+		B420EF1D279FDC890084AE6A /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B420EF1C279FDC890084AE6A /* Helper.swift */; };
 		B433B8BD2798253700AEA607 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B8BC2798253700AEA607 /* AuthView.swift */; };
 		B433B8C127982BBD00AEA607 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B8C027982BBD00AEA607 /* OnboardingViewController.swift */; };
 		B433B8C527982F7600AEA607 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B8C427982F7600AEA607 /* UIView+Extension.swift */; };
@@ -55,11 +56,12 @@
 		B40CA683279D6EB900B233D7 /* CommonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewModel.swift; sourceTree = "<group>"; };
 		B40CA685279D78C400B233D7 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		B40CA687279DA88600B233D7 /* ValidationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationViewModel.swift; sourceTree = "<group>"; };
-		B40CA68C279E8C4F00B233D7 /* VerificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewModel.swift; sourceTree = "<group>"; };
+		B40CA68C279E8C4F00B233D7 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		B420EF0E279EC9A30084AE6A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B420EF10279ECCB80084AE6A /* RegularExpression+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RegularExpression+Extension.swift"; sourceTree = "<group>"; };
 		B420EF12279EF3150084AE6A /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		B420EF14279EF4350084AE6A /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		B420EF1C279FDC890084AE6A /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		B433B8BC2798253700AEA607 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		B433B8C027982BBD00AEA607 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		B433B8C427982F7600AEA607 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
@@ -114,17 +116,9 @@
 			children = (
 				B40CA683279D6EB900B233D7 /* CommonViewModel.swift */,
 				B40CA687279DA88600B233D7 /* ValidationViewModel.swift */,
-				B40CA68B279E8C3700B233D7 /* Auth */,
+				B40CA68C279E8C4F00B233D7 /* AuthViewModel.swift */,
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		B40CA68B279E8C3700B233D7 /* Auth */ = {
-			isa = PBXGroup;
-			children = (
-				B40CA68C279E8C4F00B233D7 /* VerificationViewModel.swift */,
-			);
-			path = Auth;
 			sourceTree = "<group>";
 		};
 		B420EF17279EFE350084AE6A /* Network */ = {
@@ -133,6 +127,26 @@
 				B420EF12279EF3150084AE6A /* Endpoint.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		B420EF1A279FA9EB0084AE6A /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				B433B8ED2799195900AEA607 /* VerificationViewController.swift */,
+				B433B8FF27994C5100AEA607 /* ConfirmationViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		B420EF1B279FA9F00084AE6A /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				B433B9012799558B00AEA607 /* NickNameViewController.swift */,
+				B40CA670279967F600B233D7 /* BirthViewController.swift */,
+				B433B9032799561700AEA607 /* EmailViewController.swift */,
+				B433B9052799567700AEA607 /* GenderViewController.swift */,
+			);
+			path = SignUp;
 			sourceTree = "<group>";
 		};
 		B433B8BA2798240900AEA607 /* View */ = {
@@ -193,12 +207,8 @@
 		B433B8FE27994C0C00AEA607 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				B433B8ED2799195900AEA607 /* VerificationViewController.swift */,
-				B433B8FF27994C5100AEA607 /* ConfirmationViewController.swift */,
-				B433B9012799558B00AEA607 /* NickNameViewController.swift */,
-				B40CA670279967F600B233D7 /* BirthViewController.swift */,
-				B433B9032799561700AEA607 /* EmailViewController.swift */,
-				B433B9052799567700AEA607 /* GenderViewController.swift */,
+				B420EF1A279FA9EB0084AE6A /* Login */,
+				B420EF1B279FA9F00084AE6A /* SignUp */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -255,6 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				B433B8FC279949AA00AEA607 /* Utility.swift */,
+				B420EF1C279FDC890084AE6A /* Helper.swift */,
 				B43741202797FAFF005E1CC7 /* R.generated.swift */,
 				B437411D2797F10F005E1CC7 /* UIFont+Extension.swift */,
 				B433B8C427982F7600AEA607 /* UIView+Extension.swift */,
@@ -426,8 +437,9 @@
 				B433B8FD279949AA00AEA607 /* Utility.swift in Sources */,
 				B433B90027994C5100AEA607 /* ConfirmationViewController.swift in Sources */,
 				B433B9042799561700AEA607 /* EmailViewController.swift in Sources */,
-				B40CA68D279E8C4F00B233D7 /* VerificationViewModel.swift in Sources */,
+				B40CA68D279E8C4F00B233D7 /* AuthViewModel.swift in Sources */,
 				B433B8F027991D7900AEA607 /* OnboardingService.swift in Sources */,
+				B420EF1D279FDC890084AE6A /* Helper.swift in Sources */,
 				B433B8BD2798253700AEA607 /* AuthView.swift in Sources */,
 				B43741212797FAFF005E1CC7 /* R.generated.swift in Sources */,
 				B40CA688279DA88700B233D7 /* ValidationViewModel.swift in Sources */,

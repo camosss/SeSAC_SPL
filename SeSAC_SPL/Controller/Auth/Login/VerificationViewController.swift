@@ -17,14 +17,14 @@ class VerificationViewController: UIViewController {
     // MARK: - Properties
     
     let authView = AuthView()
-    let authViewModel = VerificationViewModel()
+    let authViewModel = AuthViewModel()
     let viewModel = ValidationViewModel()
     let disposeBag = DisposeBag()
 
     let onboardingService = OnboardingService()
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
-    lazy var phoneNumber = Utility.makeRequestPhoneNumber(authView.inputTextField.text ?? "")
+    lazy var phoneNumber = Helper.makeRequestPhoneNumber(authView.inputTextField.text ?? "")
 
     // MARK: - Lifecycle
     

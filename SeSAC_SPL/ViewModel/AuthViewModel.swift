@@ -1,5 +1,5 @@
 //
-//  VerificationViewModel.swift
+//  AuthViewModel.swift
 //  SeSAC_SPL
 //
 //  Created by 강호성 on 2022/01/24.
@@ -9,9 +9,7 @@ import Foundation
 import FirebaseAuth
 import Alamofire
 
-class VerificationViewModel {
-    
-    var idToken = ""
+class AuthViewModel {
     
     // MARK: - Request, Get Verification Code
     
@@ -80,9 +78,9 @@ class VerificationViewModel {
     
     // MARK: - API
     
-    func getUserInfo(completion: @escaping (User?, AFError?, Int?) -> Void) {
+    func getMyUserInfo(completion: @escaping (User?, Error?, Int?) -> Void) {
         let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
-        print("check idToken \(idToken)")
+
         APIService.getUserInfo(idToken: idToken) { user, error, statusCode in
             print("statusCode:", statusCode ?? 0)
             if let user = user {
@@ -90,6 +88,15 @@ class VerificationViewModel {
             } else {
                 completion(nil, error, statusCode)
             }
+        }
+    }
+    
+    
+    func signUpMyUserInfo(completion: @escaping (Error?, Int?) -> Void) {
+        let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
+        
+        APIService.signUpUserInfo(idToken: idToken) { _, error, statusCode in
+            completion(error, statusCode)
         }
     }
 }

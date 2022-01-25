@@ -10,15 +10,14 @@ import Alamofire
 
 class APIService {
     
-    static func getUserInfo(idToken: String, completion: @escaping (User?, AFError?, Int?) -> Void) {
-        
+    static func getUserInfo(idToken: String, completion: @escaping (User?, Error?, Int?) -> Void) {
+
         let headers: HTTPHeaders = [
-            "idtoken": "\(idToken)",
-            "Content-Type": "application/x-www-form-urlencoded"
+            "idtoken": idToken
         ]
-        
+
         AF.request(Endpoint.user.url.absoluteString, method: .get, headers: headers).responseDecodable(of: User.self) { response in
-            
+
             let statusCode = response.response?.statusCode
 
             switch response.result {
@@ -33,12 +32,12 @@ class APIService {
         }
     }
     
-    static func signUpUserInfo(idToken: String, completion: @escaping (String?, AFError?, Int?) -> Void) {
+    static func signUpUserInfo(idToken: String, completion: @escaping (String?, Error?, Int?) -> Void) {
         
-        let headers = [
+        let headers: HTTPHeaders = [
             "idtoken": idToken,
             "Content-Type": "application/x-www-form-urlencoded"
-        ] as HTTPHeaders
+        ]
         
         let FCMtoken = UserDefaults.standard.string(forKey: "FCMToken") ?? ""
         let phoneNumber = UserDefaults.standard.string(forKey: "phoneNumber") ?? ""
@@ -73,13 +72,19 @@ class APIService {
     }
     
     static func withdrawSignUp(idToken: String, completion: @escaping (Int?, Error?) -> Void){
-        let headers = [
+        let headers: HTTPHeaders = [
             "idtoken": idToken,
             "Content-Type": "application/x-www-form-urlencoded"
-        ] as HTTPHeaders
+        ]
         
         AF.request(Endpoint.user_withdraw.url.absoluteString, method: .post, headers: headers).responseString { response in
-            completion(response.response?.statusCode, nil)
+            switch response.result {
+            case .success(_):
+                completion(response.response?.statusCode, nil)
+            case .failure(let error):
+                print(error)
+                completion(nil, error)
+            }
         }
     }
     

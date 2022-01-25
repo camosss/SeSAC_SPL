@@ -25,7 +25,7 @@ extension Endpoint {
 
 extension URL {
     static let baseURL = "http://test.monocoding.com:35484/"
-    
+
     static func makeEndpoint(_ endpoint: String) -> URL {
         URL(string: baseURL + endpoint)!
     }
