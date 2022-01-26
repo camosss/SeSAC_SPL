@@ -32,7 +32,7 @@ class APIService {
         }
     }
     
-    static func signUpUserInfo(idToken: String, completion: @escaping (String?, Error?, Int?) -> Void) {
+    static func signUpUserInfo(idToken: String, completion: @escaping (Error?, Int?) -> Void) {
         
         let headers: HTTPHeaders = [
             "idtoken": idToken,
@@ -62,11 +62,11 @@ class APIService {
             switch response.result {
             case .success(let value):
                 print("[signUpUserInfo] response success", value)
-                completion(value, nil, statusCode)
+                completion(nil, statusCode)
                 
             case .failure(let error):
                 print("[signUpUserInfo] response error", error)
-                completion(nil, error, statusCode)
+                completion(error, statusCode)
             }
         }
     }
@@ -79,13 +79,17 @@ class APIService {
         ]
         
         AF.request(Endpoint.user_withdraw.url.absoluteString, method: .post, headers: headers).responseString { response in
+            
+            let statusCode = response.response?.statusCode
+
             switch response.result {
-            case .success(_):
-                completion(nil, response.response?.statusCode)
+            case .success(let value):
+                print("[withdrawSignUp] response success", value)
+                completion(nil, statusCode)
                 
             case .failure(let error):
-                print(error)
-                completion(error, nil)
+                print("[withdrawSignUp] response error", error)
+                completion(error, statusCode)
             }
         }
     }
@@ -113,9 +117,8 @@ class APIService {
                 
             case .failure(let error):
                 print("[updateFCMtoken] response error", error)
-                completion(error, nil)
+                completion(error, statusCode)
             }
         }
-        
     }
 }

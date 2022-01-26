@@ -80,21 +80,16 @@ class AuthViewModel {
     
     func getUserInfo(completion: @escaping (User?, Error?, Int?) -> Void) {
         let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
-
+        
         APIService.getUserInfo(idToken: idToken) { user, error, statusCode in
-            print("statusCode:", statusCode ?? 0)
-            if let user = user {
-                completion(user, nil, statusCode)
-            } else {
-                completion(nil, error, statusCode)
-            }
+            completion(user, error, statusCode)
         }
     }
     
     func signUpUserInfo(completion: @escaping (Error?, Int?) -> Void) {
         let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
 
-        APIService.signUpUserInfo(idToken: idToken) { _, error, statusCode in
+        APIService.signUpUserInfo(idToken: idToken) { error, statusCode in
             completion(error, statusCode)
         }
     }
