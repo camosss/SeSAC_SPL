@@ -71,19 +71,20 @@ class AuthView: UIView {
     // MARK: - Helper
     
     func setupConstraints() {
-        addSubview(stack)
+        [stack, inputContainerView, nextButton].forEach {
+            addSubview($0)
+        }
+        
         stack.snp.makeConstraints { make in
             make.top.equalTo(185)
             make.centerX.equalToSuperview()
         }
         
-        addSubview(inputContainerView)
         inputContainerView.snp.makeConstraints { make in
             make.top.equalTo(subTitleLabel.snp.bottom).offset(76)
             make.leading.trailing.equalToSuperview().inset(28)
         }
         
-        addSubview(nextButton)
         nextButton.snp.makeConstraints { make in
             make.top.equalTo(inputContainerView.snp.bottom).offset(72)
             make.leading.trailing.equalToSuperview().inset(16)

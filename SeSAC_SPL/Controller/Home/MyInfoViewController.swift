@@ -6,62 +6,85 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 import Alamofire
 
 class MyInfoViewController: UIViewController {
     
-    let authViewModel = AuthViewModel()
+    // MARK: - Properties
     
-    let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
+    let tableView = UITableView()
 
-    let withdrawButton: UIButton = {
-        let button = Utility.button(backgroundColor: R.color.gray6())
-        button.setTitle("회원 탈퇴", for: .normal)
-        button.addTarget(self, action: #selector(withdrawButtonClicked), for: .touchUpInside)
-        return button
-    }()
+    let authViewModel = AuthViewModel()
+    let viewModel = MyInfoViewModel()
+    let disposeBag = DisposeBag()
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "내정보"
         view.backgroundColor = .white
         
-        view.addSubview(withdrawButton)
-        withdrawButton.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-            make.width.equalTo(200)
+        setUpTableView()
+        configureTableViewDataSource()
+    }
+    
+    // MARK: - Helper
+    
+    func setUpTableView() {
+        tableView.backgroundColor = .white
+        tableView.register(MyInfoHeaderTableViewCell.self, forCellReuseIdentifier: MyInfoHeaderTableViewCell.identifier)
+        tableView.register(MyInfoTableViewCell.self, forCellReuseIdentifier: MyInfoTableViewCell.identifier)
+        
+        view.addSubview(tableView)
+        tableView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
     }
     
-    @objc func withdrawButtonClicked() {
-        
-        self.authViewModel.withdrawSignUp { error, statusCode in
-            if let error = error {
-                print(error); return
-            }
-            
-            self.view.makeToast("회원 탈퇴 Code : \(statusCode ?? 0)", position: .center)
-            
-            // FCM 토큰 갱신
-            self.authViewModel.updateFCMtoken { error, statusCode in
-                switch statusCode {
-                case 200:
-                    print("\(statusCode ?? 0) 토큰 갱신 성공")
-
-                    let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
-                    
-                    if idToken == "" {
-                        self.authViewModel.convertRootViewController(view: self.view, controller: VerificationViewController())
-                    } else {
-                        self.view.makeToast("새롭게 가입해보세요!")
-                        self.authViewModel.convertRootViewController(view: self.view, controller: NickNameViewController())
-                    }
-
-                default:
-                    print("Error Code:", statusCode ?? 0)
+    func configureTableViewDataSource() {
+        viewModel.myinfos
+            .observe(on: MainScheduler.instance)
+            .bind(to: tableView.rx.items) { (tableView, row, item) -> UITableViewCell in
+                if row == 0 {
+                    let cell = tableView.dequeueReusableCell(withIdentifier: MyInfoHeaderTableViewCell.identifier, for: IndexPath.init(row: row, section: 0)) as! MyInfoHeaderTableViewCell
+                    cell.updateUI(myInfo: item)
+                    return cell
+                } else {
+                    let cell = tableView.dequeueReusableCell(withIdentifier: MyInfoTableViewCell.identifier, for: IndexPath(row: row, section: 0)) as! MyInfoTableViewCell
+                    cell.updateUI(myInfo: item)
+                    return cell
                 }
             }
-        }
+            .disposed(by: disposeBag)
+        
+        tableView.rx.itemSelected
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] indexPath in
+                if indexPath.row == 0 {
+                    self?.presentDetail()
+                }
+                self?.tableView.deselectRow(at: indexPath, animated: false)
+            })
+            .disposed(by: disposeBag)
+
+        tableView
+            .rx.setDelegate(self)
+            .disposed(by: disposeBag)
+    }
+    
+    private func presentDetail() {
+        let controler = ManagementInfoViewController()
+        self.navigationController?.pushViewController(controler, animated: true)
+    }
+}
+
+// MARK: - UITableViewDelegate
+
+extension MyInfoViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return indexPath.row == 0 ? 96 : 74
     }
 }

@@ -39,7 +39,7 @@ class AuthViewModel {
             if error == nil {
                 print("Login Success!!!")
 
-                self.getIDTokenRefresh {
+                Helper.getIDTokenRefresh {
                     completion(nil ,error); return
                 } onSuccess: {
                     completion(success, nil)
@@ -49,31 +49,6 @@ class AuthViewModel {
                 completion(nil, error)
                 print("getVerificationCode Error: ",error.debugDescription)
             }
-        }
-    }
-    
-    func getIDTokenRefresh(onError: @escaping () -> (), onSuccess: @escaping () -> ()) {
-        let currentUser = Auth.auth().currentUser
-        currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
-
-            if let _ = error {
-                onError(); return
-            }
-
-            if let idToken = idToken {
-                print("idToken: ", idToken)
-                UserDefaults.standard.set(idToken, forKey: "idToken")
-                onSuccess()
-            }
-        }
-    }
-    
-    func convertRootViewController(view: UIView, controller: UIViewController) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            let nav = UINavigationController(rootViewController: controller)
-            view.window?.rootViewController = nav
-            UIView.transition(with: view, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
-            view.window?.makeKeyAndVisible()
         }
     }
     

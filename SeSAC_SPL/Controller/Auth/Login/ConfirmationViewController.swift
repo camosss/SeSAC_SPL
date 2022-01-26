@@ -82,15 +82,16 @@ class ConfirmationViewController: UIViewController {
     
     func configureConfirmationView() {
         view.backgroundColor = .white
-
-        authView.addSubview(reSendButton)
+        [reSendButton, timerLabel].forEach {
+            view.addSubview($0)
+        }
+        
         reSendButton.snp.makeConstraints { make in
             make.top.equalTo(authView.inputContainerView)
             make.trailing.equalTo(-16)
             make.width.equalTo(72)
         }
         
-        authView.addSubview(timerLabel)
         timerLabel.snp.makeConstraints { make in
             make.trailing.equalTo(reSendButton.snp.leading).offset(-20)
             make.centerY.equalTo(authView.inputContainerView)
@@ -125,16 +126,16 @@ class ConfirmationViewController: UIViewController {
                 case 200:
                     print("\(statusCode ?? 0) 성공")
                     self.view.makeToast("이미 가입된 회원입니다.", position: .center)
-                    self.authViewModel.convertRootViewController(view: self.view, controller: MainTapController())
+                    Helper.convertNavigationRootViewController(view: self.view, controller: MainTapController())
 
                 case 201:
                     print("\(statusCode ?? 0) 미가입 유저")
                     self.view.makeToast("휴대폰 번호 인증에 성공했습니다.", position: .center)
-                    self.authViewModel.convertRootViewController(view: self.view, controller: NickNameViewController())
+                    Helper.convertNavigationRootViewController(view: self.view, controller: NickNameViewController())
 
                 case 401:
                     print("\(statusCode ?? 0) Firebase Token Error")
-                    self.authViewModel.getIDTokenRefresh {
+                    Helper.getIDTokenRefresh {
                         self.view.makeToast("에러가 발생했습니다. 잠시 후 다시 시도해주세요.", position: .center); return
                     } onSuccess: {
                         print("토큰 갱신 성공")

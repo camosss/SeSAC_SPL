@@ -16,27 +16,44 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
-        
+
         let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
         print("SceneDelegate idToken", idToken)
-        
+
         if idToken == "" { // 전화번호 인증 X
-            convertRootViewController(VerificationViewController())
+            convertNavRootViewController(VerificationViewController())
         } else { // 전화번호 인증 O
             APIService.getUserInfo(idToken: idToken) { user, error, statusCode in
                 switch statusCode {
                 case 200:
                     self.convertRootViewController(MainTapController())
+
+                case 401:
+                    print("SceneDelegate", statusCode ?? 0)
+                    Helper.getIDTokenRefresh {
+                        print("SceneDelegate 토큰 갱신 error"); return
+                    } onSuccess: {
+                        print("SceneDelegate 토큰 갱신 성공")
+                        self.convertRootViewController(MainTapController())
+                    }
+
                 default:
-                    print(statusCode ?? 0)
-                    self.convertRootViewController(NickNameViewController())
+                    print("SceneDelegate default error", statusCode ?? 0)
+                    self.convertNavRootViewController(NickNameViewController())
                 }
             }
         }
     }
     
     func convertRootViewController(_ controller: UIViewController) {
-        self.window?.rootViewController = UINavigationController(rootViewController: controller)
+        self.window?.rootViewController = controller
+        UIView.transition(with: self.window!, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
+        window?.makeKeyAndVisible()
+    }
+    
+    func convertNavRootViewController(_ controller: UIViewController) {
+        let nav = UINavigationController(rootViewController: controller)
+        self.window?.rootViewController = nav
         UIView.transition(with: self.window!, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
         window?.makeKeyAndVisible()
     }

@@ -69,19 +69,20 @@ class BirthView: UIView {
     // MARK: - Helper
     
     func setupConstraints() {
-        addSubview(titleLabel)
+        [titleLabel, birthStack, nextButton].forEach {
+            addSubview($0)
+        }
+        
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(185)
             make.centerX.equalToSuperview()
         }
         
-        addSubview(birthStack)
         birthStack.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(76)
             make.leading.trailing.equalToSuperview().inset(28)
         }
         
-        addSubview(nextButton)
         nextButton.snp.makeConstraints { make in
             make.top.equalTo(dayStack.snp.bottom).offset(72)
             make.leading.trailing.equalToSuperview().inset(16)

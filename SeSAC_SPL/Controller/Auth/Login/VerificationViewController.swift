@@ -33,8 +33,8 @@ class VerificationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureAuthView()
         displayOnboardingView()
+        configureAuthView()
         handleButtonEvent()
     }
     

@@ -13,6 +13,7 @@ class FriendViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "새싹친구"
         view.backgroundColor = .white
     }
 }

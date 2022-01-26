@@ -1,0 +1,61 @@
+//
+//  MyInfoHeaderTableViewCell.swift
+//  SeSAC_SPL
+//
+//  Created by 강호성 on 2022/01/26.
+//
+
+import UIKit
+
+class MyInfoHeaderTableViewCell: UITableViewCell {
+
+    // MARK: - Properties
+    
+    static let identifier = "MyInfoHeaderTableViewCell"
+
+    let myinfoView = MyInfoView()
+    
+    let nextButton: UIButton = {
+        let button = UIButton()
+        button.tintColor = R.color.black()
+        button.setImage(UIImage(systemName: "chevron.right"), for: .normal)
+        return button
+    }()
+
+    // MARK: - Lifecycle
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setMyInfoView()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Helper
+    
+    func setMyInfoView() {
+        myinfoView.titleLabel.font = R.font.notoSansKRMedium(size: 16)
+        myinfoView.titleImageView.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        myinfoView.titleImageView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+
+        addSubview(myinfoView)
+        myinfoView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        addSubview(nextButton)
+        nextButton.snp.makeConstraints { make in
+            make.width.equalTo(9)
+            make.height.equalTo(18)
+            make.centerY.equalToSuperview()
+            make.trailing.equalToSuperview().inset(22.5)
+        }
+    }
+    
+    func updateUI(myInfo: MyInfo) {
+        myinfoView.titleImageView.image = myInfo.image
+        myinfoView.titleLabel.text = myInfo.item
+    }
+}
