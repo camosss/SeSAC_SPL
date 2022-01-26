@@ -134,7 +134,7 @@ extension GenderViewController: AuthViewDelegate {
         UserDefaults.standard.set(genderValue, forKey: "gender")
         
         self.signUpUser {
-            Helper.convertNavigationRootViewController(view: self.view, controller: MainTapController())
+            Helper.convertRootViewController(view: self.view, controller: MainTapController())
         }
     }
 }

@@ -58,6 +58,16 @@ class AuthViewModel {
         let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
         
         APIService.getUserInfo(idToken: idToken) { user, error, statusCode in
+            
+            switch statusCode {
+            case 200:
+                UserDefaults.standard.set("alreadySignUp", forKey: "startView")
+            case 201:
+                UserDefaults.standard.set("successLogin", forKey: "startView")
+            default:
+                print("getUserInfo - statusCode", statusCode ?? 0)
+            }
+            
             completion(user, error, statusCode)
         }
     }
@@ -66,14 +76,32 @@ class AuthViewModel {
         let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
 
         APIService.signUpUserInfo(idToken: idToken) { error, statusCode in
+            
+            switch statusCode {
+            case 200:
+                UserDefaults.standard.set("alreadySignUp", forKey: "startView")
+            default:
+                print("getUserInfo - statusCode", statusCode ?? 0)
+            }
+            
             completion(error, statusCode)
         }
     }
     
-    func withdrawSignUp(completion: @escaping (Error?, Int?) -> Void) {
+    func withdrawUser(completion: @escaping (Error?, Int?) -> Void) {
         let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
 
         APIService.withdrawSignUp(idToken: idToken) { error, statusCode in
+            
+            switch statusCode {
+            case 200:
+                UserDefaults.standard.set("withdrawUser", forKey: "startView")
+            case 406:
+                UserDefaults.standard.set("withdrawUser", forKey: "startView")
+            default:
+                print("withdrawUser - statusCode", statusCode ?? 0)
+            }
+            
             completion(error, statusCode)
         }
     }

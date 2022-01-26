@@ -119,8 +119,6 @@ class ConfirmationViewController: UIViewController {
         authViewModel.getVerificationCode(verificationID: verificationID, verificationCode: verificationCode) { _, error in
             if error != nil { self.view.makeToast("에러가 발생했습니다. 잠시 후 다시 시도해주세요", position: .center); return }
 
-            print("인증번호 받기 성공", verificationCode)
-
             self.authViewModel.getUserInfo { user, error, statusCode in
                 switch statusCode {
                 case 200:
