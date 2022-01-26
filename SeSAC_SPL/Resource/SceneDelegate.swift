@@ -26,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             APIService.getUserInfo(idToken: idToken) { user, error, statusCode in
                 switch statusCode {
                 case 200:
-                    self.convertRootViewController(MyInfoViewController())
+                    self.convertRootViewController(MainTapController())
                 default:
                     print(statusCode ?? 0)
                     self.convertRootViewController(NickNameViewController())
@@ -41,7 +41,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.makeKeyAndVisible()
     }
     
-
     func sceneDidDisconnect(_ scene: UIScene) {
         
     }

@@ -53,4 +53,13 @@ class Helper {
                 sceneTransition()
             }.disposed(by: disposeBag)
     }
+    
+    // MARK: - UITabBarController
+    
+    static func templateNavigationController(image: UIImage, title: String, rootViewController: UIViewController) -> UINavigationController {
+        let nav = UINavigationController(rootViewController: rootViewController)
+        nav.tabBarItem.image = image
+        nav.tabBarItem.title = title
+        return nav
+    }
 }

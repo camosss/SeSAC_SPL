@@ -125,7 +125,7 @@ class ConfirmationViewController: UIViewController {
                 case 200:
                     print("\(statusCode ?? 0) 성공")
                     self.view.makeToast("이미 가입된 회원입니다.", position: .center)
-                    self.authViewModel.convertRootViewController(view: self.view, controller: MyInfoViewController())
+                    self.authViewModel.convertRootViewController(view: self.view, controller: MainTapController())
 
                 case 201:
                     print("\(statusCode ?? 0) 미가입 유저")

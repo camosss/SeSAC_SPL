@@ -17,7 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         UIBarButtonItem.appearance().tintColor = .black
-        
+        UITabBar.appearance().backgroundColor = .white
+        UITabBar.appearance().tintColor = R.color.green()
+
         // MARK: - 원격 알림 등록
         
         if #available(iOS 10.0, *) {
