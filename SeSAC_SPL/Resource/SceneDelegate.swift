@@ -21,19 +21,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         print("SceneDelegate idToken", idToken)
         
         if idToken == "" { // 전화번호 인증 X
-            self.window?.rootViewController = UINavigationController(rootViewController: VerificationViewController())
-            
+            convertRootViewController(VerificationViewController())
         } else { // 전화번호 인증 O
             APIService.getUserInfo(idToken: idToken) { user, error, statusCode in
                 switch statusCode {
                 case 200:
-                    self.window?.rootViewController = UINavigationController(rootViewController: MyInfoViewController())
+                    self.convertRootViewController(MyInfoViewController())
                 default:
                     print(statusCode ?? 0)
-                    self.window?.rootViewController = UINavigationController(rootViewController: NickNameViewController())
+                    self.convertRootViewController(NickNameViewController())
                 }
             }
         }
+    }
+    
+    func convertRootViewController(_ controller: UIViewController) {
+        self.window?.rootViewController = UINavigationController(rootViewController: controller)
+        UIView.transition(with: self.window!, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
         window?.makeKeyAndVisible()
     }
     

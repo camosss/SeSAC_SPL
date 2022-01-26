@@ -49,8 +49,14 @@ class MyInfoViewController: UIViewController {
                 case 200:
                     print("\(statusCode ?? 0) 토큰 갱신 성공")
 
-                    // 번호 입력 화면으로 넘어가기 (온보딩)
-                    self.authViewModel.convertRootViewController(view: self.view, controller: VerificationViewController())
+                    let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
+                    
+                    if idToken == "" {
+                        self.authViewModel.convertRootViewController(view: self.view, controller: VerificationViewController())
+                    } else {
+                        self.view.makeToast("새롭게 가입해보세요!")
+                        self.authViewModel.convertRootViewController(view: self.view, controller: NickNameViewController())
+                    }
 
                 default:
                     print("Error Code:", statusCode ?? 0)

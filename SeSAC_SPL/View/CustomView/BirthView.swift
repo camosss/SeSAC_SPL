@@ -27,7 +27,7 @@ class BirthView: UIView {
     
     private let titleLabel: UILabel = {
         let label = Utility.label(text: "생년월일을 알려주세요", textColor: R.color.black())
-        label.font = R.font.notoSansKRRegular(size: 50)
+        label.font = R.font.notoSansKRRegular(size: 20)
         return label
     }()
     

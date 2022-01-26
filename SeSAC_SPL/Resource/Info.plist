@@ -20,8 +20,8 @@
 	</dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>NotoSansKR-Medium</string>
-		<string>NotoSansKR-Regular</string>
+		<string>NotoSansKR-Medium.otf</string>
+		<string>NotoSansKR-Regular.otf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>

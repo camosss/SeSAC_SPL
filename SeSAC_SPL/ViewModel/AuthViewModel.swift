@@ -72,6 +72,7 @@ class AuthViewModel {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             let nav = UINavigationController(rootViewController: controller)
             view.window?.rootViewController = nav
+            UIView.transition(with: view, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
             view.window?.makeKeyAndVisible()
         }
     }

@@ -63,8 +63,8 @@
 		B420EF14279EF4350084AE6A /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		B420EF1C279FDC890084AE6A /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		B420EF2027A04D460084AE6A /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
-		B420EF2627A0529A0084AE6A /* NotoSansKR-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Medium.otf"; sourceTree = SOURCE_ROOT; };
-		B420EF2727A0529A0084AE6A /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Regular.otf"; sourceTree = SOURCE_ROOT; };
+		B420EF2627A0529A0084AE6A /* NotoSansKR-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSansKR-Medium.otf"; path = "SeSAC_SPL/Resource/NotoSansKR-Medium.otf"; sourceTree = SOURCE_ROOT; };
+		B420EF2727A0529A0084AE6A /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSansKR-Regular.otf"; path = "SeSAC_SPL/Resource/NotoSansKR-Regular.otf"; sourceTree = SOURCE_ROOT; };
 		B420EF2A27A0E10D0084AE6A /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
 		B433B8BC2798253700AEA607 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		B433B8C027982BBD00AEA607 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
