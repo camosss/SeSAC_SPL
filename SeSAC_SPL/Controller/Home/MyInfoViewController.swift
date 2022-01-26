@@ -46,8 +46,8 @@ class MyInfoViewController: UIViewController {
     
     func configureTableViewDataSource() {
         viewModel.myinfos
-            .observe(on: MainScheduler.instance)
-            .bind(to: tableView.rx.items) { (tableView, row, item) -> UITableViewCell in
+            .asDriver()
+            .drive(tableView.rx.items) { (tableView, row, item) -> UITableViewCell in
                 if row == 0 {
                     let cell = tableView.dequeueReusableCell(withIdentifier: MyInfoHeaderTableViewCell.identifier, for: IndexPath.init(row: row, section: 0)) as! MyInfoHeaderTableViewCell
                     cell.updateUI(myInfo: item)

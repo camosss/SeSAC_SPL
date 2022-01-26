@@ -6,10 +6,10 @@
 //
 
 import Foundation
-import RxSwift
+import RxCocoa
 
 class MyInfoViewModel {
-    var myinfos = BehaviorSubject<[MyInfo]>(value: [
+    var myinfos = BehaviorRelay<[MyInfo]>(value: [
         MyInfo(image: R.image.profileImg()!, item: "김새싹"),
         MyInfo(image: R.image.notice()!, item: "공지사항"),
         MyInfo(image: R.image.qna()!, item: "자주 묻는 질문"),
