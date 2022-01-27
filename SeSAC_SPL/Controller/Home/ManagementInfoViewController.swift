@@ -7,20 +7,18 @@
 
 import UIKit
 
+// 테이블뷰셀 -> 스택뷰 -> 타이틀뷰 -> 콜렉션뷰
+// contentView.isUserInteractionEnabled = true
+
 class ManagementInfoViewController: UIViewController {
     
     // MARK: - Properties
     
     private var user: User
 
-    let authViewModel = AuthViewModel()
+    let tableView = UITableView()
     
-    let withdrawButton: UIButton = {
-        let button = Utility.button(backgroundColor: R.color.gray6())
-        button.setTitle("회원 탈퇴", for: .normal)
-        button.addTarget(self, action: #selector(withdrawButtonClicked), for: .touchUpInside)
-        return button
-    }()
+    let authViewModel = AuthViewModel()
     
     // MARK: - Lifecycle
     
@@ -36,19 +34,27 @@ class ManagementInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "정보 관리"
-        view.backgroundColor = .systemTeal
-
-        view.addSubview(withdrawButton)
-        withdrawButton.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-            make.width.equalTo(200)
-        }
+        
+        setUpTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         networkMoniter()
     }
+    
+    // MARK: - Helper
+    
+    func setUpTableView() {
+        tableView.backgroundColor = .purple
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        
+        view.addSubview(tableView)
+        tableView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+    }
+    
     
     // MARK: - Action
     

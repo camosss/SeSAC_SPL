@@ -64,6 +64,14 @@ class AuthViewModel {
                 UserDefaults.standard.set("alreadySignUp", forKey: "startView")
             case 201:
                 UserDefaults.standard.set("successLogin", forKey: "startView")
+                
+            case 401:
+                Helper.getIDTokenRefresh {
+                    print("[getUserInfo] 토큰 갱신 실패", statusCode ?? 0)
+                } onSuccess: {
+                    print("[getUserInfo] 토큰 갱신 성공", statusCode ?? 0)
+                }
+
             default:
                 print("getUserInfo - statusCode", statusCode ?? 0)
             }
@@ -80,8 +88,15 @@ class AuthViewModel {
             switch statusCode {
             case 200:
                 UserDefaults.standard.set("alreadySignUp", forKey: "startView")
+            case 401:
+                Helper.getIDTokenRefresh {
+                    print("[signUpUserInfo] 토큰 갱신 실패", statusCode ?? 0)
+                } onSuccess: {
+                    print("[signUpUserInfo] 토큰 갱신 성공", statusCode ?? 0)
+                }
+
             default:
-                print("getUserInfo - statusCode", statusCode ?? 0)
+                print("signUpUserInfo - statusCode", statusCode ?? 0)
             }
             
             completion(error, statusCode)

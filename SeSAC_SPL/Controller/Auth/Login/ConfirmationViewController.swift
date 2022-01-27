@@ -135,14 +135,11 @@ class ConfirmationViewController: UIViewController {
                     print("\(statusCode ?? 0) 미가입 유저")
                     self.view.makeToast("휴대폰 번호 인증에 성공했습니다.", position: .center)
                     Helper.convertNavigationRootViewController(view: self.view, controller: NickNameViewController())
-
+                    
                 case 401:
                     print("\(statusCode ?? 0) Firebase Token Error")
-                    Helper.getIDTokenRefresh {
-                        self.view.makeToast("에러가 발생했습니다. 잠시 후 다시 시도해주세요.", position: .center); return
-                    } onSuccess: {
-                        print("토큰 갱신 성공")
-                    }
+                    self.view.makeToast("에러가 발생했습니다. 잠시 후 다시 시도해주세요.", position: .center); return
+                    
                 default:
                     print("Error Code:", statusCode ?? 0)
                 }
