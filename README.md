@@ -131,6 +131,8 @@ output.sceneTransition
 
 <img src = "https://user-images.githubusercontent.com/93528918/151337727-24b9cc8d-6d4d-4479-af61-1478f22007bd.gif" width="30%" height="30%">
 
+<br>
+<br>
 
 </div>
 </details>
@@ -142,7 +144,7 @@ output.sceneTransition
  
 <br>
 
- - 첫번째 시도.
+ ### 첫번째 시도.
  
  1. 회원정보를 앱내 스토리지(저장소)에 저장해두고 필요할때 불러와서 처리하기 위해 토큰 값을 UserDefaults에 저장.
  2. 로그인과 회원가입 분기처리는 로그인 여부에 달려있기에, 서버로부터 로그인 시 발급받은 토큰을 SceneDelegate에서 앱 실행 시에 토큰 유무에 따라 UI Life Cycle 분기 처리
@@ -205,7 +207,7 @@ func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options conn
  <br>
  <br>
  
- - 두번째 시도.
+### 두번째 시도.
 
  1. 로그인 완료
  2. 회원가입 완료
