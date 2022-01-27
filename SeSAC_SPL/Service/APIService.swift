@@ -22,7 +22,6 @@ class APIService {
 
             switch response.result {
             case.success(let value):
-                print("[getUserInfo] response success", value)
                 completion(value, nil, statusCode)
 
             case .failure(let error):

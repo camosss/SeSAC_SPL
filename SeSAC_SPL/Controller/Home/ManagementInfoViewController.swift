@@ -11,6 +11,8 @@ class ManagementInfoViewController: UIViewController {
     
     // MARK: - Properties
     
+    private var user: User
+
     let authViewModel = AuthViewModel()
     
     let withdrawButton: UIButton = {
@@ -22,11 +24,20 @@ class ManagementInfoViewController: UIViewController {
     
     // MARK: - Lifecycle
     
+    init(user: User) {
+        self.user = user
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "정보 관리"
         view.backgroundColor = .systemTeal
-        
+
         view.addSubview(withdrawButton)
         withdrawButton.snp.makeConstraints { make in
             make.center.equalToSuperview()

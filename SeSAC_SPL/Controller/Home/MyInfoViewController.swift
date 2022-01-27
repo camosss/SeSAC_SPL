@@ -14,13 +14,24 @@ class MyInfoViewController: UIViewController {
     
     // MARK: - Properties
     
+    private var user: User
+
     let tableView = UITableView()
 
     let authViewModel = AuthViewModel()
-    let viewModel = MyInfoViewModel()
+    lazy var viewModel = MyInfoViewModel(user: user)
     let disposeBag = DisposeBag()
     
     // MARK: - Lifecycle
+    
+    init(user: User) {
+        self.user = user
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +40,7 @@ class MyInfoViewController: UIViewController {
         
         setUpTableView()
         configureTableViewDataSource()
+        fetchUser()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,6 +58,14 @@ class MyInfoViewController: UIViewController {
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
+        }
+    }
+    
+    func fetchUser() {
+        authViewModel.getUserInfo { user, error, statusCode in
+            if let user = user {
+                self.user = user
+            }
         }
     }
     
@@ -81,7 +101,7 @@ class MyInfoViewController: UIViewController {
     }
     
     private func presentDetail() {
-        let controler = ManagementInfoViewController()
+        let controler = ManagementInfoViewController(user: user)
         self.navigationController?.pushViewController(controler, animated: true)
     }
 }

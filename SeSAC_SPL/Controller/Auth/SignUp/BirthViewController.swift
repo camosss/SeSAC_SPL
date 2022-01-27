@@ -47,9 +47,13 @@ class BirthViewController: UIViewController {
         let dateString = sender.date.toString(dateValue: sender.date)
         let dateArray = dateString.split(separator: " ").map{ String($0) }
         
-        birthView.yearTextField.text = dateArray[0]
-        birthView.monthTextField.text = dateArray[1]
-        birthView.dayTextField.text = dateArray[2]
+        if dateArray[0] >= "2006" {
+            self.view.makeToast("만 17세 이상만 사용할 수 있습니다.", position: .center)
+        } else {
+            birthView.yearTextField.text = dateArray[0]
+            birthView.monthTextField.text = dateArray[1]
+            birthView.dayTextField.text = dateArray[2]
+        }
     }
     
     // MARK: - Helper
