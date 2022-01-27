@@ -23,9 +23,9 @@
 
 <br>
 
-- 디자인 리소스: Figma
-- API 명세서: SwaggerUI
-- 기획 명세서: Confluence
+- 디자인 리소스 `Figma`
+- API 명세서 `SwaggerUI`
+- 기획 명세서 `Confluence`
 
 
 <br>
