@@ -11,6 +11,7 @@ import Toast_Swift
 import FirebaseAuth
 
 class Helper {
+    
     static func makeRequestPhoneNumber(_ number: String) -> String {
         if number != "" {
             let phoneNumber = number.replacingOccurrences(of: "-", with: "")

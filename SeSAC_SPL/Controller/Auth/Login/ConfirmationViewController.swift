@@ -50,6 +50,11 @@ class ConfirmationViewController: UIViewController {
         handleButtonEvent()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        networkMoniter()
+    }
+    
     // MARK: - Action
     
     @objc func resendButtonClicked() {

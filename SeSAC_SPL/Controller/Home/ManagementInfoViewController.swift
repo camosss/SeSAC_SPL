@@ -13,7 +13,6 @@ class ManagementInfoViewController: UIViewController {
     
     let authViewModel = AuthViewModel()
     
-    
     let withdrawButton: UIButton = {
         let button = Utility.button(backgroundColor: R.color.gray6())
         button.setTitle("회원 탈퇴", for: .normal)
@@ -33,6 +32,11 @@ class ManagementInfoViewController: UIViewController {
             make.center.equalToSuperview()
             make.width.equalTo(200)
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        networkMoniter()
     }
     
     // MARK: - Action

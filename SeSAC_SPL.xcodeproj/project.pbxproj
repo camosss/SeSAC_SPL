@@ -34,6 +34,7 @@
 		B420EF4027A183500084AE6A /* MyInfoHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B420EF3F27A183500084AE6A /* MyInfoHeaderTableViewCell.swift */; };
 		B420EF4227A184830084AE6A /* MyInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B420EF4127A184830084AE6A /* MyInfoView.swift */; };
 		B420EF4427A189A00084AE6A /* ManagementInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B420EF4327A189A00084AE6A /* ManagementInfoViewController.swift */; };
+		B42BAFA327A239E5009DB0E4 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42BAFA227A239E5009DB0E4 /* UIViewController+Extension.swift */; };
 		B433B8BD2798253700AEA607 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B8BC2798253700AEA607 /* AuthView.swift */; };
 		B433B8C127982BBD00AEA607 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B8C027982BBD00AEA607 /* OnboardingViewController.swift */; };
 		B433B8C527982F7600AEA607 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B8C427982F7600AEA607 /* UIView+Extension.swift */; };
@@ -85,6 +86,7 @@
 		B420EF3F27A183500084AE6A /* MyInfoHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		B420EF4127A184830084AE6A /* MyInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoView.swift; sourceTree = "<group>"; };
 		B420EF4327A189A00084AE6A /* ManagementInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagementInfoViewController.swift; sourceTree = "<group>"; };
+		B42BAFA227A239E5009DB0E4 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		B433B8BC2798253700AEA607 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		B433B8C027982BBD00AEA607 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		B433B8C427982F7600AEA607 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
@@ -317,6 +319,7 @@
 				B43741202797FAFF005E1CC7 /* R.generated.swift */,
 				B420EF2027A04D460084AE6A /* String+Extension.swift */,
 				B433B8C427982F7600AEA607 /* UIView+Extension.swift */,
+				B42BAFA227A239E5009DB0E4 /* UIViewController+Extension.swift */,
 				B433B9072799570C00AEA607 /* GenderButton+Extension.swift */,
 				B40CA678279D21BB00B233D7 /* Date+Extension.swift */,
 				B420EF10279ECCB80084AE6A /* RegularExpression+Extension.swift */,
@@ -499,6 +502,7 @@
 				B40CA67327999D1F00B233D7 /* BirthView.swift in Sources */,
 				B433B8C127982BBD00AEA607 /* OnboardingViewController.swift in Sources */,
 				B420EF3C27A17DC70084AE6A /* MyInfoViewModel.swift in Sources */,
+				B42BAFA327A239E5009DB0E4 /* UIViewController+Extension.swift in Sources */,
 				B420EF3627A135AF0084AE6A /* FriendViewController.swift in Sources */,
 				B420EF11279ECCB80084AE6A /* RegularExpression+Extension.swift in Sources */,
 				B420EF0F279EC9A30084AE6A /* User.swift in Sources */,

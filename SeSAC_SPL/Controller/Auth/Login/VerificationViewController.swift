@@ -21,7 +21,6 @@ class VerificationViewController: UIViewController {
     let disposeBag = DisposeBag()
 
     let onboardingService = OnboardingService()
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     lazy var phoneNumber = Helper.makeRequestPhoneNumber(authView.inputTextField.text ?? "")
 
@@ -37,6 +36,13 @@ class VerificationViewController: UIViewController {
         configureAuthView()
         handleButtonEvent()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        networkMoniter()
+    }
+    
+    // MARK: - Action
     
     @objc func textFieldDidChange(_ textField: UITextField) {
         let phoneNum = authView.inputTextField.text ?? ""

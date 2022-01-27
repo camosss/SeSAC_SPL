@@ -60,6 +60,11 @@ class GenderViewController: UIViewController {
         handleTapGenderBtn()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        networkMoniter()
+    }
+    
     // MARK: - Helper
     
     func configureAuthView() {
@@ -104,10 +109,12 @@ class GenderViewController: UIViewController {
                 print("\(statusCode ?? 0) 회원가입 성공")
                 self.view.makeToast("회원가입에 성공했습니다.", position: .center)
                 completion()
+                
             case 201:
                 print("\(statusCode ?? 0) 이미 가입한 유저")
                 self.view.makeToast("이미 가입한 유저입니다.", position: .center)
                 completion()
+                
             case 202:
                 print("\(statusCode ?? 0) 사용할 수 없는 닉네임")
                 self.view.makeToast("사용할 수 없는 닉네임입니다.\n닉네임 설정 화면으로 이동합니다.", position: .center)

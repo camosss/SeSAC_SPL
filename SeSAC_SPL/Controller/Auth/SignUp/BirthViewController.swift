@@ -33,6 +33,11 @@ class BirthViewController: UIViewController {
         handleDatePicker()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        networkMoniter()
+    }
+    
     // MARK: - Action
     
     @objc func datePickerValueChanged(sender: UIDatePicker) {

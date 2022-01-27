@@ -31,6 +31,11 @@ class MyInfoViewController: UIViewController {
         configureTableViewDataSource()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        networkMoniter()
+    }
+    
     // MARK: - Helper
     
     func setUpTableView() {

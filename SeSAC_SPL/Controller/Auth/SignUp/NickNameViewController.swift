@@ -29,6 +29,11 @@ class NickNameViewController: UIViewController {
         handleButtonEvent()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        networkMoniter()
+    }
+    
     // MARK: - Helper
     
     func configureAuthView() {

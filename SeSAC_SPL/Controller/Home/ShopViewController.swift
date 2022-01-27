@@ -16,4 +16,9 @@ class ShopViewController: UIViewController {
         title = "새싹샵"
         view.backgroundColor = .white
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        networkMoniter()
+    }
 }

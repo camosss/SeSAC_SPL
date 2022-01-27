@@ -16,4 +16,9 @@ class FriendViewController: UIViewController {
         title = "새싹친구"
         view.backgroundColor = .white
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        networkMoniter()
+    }
 }

@@ -15,4 +15,9 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        networkMoniter()
+    }
 }
