@@ -58,13 +58,13 @@ class BirthViewController: UIViewController {
     
     // MARK: - Helper
     
-    func configureBirthView() {
+    private func configureBirthView() {
         birthView.delegate = self
         birthView.nextButton.setTitle("다음", for: .normal)
         birthView.nextButton.isEnabled = false
     }
     
-    func configureDatePicker() {
+    private func configureDatePicker() {
         view.addSubview(datePicker)
         datePicker.snp.makeConstraints { make in
             make.bottom.equalTo(self.view.safeAreaLayoutGuide)
@@ -72,12 +72,12 @@ class BirthViewController: UIViewController {
         }
     }
     
-    func handleNextButton() {
+    private func handleNextButton() {
         birthView.nextButton.isEnabled = true
         birthView.nextButton.backgroundColor = R.color.green()
     }
     
-    func handleDatePicker() {
+    private func handleDatePicker() {
         datePicker.datePickerMode = .date
         datePicker.locale = Locale(identifier: "ko-KR")
         datePicker.preferredDatePickerStyle = .wheels

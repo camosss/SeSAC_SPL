@@ -36,14 +36,14 @@ class EmailViewController: UIViewController {
     
     // MARK: - Helper
     
-    func configureAuthView() {
+    private func configureAuthView() {
         authView.titleLabel.text = "이메일을 입력해주세요"
         authView.subTitleLabel.text = "휴대폰 번호 변경 시 인증을 위해 사용해요"
         authView.inputTextField.placeholder = "SeSAC@email.com"
         authView.nextButton.setTitle("다음", for: .normal)
     }
     
-    func handleButtonEvent() {
+    private func handleButtonEvent() {
         let input = ValidationViewModel.Input(text: authView.inputTextField.rx.text, tap: authView.nextButton.rx.tap)
         let output = viewModel.emailTransform(input: input)
         

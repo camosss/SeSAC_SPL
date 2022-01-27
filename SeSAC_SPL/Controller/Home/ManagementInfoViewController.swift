@@ -45,7 +45,7 @@ class ManagementInfoViewController: UIViewController {
     
     // MARK: - Helper
     
-    func setUpTableView() {
+    private func setUpTableView() {
         tableView.backgroundColor = .purple
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         

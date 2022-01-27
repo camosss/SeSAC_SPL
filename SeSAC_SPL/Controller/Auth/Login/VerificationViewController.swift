@@ -52,12 +52,12 @@ class VerificationViewController: UIViewController {
     
     // MARK: - Helper
     
-    func displayOnboardingView() {
+    private func displayOnboardingView() {
         let onboardingVC = onboardingService.showOnboardingView()
         present(onboardingVC, animated: false)
     }
     
-    func configureAuthView() {
+    private func configureAuthView() {
         view.backgroundColor = .white
         authView.subTitleLabel.isHidden = true
         
@@ -68,7 +68,7 @@ class VerificationViewController: UIViewController {
         authView.inputTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
     }
     
-    func handleButtonEvent() {
+    private func handleButtonEvent() {
         let input = ValidationViewModel.Input(text: authView.inputTextField.rx.text, tap: authView.nextButton.rx.tap)
         let output = viewModel.phoneNumberTransform(input: input)
         
@@ -81,7 +81,7 @@ class VerificationViewController: UIViewController {
         }
     }
     
-    func requestVerification(completion: @escaping () -> ()) {
+    private func requestVerification(completion: @escaping () -> ()) {
         authViewModel.requestVerificationCode(phoneNumber: phoneNumber) { verificationID, error in
             if error == nil {
                 print("verificationID: \(verificationID ?? "")")

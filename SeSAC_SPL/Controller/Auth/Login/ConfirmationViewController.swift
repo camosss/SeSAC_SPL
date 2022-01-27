@@ -78,14 +78,14 @@ class ConfirmationViewController: UIViewController {
     
     // MARK: - Helper
     
-    func configureAuthView() {
+    private func configureAuthView() {
         authView.titleLabel.text = "인증번호가 문자로 전송되었어요"
         authView.subTitleLabel.text = "(최대 소모 20초)"
         authView.inputTextField.placeholder = "인증번호 입력"
         authView.nextButton.setTitle("인증하고 시작하기", for: .normal)
     }
     
-    func configureConfirmationView() {
+    private func configureConfirmationView() {
         view.backgroundColor = .white
         [reSendButton, timerLabel].forEach {
             view.addSubview($0)
@@ -103,7 +103,7 @@ class ConfirmationViewController: UIViewController {
         }
     }
     
-    func handleButtonEvent() {
+    private func handleButtonEvent() {
         let input = ValidationViewModel.Input(text: authView.inputTextField.rx.text, tap: authView.nextButton.rx.tap)
         let output = viewModel.certificationTransform(input: input)
         
@@ -112,7 +112,7 @@ class ConfirmationViewController: UIViewController {
         }
     }
     
-    func getVerificationCode() {
+    private func getVerificationCode() {
         guard let verificationID = UserDefaults.standard.string(forKey: "authVerificationID") else {
             self.view.makeToast("전화번호 인증을 실패했습니다.", position: .center); return
         }
@@ -129,7 +129,7 @@ class ConfirmationViewController: UIViewController {
                 case 200:
                     print("\(statusCode ?? 0) 성공")
                     self.view.makeToast("이미 가입된 회원입니다.", position: .center)
-                    Helper.convertNavigationRootViewController(view: self.view, controller: MainTapController())
+                    Helper.convertRootViewController(view: self.view, controller: MainTapController())
 
                 case 201:
                     print("\(statusCode ?? 0) 미가입 유저")
@@ -150,7 +150,7 @@ class ConfirmationViewController: UIViewController {
     
     // MARK: - Helper (Timer)
     
-    func startTimer() {
+    private func startTimer() {
         self.timerLabel.isHidden = false
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { _ in
             self.limitTime -= 1
@@ -158,7 +158,7 @@ class ConfirmationViewController: UIViewController {
         })
     }
     
-    func updateTimerLabel() {
+    private func updateTimerLabel() {
         let minutes = self.limitTime / 60
         let seconds = self.limitTime % 60
         
@@ -171,7 +171,7 @@ class ConfirmationViewController: UIViewController {
         }
     }
     
-    func stopTimer() {
+    private func stopTimer() {
         timer.invalidate()
         limitTime = 60
     }

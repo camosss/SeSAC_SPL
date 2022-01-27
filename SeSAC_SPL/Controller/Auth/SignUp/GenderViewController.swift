@@ -67,7 +67,7 @@ class GenderViewController: UIViewController {
     
     // MARK: - Helper
     
-    func configureAuthView() {
+    private func configureAuthView() {
         authView.delegate = self
         authView.inputContainerView.isHidden = true
         
@@ -76,7 +76,7 @@ class GenderViewController: UIViewController {
         authView.nextButton.setTitle("다음", for: .normal)
     }
     
-    func configureGenderView() {
+    private func configureGenderView() {
         authView.addSubview(genderStack)
         genderStack.snp.makeConstraints { make in
             make.top.equalTo(authView.subTitleLabel.snp.bottom).offset(32)
@@ -84,13 +84,13 @@ class GenderViewController: UIViewController {
         }
     }
     
-    func processTapBtn(value: Int, clicked: UIButton, unclicked: UIButton) {
+    private func processTapBtn(value: Int, clicked: UIButton, unclicked: UIButton) {
         genderValue = value
         Helper.switchButton(clicked, unclicked)
         authView.nextButton.backgroundColor = R.color.green()
     }
     
-    func handleTapGenderBtn() {
+    private func handleTapGenderBtn() {
         Observable.merge(
             manButton.rx.tap.map { _ in TapBtn.man },
             womanButton.rx.tap.map { _ in TapBtn.woman }
@@ -102,7 +102,7 @@ class GenderViewController: UIViewController {
         }).disposed(by: disposeBag)
     }
     
-    func signUpUser(completion: @escaping () -> ()) {
+    private func signUpUser(completion: @escaping () -> ()) {
         authViewModel.signUpUserInfo { error, statusCode in
             switch statusCode {
             case 200:

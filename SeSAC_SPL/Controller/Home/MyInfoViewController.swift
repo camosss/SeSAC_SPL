@@ -14,24 +14,14 @@ class MyInfoViewController: UIViewController {
     
     // MARK: - Properties
     
-    private var user: User
+    private var user: User?
 
     let tableView = UITableView()
 
     let authViewModel = AuthViewModel()
-    lazy var viewModel = MyInfoViewModel(user: user)
     let disposeBag = DisposeBag()
     
     // MARK: - Lifecycle
-    
-    init(user: User) {
-        self.user = user
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +29,6 @@ class MyInfoViewController: UIViewController {
         view.backgroundColor = .white
         
         setUpTableView()
-        configureTableViewDataSource()
         fetchUser()
     }
     
@@ -50,7 +39,7 @@ class MyInfoViewController: UIViewController {
     
     // MARK: - Helper
     
-    func setUpTableView() {
+    private func setUpTableView() {
         tableView.backgroundColor = .white
         tableView.register(MyInfoHeaderTableViewCell.self, forCellReuseIdentifier: MyInfoHeaderTableViewCell.identifier)
         tableView.register(MyInfoTableViewCell.self, forCellReuseIdentifier: MyInfoTableViewCell.identifier)
@@ -61,15 +50,25 @@ class MyInfoViewController: UIViewController {
         }
     }
     
-    func fetchUser() {
+    private func fetchUser() {
         authViewModel.getUserInfo { user, error, statusCode in
             if let user = user {
                 self.user = user
+                self.configureTableViewDataSource(user: user)
             }
         }
     }
     
-    func configureTableViewDataSource() {
+    private func presentDetail() {
+        guard let user = user else { return }
+
+        let controler = ManagementInfoViewController(user: user)
+        self.navigationController?.pushViewController(controler, animated: true)
+    }
+    
+    private func configureTableViewDataSource(user: User) {
+        var viewModel = MyInfoViewModel(user: user)
+        
         viewModel.myinfos
             .asDriver()
             .drive(tableView.rx.items) { (tableView, row, item) -> UITableViewCell in
@@ -94,15 +93,10 @@ class MyInfoViewController: UIViewController {
                 self?.tableView.deselectRow(at: indexPath, animated: false)
             })
             .disposed(by: disposeBag)
-
+        
         tableView
             .rx.setDelegate(self)
             .disposed(by: disposeBag)
-    }
-    
-    private func presentDetail() {
-        let controler = ManagementInfoViewController(user: user)
-        self.navigationController?.pushViewController(controler, animated: true)
     }
 }
 

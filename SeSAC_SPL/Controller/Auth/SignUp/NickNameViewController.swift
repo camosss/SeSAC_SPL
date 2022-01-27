@@ -36,7 +36,7 @@ class NickNameViewController: UIViewController {
     
     // MARK: - Helper
     
-    func configureAuthView() {
+    private func configureAuthView() {
         authView.subTitleLabel.isHidden = true
 
         authView.titleLabel.text = "닉네임을 입력해주세요"
@@ -44,7 +44,7 @@ class NickNameViewController: UIViewController {
         authView.nextButton.setTitle("다음", for: .normal)
     }
     
-    func handleButtonEvent() {
+    private func handleButtonEvent() {
         
         let input = ValidationViewModel.Input(text: authView.inputTextField.rx.text, tap: authView.nextButton.rx.tap)
         let output = viewModel.nickNameTransform(input: input)
