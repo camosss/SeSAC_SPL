@@ -21,7 +21,11 @@
 ![Badge](https://img.shields.io/badge/SnapKit-5.0.1-brightgreen)
 ![Badge](https://img.shields.io/badge/Toast-5.0.1-ff69b4)
 
+<br>
 
+- 디자인 리소스: Figma
+- API 명세서: SwaggerUI
+- 기획 명세서: Confluence
 
 
 <br>
