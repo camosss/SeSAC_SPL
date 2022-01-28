@@ -67,9 +67,9 @@ class AuthViewModel {
                 
             case 401:
                 Helper.getIDTokenRefresh {
-                    print("[getUserInfo] 토큰 갱신 실패", statusCode ?? 0)
+                    print("[getUserInfo] - 토큰 갱신 실패", statusCode ?? 0)
                 } onSuccess: {
-                    print("[getUserInfo] 토큰 갱신 성공", statusCode ?? 0)
+                    print("[getUserInfo] - 토큰 갱신 성공", statusCode ?? 0)
                 }
 
             default:

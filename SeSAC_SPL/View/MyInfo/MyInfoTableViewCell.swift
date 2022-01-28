@@ -6,13 +6,12 @@
 //
 
 import UIKit
-// https://jellysong.tistory.com/112
 
 class MyInfoTableViewCell: UITableViewCell {
 
     // MARK: - Properties
     
-    static let identifier = "MyInfoTableViewCell"
+    static let identifier = String(describing: MyInfoTableViewCell.self)
     
     let myinfoView = MyInfoView()
     

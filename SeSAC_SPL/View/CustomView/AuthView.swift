@@ -20,7 +20,7 @@ class AuthView: UIView {
     
     let titleLabel: UILabel = {
         let label = Utility.label(text: "", textColor: R.color.black())
-         label.font = R.font.notoSansKRRegular(size: 20)
+        label.font = R.font.notoSansKRRegular(size: 20)
         label.numberOfLines = 0
         return label
     }()

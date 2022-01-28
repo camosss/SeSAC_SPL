@@ -11,7 +11,7 @@ class MyInfoHeaderTableViewCell: UITableViewCell {
 
     // MARK: - Properties
     
-    static let identifier = "MyInfoHeaderTableViewCell"
+    static let identifier = String(describing: MyInfoHeaderTableViewCell.self)
 
     let myinfoView = MyInfoView()
     
@@ -40,12 +40,14 @@ class MyInfoHeaderTableViewCell: UITableViewCell {
         myinfoView.titleImageView.widthAnchor.constraint(equalToConstant: 50).isActive = true
         myinfoView.titleImageView.heightAnchor.constraint(equalToConstant: 50).isActive = true
 
-        addSubview(myinfoView)
+        [myinfoView, nextButton].forEach {
+            addSubview($0)
+        }
+        
         myinfoView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         
-        addSubview(nextButton)
         nextButton.snp.makeConstraints { make in
             make.width.equalTo(9)
             make.height.equalTo(18)

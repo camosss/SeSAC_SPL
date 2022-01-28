@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		6CF6EBD952D5A7DE7A59C09F /* Pods_SeSAC_SPL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46BC3B35DAD8705B465AD200 /* Pods_SeSAC_SPL.framework */; };
+		B40AC5F027A2E0FD0007B909 /* BackgroundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40AC5EF27A2E0FD0007B909 /* BackgroundImageView.swift */; };
+		B40AC5F527A2E6DC0007B909 /* BackImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40AC5F427A2E6DC0007B909 /* BackImageTableViewCell.swift */; };
+		B40AC5F727A2E8960007B909 /* TitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40AC5F627A2E8960007B909 /* TitleTableViewCell.swift */; };
+		B40AC5F927A2F4FA0007B909 /* TitleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40AC5F827A2F4FA0007B909 /* TitleCollectionViewCell.swift */; };
+		B40AC5FB27A2FFF20007B909 /* TitleCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40AC5FA27A2FFF20007B909 /* TitleCollectionViewHeader.swift */; };
+		B40AC5FD27A30D190007B909 /* TitleReviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40AC5FC27A30D190007B909 /* TitleReviewCollectionViewCell.swift */; };
+		B40AC60027A3E7370007B909 /* ManagementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40AC5FF27A3E7370007B909 /* ManagementViewModel.swift */; };
 		B40CA671279967F600B233D7 /* BirthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40CA670279967F600B233D7 /* BirthViewController.swift */; };
 		B40CA67327999D1F00B233D7 /* BirthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40CA67227999D1F00B233D7 /* BirthView.swift */; };
 		B40CA679279D21BB00B233D7 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40CA678279D21BB00B233D7 /* Date+Extension.swift */; };
@@ -55,11 +62,23 @@
 		B437411A2797EA7F005E1CC7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B43741192797EA7F005E1CC7 /* GoogleService-Info.plist */; };
 		B43741212797FAFF005E1CC7 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43741202797FAFF005E1CC7 /* R.generated.swift */; };
 		B45F326427A198850091D1BA /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B433B8F127991E4800AEA607 /* Onboarding.storyboard */; };
+		B49F16CB27A3F03E00052507 /* GenderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49F16CA27A3F03E00052507 /* GenderTableViewCell.swift */; };
+		B49F16CD27A3F04400052507 /* HobbyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49F16CC27A3F04400052507 /* HobbyTableViewCell.swift */; };
+		B49F16D027A41ED100052507 /* AllowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49F16CF27A41ED100052507 /* AllowTableViewCell.swift */; };
+		B49F16D227A41EDB00052507 /* AgeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49F16D127A41EDB00052507 /* AgeTableViewCell.swift */; };
+		B49F16D427A41EE700052507 /* WithdrawTabelViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49F16D327A41EE700052507 /* WithdrawTabelViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		203B7D23B7EE22BF58E91AD1 /* Pods-SeSAC_SPL.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeSAC_SPL.debug.xcconfig"; path = "Target Support Files/Pods-SeSAC_SPL/Pods-SeSAC_SPL.debug.xcconfig"; sourceTree = "<group>"; };
 		46BC3B35DAD8705B465AD200 /* Pods_SeSAC_SPL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SeSAC_SPL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B40AC5EF27A2E0FD0007B909 /* BackgroundImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImageView.swift; sourceTree = "<group>"; };
+		B40AC5F427A2E6DC0007B909 /* BackImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackImageTableViewCell.swift; sourceTree = "<group>"; };
+		B40AC5F627A2E8960007B909 /* TitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTableViewCell.swift; sourceTree = "<group>"; };
+		B40AC5F827A2F4FA0007B909 /* TitleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCollectionViewCell.swift; sourceTree = "<group>"; };
+		B40AC5FA27A2FFF20007B909 /* TitleCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCollectionViewHeader.swift; sourceTree = "<group>"; };
+		B40AC5FC27A30D190007B909 /* TitleReviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleReviewCollectionViewCell.swift; sourceTree = "<group>"; };
+		B40AC5FF27A3E7370007B909 /* ManagementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagementViewModel.swift; sourceTree = "<group>"; };
 		B40CA670279967F600B233D7 /* BirthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthViewController.swift; sourceTree = "<group>"; };
 		B40CA67227999D1F00B233D7 /* BirthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthView.swift; sourceTree = "<group>"; };
 		B40CA678279D21BB00B233D7 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
@@ -110,6 +129,11 @@
 		B43741192797EA7F005E1CC7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B437411B2797EAA9005E1CC7 /* SeSAC_SPL.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SeSAC_SPL.entitlements; sourceTree = "<group>"; };
 		B43741202797FAFF005E1CC7 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
+		B49F16CA27A3F03E00052507 /* GenderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderTableViewCell.swift; sourceTree = "<group>"; };
+		B49F16CC27A3F04400052507 /* HobbyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HobbyTableViewCell.swift; sourceTree = "<group>"; };
+		B49F16CF27A41ED100052507 /* AllowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllowTableViewCell.swift; sourceTree = "<group>"; };
+		B49F16D127A41EDB00052507 /* AgeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeTableViewCell.swift; sourceTree = "<group>"; };
+		B49F16D327A41EE700052507 /* WithdrawTabelViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawTabelViewCell.swift; sourceTree = "<group>"; };
 		F3473E80664E30059C9CFC26 /* Pods-SeSAC_SPL.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeSAC_SPL.release.xcconfig"; path = "Target Support Files/Pods-SeSAC_SPL/Pods-SeSAC_SPL.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -133,6 +157,25 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B40AC5F127A2E5040007B909 /* ManagementInfoView */ = {
+			isa = PBXGroup;
+			children = (
+				B49F16CE27A41EB400052507 /* TableViewCell */,
+				B40AC5FE27A30D1B0007B909 /* TitleView */,
+			);
+			path = ManagementInfoView;
+			sourceTree = "<group>";
+		};
+		B40AC5FE27A30D1B0007B909 /* TitleView */ = {
+			isa = PBXGroup;
+			children = (
+				B40AC5FA27A2FFF20007B909 /* TitleCollectionViewHeader.swift */,
+				B40AC5F827A2F4FA0007B909 /* TitleCollectionViewCell.swift */,
+				B40AC5FC27A30D190007B909 /* TitleReviewCollectionViewCell.swift */,
+			);
+			path = TitleView;
+			sourceTree = "<group>";
+		};
 		B40CA67E279D6AEC00B233D7 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +183,7 @@
 				B40CA687279DA88600B233D7 /* ValidationViewModel.swift */,
 				B40CA68C279E8C4F00B233D7 /* AuthViewModel.swift */,
 				B420EF3B27A17DC70084AE6A /* MyInfoViewModel.swift */,
+				B40AC5FF27A3E7370007B909 /* ManagementViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -199,6 +243,7 @@
 				B433B8D0279863D300AEA607 /* CustomView */,
 				B433B8EC2799193500AEA607 /* Onboarding */,
 				B420EF4527A18A620084AE6A /* MyInfo */,
+				B40AC5F127A2E5040007B909 /* ManagementInfoView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -230,6 +275,7 @@
 				B433B8BC2798253700AEA607 /* AuthView.swift */,
 				B40CA67227999D1F00B233D7 /* BirthView.swift */,
 				B420EF4127A184830084AE6A /* MyInfoView.swift */,
+				B40AC5EF27A2E0FD0007B909 /* BackgroundImageView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -325,6 +371,20 @@
 				B420EF10279ECCB80084AE6A /* RegularExpression+Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		B49F16CE27A41EB400052507 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				B40AC5F427A2E6DC0007B909 /* BackImageTableViewCell.swift */,
+				B40AC5F627A2E8960007B909 /* TitleTableViewCell.swift */,
+				B49F16CA27A3F03E00052507 /* GenderTableViewCell.swift */,
+				B49F16CC27A3F04400052507 /* HobbyTableViewCell.swift */,
+				B49F16CF27A41ED100052507 /* AllowTableViewCell.swift */,
+				B49F16D127A41EDB00052507 /* AgeTableViewCell.swift */,
+				B49F16D327A41EE700052507 /* WithdrawTabelViewCell.swift */,
+			);
+			path = TableViewCell;
 			sourceTree = "<group>";
 		};
 		C57D1C8BA086EA77486AC432 /* Pods */ = {
@@ -481,11 +541,14 @@
 				B433B9082799570C00AEA607 /* GenderButton+Extension.swift in Sources */,
 				B433B8EE2799195900AEA607 /* VerificationViewController.swift in Sources */,
 				B43741052797E756005E1CC7 /* AppDelegate.swift in Sources */,
+				B40AC5FB27A2FFF20007B909 /* TitleCollectionViewHeader.swift in Sources */,
 				B420EF3427A135A70084AE6A /* ShopViewController.swift in Sources */,
+				B40AC5FD27A30D190007B909 /* TitleReviewCollectionViewCell.swift in Sources */,
 				B420EF13279EF3150084AE6A /* Endpoint.swift in Sources */,
 				B420EF2B27A0E10D0084AE6A /* Bundle.swift in Sources */,
 				B433B9022799558B00AEA607 /* NickNameViewController.swift in Sources */,
 				B433B8C527982F7600AEA607 /* UIView+Extension.swift in Sources */,
+				B49F16D227A41EDB00052507 /* AgeTableViewCell.swift in Sources */,
 				B40CA679279D21BB00B233D7 /* Date+Extension.swift in Sources */,
 				B40CA682279D6BA600B233D7 /* MyInfoViewController.swift in Sources */,
 				B433B8FD279949AA00AEA607 /* Utility.swift in Sources */,
@@ -495,13 +558,18 @@
 				B433B8F027991D7900AEA607 /* OnboardingService.swift in Sources */,
 				B420EF1D279FDC890084AE6A /* Helper.swift in Sources */,
 				B433B8BD2798253700AEA607 /* AuthView.swift in Sources */,
+				B49F16D427A41EE700052507 /* WithdrawTabelViewCell.swift in Sources */,
 				B420EF2127A04D460084AE6A /* String+Extension.swift in Sources */,
 				B43741212797FAFF005E1CC7 /* R.generated.swift in Sources */,
 				B420EF3827A153150084AE6A /* MyInfoTableViewCell.swift in Sources */,
 				B40CA688279DA88700B233D7 /* ValidationViewModel.swift in Sources */,
+				B49F16CB27A3F03E00052507 /* GenderTableViewCell.swift in Sources */,
 				B40CA67327999D1F00B233D7 /* BirthView.swift in Sources */,
 				B433B8C127982BBD00AEA607 /* OnboardingViewController.swift in Sources */,
 				B420EF3C27A17DC70084AE6A /* MyInfoViewModel.swift in Sources */,
+				B40AC60027A3E7370007B909 /* ManagementViewModel.swift in Sources */,
+				B40AC5F727A2E8960007B909 /* TitleTableViewCell.swift in Sources */,
+				B40AC5F527A2E6DC0007B909 /* BackImageTableViewCell.swift in Sources */,
 				B42BAFA327A239E5009DB0E4 /* UIViewController+Extension.swift in Sources */,
 				B420EF3627A135AF0084AE6A /* FriendViewController.swift in Sources */,
 				B420EF11279ECCB80084AE6A /* RegularExpression+Extension.swift in Sources */,
@@ -511,11 +579,15 @@
 				B420EF4227A184830084AE6A /* MyInfoView.swift in Sources */,
 				B40CA684279D6EB900B233D7 /* CommonViewModel.swift in Sources */,
 				B40CA671279967F600B233D7 /* BirthViewController.swift in Sources */,
+				B40AC5F027A2E0FD0007B909 /* BackgroundImageView.swift in Sources */,
 				B420EF15279EF4350084AE6A /* APIService.swift in Sources */,
 				B420EF3227A135A10084AE6A /* HomeViewController.swift in Sources */,
 				B433B8C82798306600AEA607 /* OnboardingSlide.swift in Sources */,
+				B40AC5F927A2F4FA0007B909 /* TitleCollectionViewCell.swift in Sources */,
 				B43741072797E756005E1CC7 /* SceneDelegate.swift in Sources */,
+				B49F16CD27A3F04400052507 /* HobbyTableViewCell.swift in Sources */,
 				B433B9062799567700AEA607 /* GenderViewController.swift in Sources */,
+				B49F16D027A41ED100052507 /* AllowTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
