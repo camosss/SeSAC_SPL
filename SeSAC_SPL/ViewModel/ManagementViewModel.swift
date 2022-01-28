@@ -77,35 +77,29 @@ extension ManagementViewModel: UITableViewDataSource {
         case .gender:
             let cell = tableView.dequeueReusableCell(withIdentifier: GenderTableViewCell.identifier, for: indexPath) as! GenderTableViewCell
             cell.item = item
-            cell.backgroundColor = R.color.gray3()
             cell.selectionStyle = .none
             return cell
 
         case .hobby:
             let cell = tableView.dequeueReusableCell(withIdentifier: HobbyTableViewCell.identifier, for: indexPath) as! HobbyTableViewCell
             cell.item = item
-            cell.backgroundColor = R.color.gray3()
             cell.selectionStyle = .none
             return cell
             
         case .allow:
             let cell = tableView.dequeueReusableCell(withIdentifier: AllowTableViewCell.identifier, for: indexPath) as! AllowTableViewCell
             cell.item = item
-            cell.backgroundColor = R.color.gray3()
             cell.selectionStyle = .none
             return cell
             
         case .age:
             let cell = tableView.dequeueReusableCell(withIdentifier: AgeTableViewCell.identifier, for: indexPath) as! AgeTableViewCell
             cell.item = item
-            cell.backgroundColor = R.color.gray3()
             cell.selectionStyle = .none
             return cell
             
         case .withdraw:
             let cell = tableView.dequeueReusableCell(withIdentifier: WithdrawTabelViewCell.identifier, for: indexPath) as! WithdrawTabelViewCell
-            cell.item = item
-            cell.backgroundColor = R.color.gray3()
             cell.selectionStyle = .none
             return cell
         }

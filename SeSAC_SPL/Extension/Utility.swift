@@ -14,7 +14,7 @@ class Utility {
     
     static func inputContainerView(textField: UITextField) -> UIView {
         let view = UIView()
-        view.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        view.heightAnchor.constraint(equalToConstant: 48).isActive = true
         
         view.addSubview(textField)
         textField.snp.makeConstraints { make in
@@ -87,6 +87,19 @@ class Utility {
         return button
     }
     
+    static func genderButton(title: String) -> UIButton {
+        let button = UIButton()
+        button.setTitle(title, for: .normal)
+        button.setTitleColor(R.color.black(), for: .normal)
+        button.backgroundColor = .white
+        button.titleLabel?.font = R.font.notoSansKRRegular(size: 14)
+        button.clipsToBounds = true
+        button.cornerRadius = 8
+        button.layer.borderColor = R.color.gray3()?.cgColor
+        button.layer.borderWidth = 1
+        return button
+    }
+    
     // MARK: - StackView
     
     static func stackView(axis: NSLayoutConstraint.Axis, spacing: CGFloat, distribution: UIStackView.Distribution, arrangedSubviews: [UIView]) -> UIStackView {
@@ -103,5 +116,17 @@ class Utility {
         stack.spacing = 4
         stack.distribution = .fillProportionally
         return stack
+    }
+    
+    // MARK: - Slider
+    
+    static func sliderView() -> UISlider {
+        let slider = UISlider()
+        slider.minimumTrackTintColor = R.color.green()
+        slider.maximumTrackTintColor = R.color.gray2()
+        slider.thumbTintColor = R.color.green()
+        slider.maximumValue = 100
+        slider.minimumValue = 0
+        return slider
     }
 }

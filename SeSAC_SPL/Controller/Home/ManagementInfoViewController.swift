@@ -9,6 +9,8 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+// ViewController에서는 오직 UI만 바꿔준다
+
 class ManagementInfoViewController: UIViewController {
     
     // MARK: - Properties
@@ -34,7 +36,6 @@ class ManagementInfoViewController: UIViewController {
         super.viewDidLoad()
         title = "정보 관리"
         view.backgroundColor = .white
-        
         configureTableView()
     }
     
@@ -57,8 +58,8 @@ class ManagementInfoViewController: UIViewController {
         tableView.dataSource = managementViewModel
         tableView.delegate = managementViewModel
         
-//        tableView.estimatedRowHeight = 100
-//        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 310
+        tableView.rowHeight = UITableView.automaticDimension
         
         tableView.register(BackImageTableViewCell.self, forCellReuseIdentifier: BackImageTableViewCell.identifier)
         tableView.register(TitleTableViewCell.self, forCellReuseIdentifier: TitleTableViewCell.identifier)
@@ -68,7 +69,7 @@ class ManagementInfoViewController: UIViewController {
         tableView.register(AgeTableViewCell.self, forCellReuseIdentifier: AgeTableViewCell.identifier)
         tableView.register(WithdrawTabelViewCell.self, forCellReuseIdentifier: WithdrawTabelViewCell.identifier)
     }
-    
+}
     
     
     
@@ -102,4 +103,4 @@ class ManagementInfoViewController: UIViewController {
 //            }
 //        }
 //    }
-}
+

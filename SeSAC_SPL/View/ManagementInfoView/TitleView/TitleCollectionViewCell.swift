@@ -80,7 +80,7 @@ extension TitleTableViewCell: UICollectionViewDelegateFlowLayout {
     
     // 행 간격
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return section == 0 ? 8 : 0
+        return section == 0 ? 6 : 0
     }
     
     // 섹션 간격
@@ -99,6 +99,5 @@ extension TitleTableViewCell: UICollectionViewDelegateFlowLayout {
         let width = collectionView.bounds.width
         let cellWidth = (width-40)/2
         return indexPath.section == 0 ? CGSize(width: (width-40)/2, height: cellWidth*0.2) : CGSize(width: width-32, height: 24)
-    
     }
 }

@@ -9,6 +9,8 @@ import UIKit
 
 class GenderButton: UIButton {
     
+    // MARK: - Properties
+    
     let genderImageView: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFit
@@ -21,6 +23,8 @@ class GenderButton: UIButton {
         label.font = R.font.notoSansKRRegular(size: 16)
         return label
     }()
+    
+    // MARK: - Lifecycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)

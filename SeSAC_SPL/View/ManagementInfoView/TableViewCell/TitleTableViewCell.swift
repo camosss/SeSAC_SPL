@@ -62,7 +62,7 @@ class TitleTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setMyInfoView()
+        setTitleView()
     }
     
     required init?(coder: NSCoder) {
@@ -71,7 +71,7 @@ class TitleTableViewCell: UITableViewCell {
     
     // MARK: - Helper
     
-    func setMyInfoView() {
+    private func setTitleView() {
         [usernameLabel, expandImageView, collectionView].forEach {
             stackView.addSubview($0)
         }

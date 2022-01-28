@@ -15,6 +15,13 @@ class BackImageTableViewCell: UITableViewCell {
     
     let backgroundImageView = BackgroundImageView()
     
+    var item: ManagementViewModelItem? {
+        didSet {
+            guard let item = item as? BackgroundItem else { return }
+            print("background", item.background, "sesac", item.sesac)
+        }
+    }
+    
     // MARK: - Lifecycle
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -28,7 +35,7 @@ class BackImageTableViewCell: UITableViewCell {
     
     // MARK: - Helper
     
-    func setMyInfoView() {
+    private func setMyInfoView() {
         addSubview(backgroundImageView)
         backgroundImageView.snp.makeConstraints { make in
             make.top.leading.equalTo(safeAreaLayoutGuide).offset(16)

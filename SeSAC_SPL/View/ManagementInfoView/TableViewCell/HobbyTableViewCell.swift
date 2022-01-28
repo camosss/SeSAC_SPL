@@ -13,13 +13,23 @@ class HobbyTableViewCell: UITableViewCell {
 
     static let identifier = String(describing: HobbyTableViewCell.self)
 
-    let titleLabel = Utility.label(text: "취미 title", textColor: .black)
-    let subTitleLabel = Utility.label(text: "취미 sub", textColor: .lightGray)
+    let titleLabel = Utility.managementLabel(text: "자주 하는 취미")
+    
+    let inputTextField: UITextField = {
+        let tf = UITextField()
+        tf.font = R.font.notoSansKRRegular(size: 14)
+        return tf
+    }()
+    
+    lazy var inputContainerView: UIView = {
+        let view = Utility.inputContainerView(textField: inputTextField)
+        return view
+    }()
     
     var item: ManagementViewModelItem? {
         didSet {
             guard let item = item as? HobbyItem else { return }
-            subTitleLabel.text = item.hobby
+            inputTextField.text = item.hobby
         }
     }
     
@@ -27,22 +37,29 @@ class HobbyTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        addSubview(titleLabel)
-        addSubview(subTitleLabel)
-        subTitleLabel.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.leading.equalTo(10)
-        }
-        
-        titleLabel.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.trailing.equalTo(-10)
-        }
-        
+        setHobbyView()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Helper
+    
+    private func setHobbyView() {
+        [titleLabel, inputContainerView].forEach {
+            contentView.addSubview($0)
+        }
+        
+        titleLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.leading.equalTo(16)
+        }
+        
+        inputContainerView.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.trailing.equalToSuperview().inset(16)
+            make.width.equalTo(164)
+        }
+    }
 }

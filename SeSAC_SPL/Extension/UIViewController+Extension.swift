@@ -10,7 +10,6 @@ import Network
 import Toast_Swift
 
 extension UIViewController {
-    
     func networkMoniter() {
         let monitor = NWPathMonitor()
         
