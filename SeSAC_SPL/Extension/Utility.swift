@@ -67,6 +67,14 @@ class Utility {
         return label
     }
     
+    static func managementLabel(text: String) -> UILabel {
+        let label = UILabel()
+        label.text = text
+        label.textColor = R.color.black()
+        label.font = R.font.notoSansKRRegular(size: 14)
+        return label
+    }
+    
     // MARK: - Button
     
     static func button(backgroundColor: UIColor!) -> UIButton {
@@ -96,6 +104,4 @@ class Utility {
         stack.distribution = .fillProportionally
         return stack
     }
-    
-    
 }

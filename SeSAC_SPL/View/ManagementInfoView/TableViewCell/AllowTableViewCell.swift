@@ -9,6 +9,8 @@ import UIKit
 
 class AllowTableViewCell: UITableViewCell {
     
+    // MARK: - Properties
+
     static let identifier = String(describing: AllowTableViewCell.self)
 
     let titleLabel = Utility.label(text: "성별 title", textColor: .black)
@@ -17,7 +19,6 @@ class AllowTableViewCell: UITableViewCell {
     var item: ManagementViewModelItem? {
         didSet {
             guard let item = item as? GenderItem else { return }
-            titleLabel.text = item.title
             subTitleLabel.text = "\(item.gender)"
         }
     }

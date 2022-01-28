@@ -9,16 +9,17 @@ import UIKit
 
 class GenderTableViewCell: UITableViewCell {
     
+    // MARK: - Properties
+    
     static let identifier = String(describing: GenderTableViewCell.self)
 
-    let titleLabel = Utility.label(text: "성별 title", textColor: .black)
-    let subTitleLabel = Utility.label(text: "성별 sub", textColor: .lightGray)
+    let titleLabel = Utility.managementLabel(text: "내 성별")
+    
+    
     
     var item: ManagementViewModelItem? {
         didSet {
             guard let item = item as? GenderItem else { return }
-            titleLabel.text = item.title
-            subTitleLabel.text = "\(item.gender)"
         }
     }
     
@@ -26,17 +27,6 @@ class GenderTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        addSubview(titleLabel)
-        addSubview(subTitleLabel)
-        titleLabel.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.leading.equalTo(10)
-        }
-        
-        subTitleLabel.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.trailing.equalTo(-10)
-        }
         
     }
     

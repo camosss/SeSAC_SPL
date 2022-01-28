@@ -9,6 +9,8 @@ import UIKit
 
 class HobbyTableViewCell: UITableViewCell {
     
+    // MARK: - Properties
+
     static let identifier = String(describing: HobbyTableViewCell.self)
 
     let titleLabel = Utility.label(text: "취미 title", textColor: .black)
@@ -17,7 +19,6 @@ class HobbyTableViewCell: UITableViewCell {
     var item: ManagementViewModelItem? {
         didSet {
             guard let item = item as? HobbyItem else { return }
-            titleLabel.text = item.title
             subTitleLabel.text = item.hobby
         }
     }

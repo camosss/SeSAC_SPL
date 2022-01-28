@@ -67,6 +67,8 @@
 		B49F16D027A41ED100052507 /* AllowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49F16CF27A41ED100052507 /* AllowTableViewCell.swift */; };
 		B49F16D227A41EDB00052507 /* AgeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49F16D127A41EDB00052507 /* AgeTableViewCell.swift */; };
 		B49F16D427A41EE700052507 /* WithdrawTabelViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49F16D327A41EE700052507 /* WithdrawTabelViewCell.swift */; };
+		B49F16D727A4239700052507 /* ManagementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49F16D627A4239700052507 /* ManagementModel.swift */; };
+		B49F16DA27A4246B00052507 /* ManagementItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49F16D927A4246B00052507 /* ManagementItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -134,6 +136,8 @@
 		B49F16CF27A41ED100052507 /* AllowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllowTableViewCell.swift; sourceTree = "<group>"; };
 		B49F16D127A41EDB00052507 /* AgeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeTableViewCell.swift; sourceTree = "<group>"; };
 		B49F16D327A41EE700052507 /* WithdrawTabelViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawTabelViewCell.swift; sourceTree = "<group>"; };
+		B49F16D627A4239700052507 /* ManagementModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagementModel.swift; sourceTree = "<group>"; };
+		B49F16D927A4246B00052507 /* ManagementItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagementItem.swift; sourceTree = "<group>"; };
 		F3473E80664E30059C9CFC26 /* Pods-SeSAC_SPL.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeSAC_SPL.release.xcconfig"; path = "Target Support Files/Pods-SeSAC_SPL/Pods-SeSAC_SPL.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -265,6 +269,7 @@
 				B433B8C72798306600AEA607 /* OnboardingSlide.swift */,
 				B420EF0E279EC9A30084AE6A /* User.swift */,
 				B420EF3D27A17E000084AE6A /* MyInfo.swift */,
+				B49F16D827A4245200052507 /* Management */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -385,6 +390,15 @@
 				B49F16D327A41EE700052507 /* WithdrawTabelViewCell.swift */,
 			);
 			path = TableViewCell;
+			sourceTree = "<group>";
+		};
+		B49F16D827A4245200052507 /* Management */ = {
+			isa = PBXGroup;
+			children = (
+				B49F16D627A4239700052507 /* ManagementModel.swift */,
+				B49F16D927A4246B00052507 /* ManagementItem.swift */,
+			);
+			path = Management;
 			sourceTree = "<group>";
 		};
 		C57D1C8BA086EA77486AC432 /* Pods */ = {
@@ -561,6 +575,7 @@
 				B49F16D427A41EE700052507 /* WithdrawTabelViewCell.swift in Sources */,
 				B420EF2127A04D460084AE6A /* String+Extension.swift in Sources */,
 				B43741212797FAFF005E1CC7 /* R.generated.swift in Sources */,
+				B49F16D727A4239700052507 /* ManagementModel.swift in Sources */,
 				B420EF3827A153150084AE6A /* MyInfoTableViewCell.swift in Sources */,
 				B40CA688279DA88700B233D7 /* ValidationViewModel.swift in Sources */,
 				B49F16CB27A3F03E00052507 /* GenderTableViewCell.swift in Sources */,
@@ -569,6 +584,7 @@
 				B420EF3C27A17DC70084AE6A /* MyInfoViewModel.swift in Sources */,
 				B40AC60027A3E7370007B909 /* ManagementViewModel.swift in Sources */,
 				B40AC5F727A2E8960007B909 /* TitleTableViewCell.swift in Sources */,
+				B49F16DA27A4246B00052507 /* ManagementItem.swift in Sources */,
 				B40AC5F527A2E6DC0007B909 /* BackImageTableViewCell.swift in Sources */,
 				B42BAFA327A239E5009DB0E4 /* UIViewController+Extension.swift in Sources */,
 				B420EF3627A135AF0084AE6A /* FriendViewController.swift in Sources */,

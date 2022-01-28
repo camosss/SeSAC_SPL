@@ -57,8 +57,8 @@ class ManagementInfoViewController: UIViewController {
         tableView.dataSource = managementViewModel
         tableView.delegate = managementViewModel
         
-        tableView.estimatedRowHeight = 100
-        tableView.rowHeight = UITableView.automaticDimension
+//        tableView.estimatedRowHeight = 100
+//        tableView.rowHeight = UITableView.automaticDimension
         
         tableView.register(BackImageTableViewCell.self, forCellReuseIdentifier: BackImageTableViewCell.identifier)
         tableView.register(TitleTableViewCell.self, forCellReuseIdentifier: TitleTableViewCell.identifier)
@@ -67,8 +67,16 @@ class ManagementInfoViewController: UIViewController {
         tableView.register(AllowTableViewCell.self, forCellReuseIdentifier: AllowTableViewCell.identifier)
         tableView.register(AgeTableViewCell.self, forCellReuseIdentifier: AgeTableViewCell.identifier)
         tableView.register(WithdrawTabelViewCell.self, forCellReuseIdentifier: WithdrawTabelViewCell.identifier)
-
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     // 회원 탈퇴 로직
 //    private func withdrawUserLogic() {

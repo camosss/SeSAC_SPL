@@ -7,30 +7,7 @@
 
 import UIKit
 
-// MARK: - Type
-
-enum ManagementViewModelItemType {
-    case background
-    case title
-    case gender
-    case hobby
-    case allow
-    case age
-    case withdraw
-}
-
-// MARK: - ManagementViewModelItem
-
-protocol ManagementViewModelItem {
-    var type: ManagementViewModelItemType { get }
-    var rowCount: Int { get }
-}
-
-extension ManagementViewModelItem {
-    var rowCount: Int {  return 1 }
-}
-
-// MARK: - ManagementViewModel
+// ViewModel - Model을 업데이트하고 그 결과를 다시 받아서 View에 전달하여 UI를 업데이트
 
 class ManagementViewModel: NSObject {
     
@@ -43,28 +20,21 @@ class ManagementViewModel: NSObject {
         self.user = user
         self.expand = expand
         
-        let background = BackgroundItem(background: user.background)
+        let background = BackgroundItem(background: user.background, sesac: user.sesac)
+        let title = TitleItem(username: user.nick, reputation: user.reputation)
+        let gender = GenderItem(gender: user.gender)
+        let hobby = HobbyItem(hobby: user.hobby)
+        let allow = AllowItem(searchable: user.searchable)
+        let age = AgeItem(ageMin: user.ageMin, ageMax: user.ageMax)
+        let withdraw = WithdrawItem()
+        
         items.append(background)
-        
-        let title = TitleItem(username: user.nick)
         items.append(title)
-        
-        let gender = GenderItem(title: "내 성별", gender: user.gender)
         items.append(gender)
-
-        let hobby = HobbyItem(title: "자주 하는 취미", hobby: user.hobby)
         items.append(hobby)
-        
-        let allow = HobbyItem(title: "내 번호 검색 허용", hobby: user.hobby)
         items.append(allow)
-        
-        let age = HobbyItem(title: "상대방 연령대", hobby: user.hobby)
         items.append(age)
-        
-        let withdraw = HobbyItem(title: "회원 탈퇴", hobby: user.hobby)
         items.append(withdraw)
-        
-        print("items", items)
     }
 
     func fetchUserData() {
@@ -76,15 +46,13 @@ class ManagementViewModel: NSObject {
             }
         }
     }
-    
 }
 
-// MARK: - UITableViewDataSource, UITableViewDelegate
+// MARK: - UITableViewDataSource
 
-extension ManagementViewModel: UITableViewDataSource, UITableViewDelegate {
+extension ManagementViewModel: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return items.count
-
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -109,35 +77,44 @@ extension ManagementViewModel: UITableViewDataSource, UITableViewDelegate {
         case .gender:
             let cell = tableView.dequeueReusableCell(withIdentifier: GenderTableViewCell.identifier, for: indexPath) as! GenderTableViewCell
             cell.item = item
+            cell.backgroundColor = R.color.gray3()
             cell.selectionStyle = .none
             return cell
 
         case .hobby:
             let cell = tableView.dequeueReusableCell(withIdentifier: HobbyTableViewCell.identifier, for: indexPath) as! HobbyTableViewCell
             cell.item = item
+            cell.backgroundColor = R.color.gray3()
             cell.selectionStyle = .none
             return cell
             
         case .allow:
-            let cell = tableView.dequeueReusableCell(withIdentifier: AllowTableViewCell.identifier, for: indexPath) as! HobbyTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: AllowTableViewCell.identifier, for: indexPath) as! AllowTableViewCell
             cell.item = item
+            cell.backgroundColor = R.color.gray3()
             cell.selectionStyle = .none
             return cell
             
         case .age:
-            let cell = tableView.dequeueReusableCell(withIdentifier: AgeTableViewCell.identifier, for: indexPath) as! HobbyTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: AgeTableViewCell.identifier, for: indexPath) as! AgeTableViewCell
             cell.item = item
+            cell.backgroundColor = R.color.gray3()
             cell.selectionStyle = .none
             return cell
             
         case .withdraw:
-            let cell = tableView.dequeueReusableCell(withIdentifier: WithdrawTabelViewCell.identifier, for: indexPath) as! HobbyTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: WithdrawTabelViewCell.identifier, for: indexPath) as! WithdrawTabelViewCell
             cell.item = item
+            cell.backgroundColor = R.color.gray3()
             cell.selectionStyle = .none
             return cell
         }
     }
-    
+}
+
+// MARK: - UITableViewDelegate
+
+extension ManagementViewModel: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
             expand.toggle()
@@ -147,87 +124,5 @@ extension ManagementViewModel: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return indexPath.section == 0 ? 210 : (indexPath.section == 1 ? (expand ? 310 : 58) : 74)
-    }
-}
-
-// MARK: - Item
-
-class BackgroundItem: ManagementViewModelItem {
-    var type: ManagementViewModelItemType { return .background }
-    
-    var background: Int
-    
-    init(background: Int) {
-        self.background = background
-    }
-}
-
-class TitleItem: ManagementViewModelItem {
-    var type: ManagementViewModelItemType { return .title }
-    
-    var username: String
-    
-    init(username: String) {
-        self.username = username
-    }
-}
-
-class GenderItem: ManagementViewModelItem {
-    var type: ManagementViewModelItemType { return .gender }
-    
-    var title: String
-    var gender: Int
-    
-    init(title: String, gender: Int) {
-        self.title = title
-        self.gender = gender
-    }
-}
-
-class HobbyItem: ManagementViewModelItem {
-    var type: ManagementViewModelItemType { return .hobby }
-    
-    var title: String
-    var hobby: String
-    
-    init(title: String, hobby: String) {
-        self.title = title
-        self.hobby = hobby
-    }
-}
-
-class AllowItem: ManagementViewModelItem {
-    var type: ManagementViewModelItemType { return .allow }
-    
-    var title: String
-    var gender: Int
-    
-    init(title: String, gender: Int) {
-        self.title = title
-        self.gender = gender
-    }
-}
-
-class AgeItem: ManagementViewModelItem {
-    var type: ManagementViewModelItemType { return .age }
-    
-    var title: String
-    var gender: Int
-    
-    init(title: String, gender: Int) {
-        self.title = title
-        self.gender = gender
-    }
-}
-
-class WithdrawItem: ManagementViewModelItem {
-    var type: ManagementViewModelItemType { return .withdraw }
-    
-    var title: String
-    var gender: Int
-    
-    init(title: String, gender: Int) {
-        self.title = title
-        self.gender = gender
     }
 }
