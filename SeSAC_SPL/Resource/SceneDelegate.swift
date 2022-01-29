@@ -24,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             convertNavRootViewController(NickNameViewController())
         } else if startView == "alreadySignUp" {
             convertRootViewController(MainTapController())
-        } else { // 
+        } else {
             convertNavRootViewController(VerificationViewController())
         }
         

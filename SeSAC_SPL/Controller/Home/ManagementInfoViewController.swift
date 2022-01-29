@@ -60,7 +60,7 @@ class ManagementInfoViewController: UIViewController {
         
         tableView.estimatedRowHeight = 310
         tableView.rowHeight = UITableView.automaticDimension
-        
+
         tableView.register(BackImageTableViewCell.self, forCellReuseIdentifier: BackImageTableViewCell.identifier)
         tableView.register(TitleTableViewCell.self, forCellReuseIdentifier: TitleTableViewCell.identifier)
         tableView.register(GenderTableViewCell.self, forCellReuseIdentifier: GenderTableViewCell.identifier)

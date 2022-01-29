@@ -37,6 +37,7 @@ class TitleCollectionViewCell: UICollectionViewCell {
     
 }
 
+// Rx 적용하기
 // MARK: - UICollectionViewDataSource, UICollectionViewDelegate
 
 extension TitleTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate {
