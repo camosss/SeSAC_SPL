@@ -52,6 +52,8 @@
 <details>
 <summary>[MVVM 패턴] 여러가지 Cell Type으로 하나의 TableView 구성하기</summary>
  
+ <br>
+ 
 [블로그 포스팅으로 이동하기](https://llan.tistory.com/3)
 
  </div>
