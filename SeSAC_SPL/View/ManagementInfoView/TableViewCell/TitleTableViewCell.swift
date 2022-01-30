@@ -43,12 +43,13 @@ class TitleTableViewCell: UITableViewCell {
         return view
     }()
     
-    private lazy var collectionView: UICollectionView = {
+    lazy var titleCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.backgroundColor = .white
+        collectionView.isScrollEnabled = false
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         collectionView.register(TitleCollectionViewCell.self, forCellWithReuseIdentifier: TitleCollectionViewCell.identifier)
         collectionView.register(TitleReviewCollectionViewCell.self, forCellWithReuseIdentifier: TitleReviewCollectionViewCell.identifier)
@@ -72,7 +73,7 @@ class TitleTableViewCell: UITableViewCell {
     // MARK: - Helper
     
     private func setTitleView() {
-        [usernameLabel, expandImageView, collectionView].forEach {
+        [usernameLabel, expandImageView, titleCollectionView].forEach {
             stackView.addSubview($0)
         }
 
@@ -88,7 +89,7 @@ class TitleTableViewCell: UITableViewCell {
             make.trailing.equalToSuperview().inset(26)
         }
         
-        collectionView.snp.makeConstraints { make in
+        titleCollectionView.snp.makeConstraints { make in
             make.top.equalTo(usernameLabel.snp.bottom).offset(24)
             make.leading.trailing.bottom.equalToSuperview()
         }

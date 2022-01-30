@@ -99,4 +99,14 @@ extension TitleTableViewCell: UICollectionViewDelegateFlowLayout {
         let cellWidth = (width-40)/2
         return indexPath.section == 0 ? CGSize(width: (width-40)/2, height: cellWidth*0.2) : CGSize(width: width-32, height: 24)
     }
+
+    // CollectionView 사이즈 조절 후, TableView UITableView.automaticDimension 적용
+    override func systemLayoutSizeFitting(_ targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
+
+        self.titleCollectionView.layoutIfNeeded()
+        
+        let height = self.titleCollectionView.collectionViewLayout.collectionViewContentSize.height + CGFloat(50)
+        return CGSize(width: targetSize.width, height: height)
+        
+    }
 }

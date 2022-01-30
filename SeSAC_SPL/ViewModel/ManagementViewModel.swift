@@ -175,6 +175,6 @@ extension ManagementViewModel: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return indexPath.section == 0 ? 210 : (indexPath.section == 1 ? (expand ? 310 : 58) : 74)
+        return indexPath.section == 0 ? 210 : (indexPath.section == 1 ? (expand ? UITableView.automaticDimension : 58) : 74)
     }
 }
