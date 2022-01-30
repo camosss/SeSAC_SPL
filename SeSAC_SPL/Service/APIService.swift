@@ -120,4 +120,41 @@ class APIService {
             }
         }
     }
+    
+    static func updateMyPage(user: User, idToken: String, completion: @escaping (Error?, Int?) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "idtoken": idToken,
+            "Content-Type": "application/x-www-form-urlencoded"
+        ]
+        
+        let searchable = UserDefaults.standard.integer(forKey: "searchable")
+        let ageMin = UserDefaults.standard.integer(forKey: "ageMin")
+        let ageMax = UserDefaults.standard.integer(forKey: "ageMax")
+        let gender = UserDefaults.standard.integer(forKey: "gender")
+        let hobby = UserDefaults.standard.string(forKey: "hobby") ?? ""
+
+        let parameters : Parameters = [
+            "searchable": searchable,
+            "ageMin": ageMin,
+            "ageMax": ageMax,
+            "gender": gender,
+            "hobby": hobby
+        ]
+        
+        AF.request(Endpoint.user_update_mypage.url, method: .post, parameters: parameters, headers: headers).responseString { response in
+            
+            let statusCode = response.response?.statusCode
+            
+            switch response.result {
+            case .success(let value):
+                print("[updateMyPage] response success", value)
+                completion(nil, statusCode)
+                
+            case .failure(let error):
+                print("[updateMyPage] response error", error)
+                completion(error, statusCode)
+            }
+        }
+    }
 }

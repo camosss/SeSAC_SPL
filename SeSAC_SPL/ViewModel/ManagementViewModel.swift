@@ -53,6 +53,7 @@ class ManagementViewModel: NSObject {
         view.center_slideViewDown(height: 156)
     }
     
+    // 회원 탈퇴
     @objc func clickeOk() {
         self.authViewModel.withdrawUser { error, statusCode in
             if let error = error {
@@ -91,6 +92,14 @@ class ManagementViewModel: NSObject {
             self.alertView.snp.makeConstraints { make in
                 make.edges.equalToSuperview()
             }
+        }
+    }
+    
+    func updateMyPage(completion: @escaping (Error?, Int?) -> Void) {
+        let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
+
+        APIService.updateMyPage(user: user, idToken: idToken) { error, statusCode in
+            completion(error, statusCode)
         }
     }
 }

@@ -13,6 +13,8 @@ class AllowTableViewCell: UITableViewCell {
 
     static let identifier = String(describing: AllowTableViewCell.self)
     
+    var searchable = 0
+    
     let titleLabel = Utility.managementLabel(text: "내 번호 검색 허용")
 
     let switchView: UISwitch = {
@@ -25,6 +27,12 @@ class AllowTableViewCell: UITableViewCell {
         didSet {
             guard let item = item as? AllowItem else { return }
             switchView.isOn = item.searchable == 0 ? false : true
+            
+            if item.searchable == 0 {
+                switchView.setOn(false, animated: false)
+            } else {
+                switchView.setOn(true, animated: false)
+            }
         }
     }
     
@@ -42,7 +50,8 @@ class AllowTableViewCell: UITableViewCell {
     // MARK: - Action
     
     @objc func toggleSearchable(_ sender: UISwitch) {
-        print(sender.isOn)
+        searchable = sender.isOn ? 1 : 0
+        UserDefaults.standard.set(searchable, forKey: "searchable")
     }
     
     // MARK: - Helper

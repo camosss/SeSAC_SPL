@@ -12,10 +12,9 @@ class TitleCollectionViewCell: UICollectionViewCell {
     // MARK: - Properties
     
     static let identifier = String(describing: TitleCollectionViewCell.self)
-
+        
     let label: UILabel = {
         let label = UILabel()
-        label.text = "새싹 타이틀"
         label.textColor = R.color.white()
         label.font = R.font.notoSansKRRegular(size: 14)
         return label
@@ -34,10 +33,8 @@ class TitleCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }
 
-// Rx 적용하기
 // MARK: - UICollectionViewDataSource, UICollectionViewDelegate
 
 extension TitleTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -50,13 +47,14 @@ extension TitleTableViewCell: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return section == 0 ? 8 : 1
+        return section == 0 ? Utility.titles.count : 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitleCollectionViewCell.identifier, for: indexPath) as! TitleCollectionViewCell
             cell.backgroundColor = R.color.green()
+            cell.label.text = Utility.titles[indexPath.row]
             cell.cornerRadius = 8
             return cell
         } else {

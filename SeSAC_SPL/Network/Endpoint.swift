@@ -11,6 +11,7 @@ enum Endpoint {
     case user
     case user_withdraw
     case user_update_fcm_token
+    case user_update_mypage
 }
 
 extension Endpoint {
@@ -19,6 +20,7 @@ extension Endpoint {
         case .user: return .makeEndpoint("user")
         case .user_withdraw: return .makeEndpoint("user/withdraw")
         case .user_update_fcm_token: return .makeEndpoint("user/update_fcm_token")
+        case .user_update_mypage: return .makeEndpoint("user/update/mypage")
         }
     }
 }

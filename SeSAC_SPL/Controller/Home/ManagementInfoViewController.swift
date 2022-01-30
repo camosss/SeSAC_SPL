@@ -11,7 +11,7 @@ import UIKit
 class ManagementInfoViewController: UIViewController {
     
     // MARK: - Properties
-    
+        
     private var user: User
     var expand = false
     
@@ -33,12 +33,36 @@ class ManagementInfoViewController: UIViewController {
         super.viewDidLoad()
         title = "정보 관리"
         view.backgroundColor = .white
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "저장", style: .plain,
+                                                                 target: self, action: #selector(didTapSave))
         configureTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         networkMoniter()
+    }
+    
+    // MARK: - Action
+    
+    @objc func didTapSave() {
+        managementViewModel.updateMyPage { error, statusCode in
+            switch statusCode {
+            case 200:
+                print("업데이트 성공")
+                self.view.makeToast("내 정보 업데이트에 성공했습니다.", position: .center)
+
+            case 401:
+                print("\(statusCode ?? 0) Firebase Token Error")
+                Helper.getIDTokenRefresh {
+                    self.view.makeToast("에러가 발생했습니다. 잠시 후 다시 시도해주세요.", position: .center); return
+                } onSuccess: {
+                    print("토큰 갱신 성공")
+                }
+            default:
+                print("Error Code:", statusCode ?? 0)
+            }
+        }
     }
     
     // MARK: - Helper

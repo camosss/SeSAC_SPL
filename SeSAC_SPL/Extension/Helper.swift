@@ -24,10 +24,15 @@ class Helper {
     
     static func switchButton(_ clicked: UIButton, _ unclicked: UIButton) {
         clicked.backgroundColor = R.color.whitegreen()
-        
         unclicked.backgroundColor = R.color.white()
-        unclicked.layer.borderColor = R.color.gray3()?.cgColor
-        unclicked.layer.borderWidth = 1
+    }
+    
+    static func switchInfoButton(_ clicked: UIButton, _ unclicked: UIButton) {
+        clicked.setTitleColor(R.color.white(), for: .normal)
+        clicked.backgroundColor = R.color.green()
+        
+        unclicked.setTitleColor(R.color.black(), for: .normal)
+        unclicked.backgroundColor = R.color.white()
     }
     
     static func handleButtonEvent(authView: AuthView, output: ValidationViewModel.Output, disposeBag: DisposeBag, sceneTransition: @escaping () -> ()) {

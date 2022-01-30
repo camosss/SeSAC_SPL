@@ -30,7 +30,9 @@ class AgeTableViewCell: UITableViewCell {
     var item: ManagementViewModelItem? {
         didSet {
             guard let item = item as? AgeItem else { return }
+
             ageRangeLabel.text = "\(item.ageMin) - \(item.ageMax)"
+            sliderView.value = Float(item.ageMax)
         }
     }
     
@@ -48,7 +50,8 @@ class AgeTableViewCell: UITableViewCell {
     // MARK: - Action
     
     @objc func updateAgeValue(_ sender: UISlider) {
-        print(sender.value)
+        UserDefaults.standard.set(18, forKey: "ageMin")
+        UserDefaults.standard.set(Int(sender.value), forKey: "ageMax")
     }
     
     // MARK: - Helper

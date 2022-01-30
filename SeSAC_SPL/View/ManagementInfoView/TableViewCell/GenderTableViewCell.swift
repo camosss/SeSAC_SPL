@@ -6,14 +6,15 @@
 //
 
 import UIKit
+import RxSwift
 
 class GenderTableViewCell: UITableViewCell {
     
     // MARK: - Properties
     
-    static let identifier = String(describing: GenderTableViewCell.self)
+    let disposeBag = DisposeBag()
 
-    var gender: Int?
+    static let identifier = String(describing: GenderTableViewCell.self)
     
     let titleLabel = Utility.managementLabel(text: "내 성별")
     let manButton = Utility.genderButton(title: "남자")
@@ -24,13 +25,12 @@ class GenderTableViewCell: UITableViewCell {
     var item: ManagementViewModelItem? {
         didSet {
             guard let item = item as? GenderItem else { return }
-            gender = item.gender
             
             if item.gender == 0 {
-                womanButton.setTitleColor(.white, for: .normal)
+                womanButton.setTitleColor(R.color.white(), for: .normal)
                 womanButton.backgroundColor = R.color.green()
             } else if item.gender == 1 {
-                manButton.setTitleColor(.white, for: .normal)
+                manButton.setTitleColor(R.color.white(), for: .normal)
                 manButton.backgroundColor = R.color.green()
             }
         }
@@ -41,6 +41,7 @@ class GenderTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setGenderView()
+        handleTapGenderBtn()
     }
     
     required init?(coder: NSCoder) {
@@ -65,6 +66,23 @@ class GenderTableViewCell: UITableViewCell {
             make.width.equalTo(120)
             make.height.equalTo(48)
         }
+    }
+    
+    private func processTapBtn(value: Int, clicked: UIButton, unclicked: UIButton) {
+        UserDefaults.standard.set(value, forKey: "gender")
+        Helper.switchInfoButton(clicked, unclicked)
+    }
+    
+    private func handleTapGenderBtn() {
+        Observable.merge(
+            manButton.rx.tap.map { _ in TapBtn.man },
+            womanButton.rx.tap.map { _ in TapBtn.woman }
+        ).subscribe(onNext: {
+            switch $0 {
+            case .man: self.processTapBtn(value: 1, clicked: self.manButton, unclicked: self.womanButton)
+            case .woman: self.processTapBtn(value: 0, clicked: self.womanButton, unclicked: self.manButton)
+            }
+        }).disposed(by: disposeBag)
     }
     
 }

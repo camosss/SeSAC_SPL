@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import RxSwift
 
 class HobbyTableViewCell: UITableViewCell {
     
     // MARK: - Properties
+
+    let disposeBag = DisposeBag()
 
     static let identifier = String(describing: HobbyTableViewCell.self)
 
@@ -30,6 +33,7 @@ class HobbyTableViewCell: UITableViewCell {
         didSet {
             guard let item = item as? HobbyItem else { return }
             inputTextField.text = item.hobby
+            UserDefaults.standard.set(item.hobby, forKey: "hobby")
         }
     }
     
@@ -38,6 +42,7 @@ class HobbyTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setHobbyView()
+        handleTextField()
     }
     
     required init?(coder: NSCoder) {
@@ -61,5 +66,14 @@ class HobbyTableViewCell: UITableViewCell {
             make.trailing.equalToSuperview().inset(16)
             make.width.equalTo(164)
         }
+    }
+    
+    private func handleTextField() {
+        inputTextField.rx.text
+            .orEmpty
+            .distinctUntilChanged()
+            .subscribe(onNext: { text in
+                UserDefaults.standard.set(text, forKey: "hobby")
+            }).disposed(by: disposeBag)
     }
 }
