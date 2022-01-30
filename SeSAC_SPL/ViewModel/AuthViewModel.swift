@@ -56,7 +56,7 @@ class AuthViewModel {
     
     func getUserInfo(completion: @escaping (User?, Error?, Int?) -> Void) {
         let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
-        
+
         APIService.getUserInfo(idToken: idToken) { user, error, statusCode in
             
             switch statusCode {

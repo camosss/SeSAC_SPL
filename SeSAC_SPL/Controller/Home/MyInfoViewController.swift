@@ -40,14 +40,14 @@ class MyInfoViewController: UIViewController {
     // MARK: - Helper
     
     private func setUpTableView() {
-        tableView.backgroundColor = .white
-        tableView.register(MyInfoHeaderTableViewCell.self, forCellReuseIdentifier: MyInfoHeaderTableViewCell.identifier)
-        tableView.register(MyInfoTableViewCell.self, forCellReuseIdentifier: MyInfoTableViewCell.identifier)
-        
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        
+        tableView.backgroundColor = .white
+        tableView.register(MyInfoHeaderTableViewCell.self, forCellReuseIdentifier: MyInfoHeaderTableViewCell.identifier)
+        tableView.register(MyInfoTableViewCell.self, forCellReuseIdentifier: MyInfoTableViewCell.identifier)
     }
     
     private func fetchUser() {
@@ -67,7 +67,7 @@ class MyInfoViewController: UIViewController {
     }
     
     private func configureTableViewDataSource(user: User) {
-        var viewModel = MyInfoViewModel(user: user)
+        let viewModel = MyInfoViewModel(user: user)
         
         viewModel.myinfos
             .asDriver()

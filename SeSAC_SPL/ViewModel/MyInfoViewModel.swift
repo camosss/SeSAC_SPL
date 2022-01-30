@@ -8,7 +8,7 @@
 import Foundation
 import RxCocoa
 
-struct MyInfoViewModel {
+class MyInfoViewModel: NSObject {
     let user: User
 
     lazy var myinfos = BehaviorRelay<[MyInfo]>(value: [

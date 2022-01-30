@@ -6,18 +6,28 @@
 //
 
 import UIKit
+import IAMPopup
 
 // ViewModel - Model을 업데이트하고 그 결과를 다시 받아서 View에 전달하여 UI를 업데이트
 
 class ManagementViewModel: NSObject {
     
+    // MARK: - Properties
+    
+    let alertView = AlertView()
+    let authViewModel = AuthViewModel()
+    
     var items = [ManagementViewModelItem]()
-        
+    
     var user: User
+    var view: UIView
     var expand: Bool
 
-    init(user: User, expand: Bool) {
+    // MARK: - Lifecycle
+    
+    init(user: User, view: UIView, expand: Bool) {
         self.user = user
+        self.view = view
         self.expand = expand
         
         let background = BackgroundItem(background: user.background, sesac: user.sesac)
@@ -36,13 +46,50 @@ class ManagementViewModel: NSObject {
         items.append(age)
         items.append(withdraw)
     }
+    
+    // MARK: - Action
+    
+    @objc func clickedCancel() {
+        view.center_slideViewDown(height: 156)
+    }
+    
+    @objc func clickeOk() {
+        self.authViewModel.withdrawUser { error, statusCode in
+            if let error = error {
+                print(error); return
+            }
 
-    func fetchUserData() {
-        let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
+            self.view.makeToast("회원 탈퇴 Code : \(statusCode ?? 0)", position: .center)
 
-        APIService.getUserInfo(idToken: idToken) { user, error, statusCode in
-            if let user = user {
-                self.user = user
+            // FCM 토큰 갱신
+            self.authViewModel.updateFCMtoken { error, statusCode in
+                switch statusCode {
+                case 200:
+                    print("\(statusCode ?? 0) 토큰 갱신 성공")
+
+                    self.view.makeToast("새롭게 가입해보세요!")
+                    Helper.convertNavigationRootViewController(view: self.view, controller: VerificationViewController())
+
+                default:
+                    print("Error Code:", statusCode ?? 0)
+                }
+            }
+        }
+    }
+    
+    // MARK: - Helper
+    
+    func showAlertView() {
+        alertView.titleLabel.text = "정말 탈퇴하시겠습니까?"
+        alertView.subTitleLabel.text = "탈퇴하시면 새싹 프렌즈를 이용할 수 없어요ㅠ"
+        
+        alertView.cancelButton.addTarget(self, action: #selector(clickedCancel), for: .touchUpInside)
+        alertView.okButton.addTarget(self, action: #selector(clickeOk), for: .touchUpInside)
+
+        view.IAM_center(height: 156) { popupView in
+            popupView.addSubview(self.alertView)
+            self.alertView.snp.makeConstraints { make in
+                make.edges.equalToSuperview()
             }
         }
     }
@@ -113,6 +160,8 @@ extension ManagementViewModel: UITableViewDelegate {
         if indexPath.section == 1 {
             expand.toggle()
             tableView.reloadRows(at: [IndexPath(item: 0, section: 0)], with: .fade) // 해당 cell만 reload
+        } else if indexPath.section == 6 {
+            self.showAlertView()
         }
     }
     

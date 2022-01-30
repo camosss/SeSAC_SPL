@@ -12,7 +12,7 @@ class AgeTableViewCell: UITableViewCell {
     // MARK: - Properties
 
     static let identifier = String(describing: AgeTableViewCell.self)
-
+    
     let titleLabel = Utility.managementLabel(text: "상대방 연령대")
     
     let ageRangeLabel: UILabel = {
@@ -47,8 +47,8 @@ class AgeTableViewCell: UITableViewCell {
     
     // MARK: - Action
     
-    @objc func updateAgeValue() {
-        
+    @objc func updateAgeValue(_ sender: UISlider) {
+        print(sender.value)
     }
     
     // MARK: - Helper

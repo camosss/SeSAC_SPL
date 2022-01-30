@@ -69,6 +69,7 @@
 		B49F16D427A41EE700052507 /* WithdrawTabelViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49F16D327A41EE700052507 /* WithdrawTabelViewCell.swift */; };
 		B49F16D727A4239700052507 /* ManagementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49F16D627A4239700052507 /* ManagementModel.swift */; };
 		B49F16DA27A4246B00052507 /* ManagementItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49F16D927A4246B00052507 /* ManagementItem.swift */; };
+		B4C01A7027A694DD00973E79 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C01A6F27A694DD00973E79 /* AlertView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -138,6 +139,7 @@
 		B49F16D327A41EE700052507 /* WithdrawTabelViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawTabelViewCell.swift; sourceTree = "<group>"; };
 		B49F16D627A4239700052507 /* ManagementModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagementModel.swift; sourceTree = "<group>"; };
 		B49F16D927A4246B00052507 /* ManagementItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagementItem.swift; sourceTree = "<group>"; };
+		B4C01A6F27A694DD00973E79 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		F3473E80664E30059C9CFC26 /* Pods-SeSAC_SPL.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeSAC_SPL.release.xcconfig"; path = "Target Support Files/Pods-SeSAC_SPL/Pods-SeSAC_SPL.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -281,6 +283,7 @@
 				B40CA67227999D1F00B233D7 /* BirthView.swift */,
 				B420EF4127A184830084AE6A /* MyInfoView.swift */,
 				B40AC5EF27A2E0FD0007B909 /* BackgroundImageView.swift */,
+				B4C01A6F27A694DD00973E79 /* AlertView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -586,6 +589,7 @@
 				B40AC5F727A2E8960007B909 /* TitleTableViewCell.swift in Sources */,
 				B49F16DA27A4246B00052507 /* ManagementItem.swift in Sources */,
 				B40AC5F527A2E6DC0007B909 /* BackImageTableViewCell.swift in Sources */,
+				B4C01A7027A694DD00973E79 /* AlertView.swift in Sources */,
 				B42BAFA327A239E5009DB0E4 /* UIViewController+Extension.swift in Sources */,
 				B420EF3627A135AF0084AE6A /* FriendViewController.swift in Sources */,
 				B420EF11279ECCB80084AE6A /* RegularExpression+Extension.swift in Sources */,

@@ -30,7 +30,7 @@ class ConfirmationViewController: UIViewController {
     }()
 
     private let reSendButton: UIButton = {
-        let button = Utility.button(backgroundColor: R.color.green())
+        let button = Utility.button(setTitleColor: R.color.white(), backgroundColor: R.color.green())
         button.setTitle("재전송", for: .normal)
         button.addTarget(self, action: #selector(resendButtonClicked), for: .touchUpInside)
         return button

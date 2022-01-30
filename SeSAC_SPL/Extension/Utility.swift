@@ -77,9 +77,9 @@ class Utility {
     
     // MARK: - Button
     
-    static func button(backgroundColor: UIColor!) -> UIButton {
+    static func button(setTitleColor: UIColor!, backgroundColor: UIColor!) -> UIButton {
         let button = UIButton(type: .system)
-        button.setTitleColor(.white, for: .normal)
+        button.setTitleColor(setTitleColor, for: .normal)
         button.backgroundColor = backgroundColor
         button.cornerRadius = 8
         button.titleLabel?.font = R.font.notoSansKRRegular(size: 14)
@@ -125,8 +125,8 @@ class Utility {
         slider.minimumTrackTintColor = R.color.green()
         slider.maximumTrackTintColor = R.color.gray2()
         slider.thumbTintColor = R.color.green()
-        slider.maximumValue = 100
-        slider.minimumValue = 0
+        slider.maximumValue = 65
+        slider.minimumValue = 18
         return slider
     }
 }

@@ -6,20 +6,17 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
 
 // ViewController에서는 오직 UI만 바꿔준다
-
 class ManagementInfoViewController: UIViewController {
     
     // MARK: - Properties
     
     private var user: User
     var expand = false
-
+    
     let tableView = UITableView()
-    lazy var managementViewModel = ManagementViewModel(user: user, expand: expand)
+    lazy var managementViewModel = ManagementViewModel(user: user, view: view, expand: expand)
     
     // MARK: - Lifecycle
     
@@ -70,37 +67,3 @@ class ManagementInfoViewController: UIViewController {
         tableView.register(WithdrawTabelViewCell.self, forCellReuseIdentifier: WithdrawTabelViewCell.identifier)
     }
 }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    // 회원 탈퇴 로직
-//    private func withdrawUserLogic() {
-//        self.authViewModel.withdrawUser { error, statusCode in
-//            if let error = error {
-//                print(error); return
-//            }
-//
-//            self.view.makeToast("회원 탈퇴 Code : \(statusCode ?? 0)", position: .center)
-//
-//            // FCM 토큰 갱신
-//            self.authViewModel.updateFCMtoken { error, statusCode in
-//                switch statusCode {
-//                case 200:
-//                    print("\(statusCode ?? 0) 토큰 갱신 성공")
-//
-//                    self.view.makeToast("새롭게 가입해보세요!")
-//                    Helper.convertNavigationRootViewController(view: self.view, controller: VerificationViewController())
-//
-//                default:
-//                    print("Error Code:", statusCode ?? 0)
-//                }
-//            }
-//        }
-//    }
-

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RxDataSources
 
 // MARK: - Type
 // 각 case는 각각의 TableViewCell이 필요한 데이터 형식을 나타낸다
@@ -31,3 +32,18 @@ protocol ManagementViewModelItem {
 extension ManagementViewModelItem {
     var rowCount: Int { return 1 } // 1로 고정
 }
+
+
+//// MARK: - RxDataSource
+//
+//struct ManagementSectionModel {
+//    var items: [ManagementViewModelItem]
+//}
+//
+//extension ManagementSectionModel: SectionModelType {
+//    // original에 해당되는 모델은 Section에 해당되고, items에 해당되는 인수는 rows값
+//    init(original: ManagementSectionModel, items: [ManagementViewModelItem]) {
+//        self = original
+//        self.items = items
+//    }
+//}
