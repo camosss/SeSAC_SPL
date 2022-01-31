@@ -60,15 +60,13 @@ class ManagementViewModel: NSObject {
                 print(error); return
             }
 
-            self.view.makeToast("회원 탈퇴 Code : \(statusCode ?? 0)", position: .center)
-
             // FCM 토큰 갱신
             self.authViewModel.updateFCMtoken { error, statusCode in
                 switch statusCode {
                 case 200:
                     print("\(statusCode ?? 0) 토큰 갱신 성공")
 
-                    self.view.makeToast("새롭게 가입해보세요!")
+                    self.view.makeToast("새롭게 가입해보세요!", position: .center)
                     Helper.convertNavigationRootViewController(view: self.view, controller: VerificationViewController())
 
                 default:
@@ -98,7 +96,7 @@ class ManagementViewModel: NSObject {
     func updateMyPage(completion: @escaping (Error?, Int?) -> Void) {
         let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
 
-        APIService.updateMyPage(user: user, idToken: idToken) { error, statusCode in
+        APIService.updateMyPage(idToken: idToken) { error, statusCode in
             completion(error, statusCode)
         }
     }

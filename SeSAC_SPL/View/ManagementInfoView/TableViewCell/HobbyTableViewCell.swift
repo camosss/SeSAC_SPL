@@ -20,6 +20,7 @@ class HobbyTableViewCell: UITableViewCell {
     
     let inputTextField: UITextField = {
         let tf = UITextField()
+        tf.placeholder = "취미를 입력해주세요"
         tf.font = R.font.notoSansKRRegular(size: 14)
         return tf
     }()

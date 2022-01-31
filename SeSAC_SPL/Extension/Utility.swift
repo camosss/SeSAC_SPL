@@ -102,6 +102,26 @@ class Utility {
         return button
     }
     
+    static func actionButton() -> UIButton {
+        let button = UIButton(type: .system)
+        button.tintColor = .white
+        button.backgroundColor = R.color.black()
+        button.layer.cornerRadius = 64/2
+        button.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
+        return button
+    }
+    
+    static func mapGenderButton(title: String) -> UIButton {
+        let button = UIButton(type: .system)
+        button.setTitle(title, for: .normal)
+        button.setTitleColor(R.color.black(), for: .normal)
+        button.backgroundColor = R.color.white()
+        button.titleLabel?.font = R.font.notoSansKRMedium(size: 14)
+        button.widthAnchor.constraint(equalToConstant: 48).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 48).isActive = true
+        return button
+    }
+    
     // MARK: - StackView
     
     static func stackView(axis: NSLayoutConstraint.Axis, spacing: CGFloat, distribution: UIStackView.Distribution, arrangedSubviews: [UIView]) -> UIStackView {

@@ -9,7 +9,7 @@ import UIKit
 
 class FriendViewController: UIViewController {
     
-    // MARK: - Helper
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()

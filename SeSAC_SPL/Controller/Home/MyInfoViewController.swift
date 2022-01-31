@@ -52,9 +52,19 @@ class MyInfoViewController: UIViewController {
     
     private func fetchUser() {
         authViewModel.getUserInfo { user, error, statusCode in
-            if let user = user {
-                self.user = user
-                self.configureTableViewDataSource(user: user)
+            print("[MyInfo Page] statusCode", statusCode ?? 0)
+            
+            switch statusCode {
+            case 200:
+                if let user = user {
+                    self.user = user
+                    self.configureTableViewDataSource(user: user)
+                }
+            case 401:
+                print("[MyInfo Page] statusCode", statusCode ?? 0)
+                self.tableView.reloadData()
+            default:
+                print("[MyInfo Page] statusCode", statusCode ?? 0)
             }
         }
     }

@@ -28,6 +28,6 @@ class MainTapController: UITabBarController {
         let friend = Helper.templateNavigationController(image: R.image.friend()!, title: "새싹친구", rootViewController: FriendViewController())
         let myInfo = Helper.templateNavigationController(image: R.image.myinfo()!, title: "내정보", rootViewController: MyInfoViewController())
         
-        viewControllers = [myInfo, home, shop, friend]
+        viewControllers = [home, shop, friend, myInfo]
     }
 }

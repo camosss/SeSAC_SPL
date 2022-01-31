@@ -25,7 +25,7 @@ class GenderTableViewCell: UITableViewCell {
     var item: ManagementViewModelItem? {
         didSet {
             guard let item = item as? GenderItem else { return }
-            
+
             if item.gender == 0 {
                 womanButton.setTitleColor(R.color.white(), for: .normal)
                 womanButton.backgroundColor = R.color.green()

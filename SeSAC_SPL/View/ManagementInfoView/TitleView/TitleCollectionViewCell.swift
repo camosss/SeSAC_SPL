@@ -107,6 +107,5 @@ extension TitleTableViewCell: UICollectionViewDelegateFlowLayout {
         
         let height = self.titleCollectionView.collectionViewLayout.collectionViewContentSize.height + CGFloat(50)
         return CGSize(width: targetSize.width, height: height)
-        
     }
 }

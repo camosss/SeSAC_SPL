@@ -50,6 +50,7 @@ class AgeTableViewCell: UITableViewCell {
     // MARK: - Action
     
     @objc func updateAgeValue(_ sender: UISlider) {
+        ageRangeLabel.text = "\(18) - \(Int(sender.value))"
         UserDefaults.standard.set(18, forKey: "ageMin")
         UserDefaults.standard.set(Int(sender.value), forKey: "ageMax")
     }

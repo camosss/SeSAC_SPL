@@ -51,7 +51,7 @@ class ManagementInfoViewController: UIViewController {
             case 200:
                 print("업데이트 성공")
                 self.view.makeToast("내 정보 업데이트에 성공했습니다.", position: .center)
-
+                
             case 401:
                 print("\(statusCode ?? 0) Firebase Token Error")
                 Helper.getIDTokenRefresh {

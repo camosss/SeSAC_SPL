@@ -121,7 +121,7 @@ class APIService {
         }
     }
     
-    static func updateMyPage(user: User, idToken: String, completion: @escaping (Error?, Int?) -> Void) {
+    static func updateMyPage(idToken: String, completion: @escaping (Error?, Int?) -> Void) {
         
         let headers: HTTPHeaders = [
             "idtoken": idToken,
