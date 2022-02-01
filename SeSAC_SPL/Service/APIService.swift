@@ -96,11 +96,12 @@ class APIService {
     static func updateFCMtoken(idToken: String, completion: @escaping (Error?, Int?) -> Void) {
         
         let headers: HTTPHeaders = [
-            "idtoken": idToken
+            "idtoken": idToken,
+            "Content-Type": "application/x-www-form-urlencoded"
         ]
         
         let FCMtoken = UserDefaults.standard.string(forKey: "FCMToken") ?? ""
-
+        
         let parameters : Parameters = [
             "FCMtoken": FCMtoken
         ]

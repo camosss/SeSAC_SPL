@@ -85,9 +85,11 @@ class VerificationViewController: UIViewController {
 
         output.sceneTransition
             .subscribe { _ in
-                let controller = ConfirmationViewController()
-                controller.phoneNumber = self.phoneNumber
-                self.navigationController?.pushViewController(controller, animated: true)
+                self.requestVerification {
+                    let controller = ConfirmationViewController()
+                    controller.phoneNumber = self.phoneNumber
+                    self.navigationController?.pushViewController(controller, animated: true)
+                }
             }.disposed(by: disposeBag)
     }
     

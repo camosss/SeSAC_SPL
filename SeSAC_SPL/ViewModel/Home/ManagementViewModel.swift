@@ -60,14 +60,12 @@ class ManagementViewModel: NSObject {
             // FCM 토큰 갱신
             self.updateFCMtoken { error, statusCode in
                 switch statusCode {
-                case 200:
+                case 200, 403:
                     print("\(statusCode ?? 0) 토큰 갱신 성공")
-
                     self.view.makeToast("새롭게 가입해보세요!", position: .center)
                     Helper.convertNavigationRootViewController(view: self.view, controller: VerificationViewController())
-
                 default:
-                    print("Error Code:", statusCode ?? 0)
+                    print("update token Error Code:", statusCode ?? 0)
                 }
             }
         }
