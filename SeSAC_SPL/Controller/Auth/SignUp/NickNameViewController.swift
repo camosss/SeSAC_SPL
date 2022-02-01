@@ -13,7 +13,7 @@ class NickNameViewController: UIViewController {
     // MARK: - Properties
     
     let authView = AuthView()
-    let viewModel = ValidationViewModel()
+    let viewModel = NickNameViewModel()
     let disposeBag = DisposeBag()
     
     // MARK: - Lifecycle
@@ -46,14 +46,28 @@ class NickNameViewController: UIViewController {
     
     private func handleButtonEvent() {
         
-        let input = ValidationViewModel.Input(text: authView.inputTextField.rx.text, tap: authView.nextButton.rx.tap)
+        let input = NickNameViewModel.Input(text: authView.inputTextField.rx.text, tap: authView.nextButton.rx.tap)
         let output = viewModel.nickNameTransform(input: input)
         
-        Helper.handleButtonEvent(authView: authView, output: output, disposeBag: disposeBag) {
-            UserDefaults.standard.set(self.authView.inputTextField.text, forKey: "nickName")
+        output.validStatus
+            .map { $0 ? R.color.green() : R.color.gray6() }
+            .bind(to: authView.nextButton.rx.backgroundColor)
+            .disposed(by: disposeBag)
+        
+        output.validStatus
+            .bind(to: authView.nextButton.rx.isEnabled)
+            .disposed(by: disposeBag)
 
-            let controller = BirthViewController()
-            self.navigationController?.pushViewController(controller, animated: true)
-        }
+        output.validText
+            .asDriver()
+            .drive(authView.inputTextField.rx.text)
+            .disposed(by: disposeBag)
+
+        output.sceneTransition
+            .subscribe { _ in
+                UserDefaults.standard.set(self.authView.inputTextField.text, forKey: "nickName")
+                let controller = BirthViewController()
+                self.navigationController?.pushViewController(controller, animated: true)
+            }.disposed(by: disposeBag)
     }
 }

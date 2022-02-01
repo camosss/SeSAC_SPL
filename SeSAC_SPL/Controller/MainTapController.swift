@@ -9,10 +9,6 @@ import UIKit
 
 class MainTapController: UITabBarController {
     
-    // MARK: - Properties
-    
-    let viewModel = AuthViewModel()
-    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {

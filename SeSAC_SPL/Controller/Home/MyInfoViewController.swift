@@ -8,7 +8,6 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import Alamofire
 
 class MyInfoViewController: UIViewController {
     
@@ -17,9 +16,9 @@ class MyInfoViewController: UIViewController {
     private var user: User?
 
     let tableView = UITableView()
-
-    let authViewModel = AuthViewModel()
     let disposeBag = DisposeBag()
+    
+    lazy var viewModel = MyInfoViewModel()
     
     // MARK: - Lifecycle
     
@@ -51,20 +50,12 @@ class MyInfoViewController: UIViewController {
     }
     
     private func fetchUser() {
-        authViewModel.getUserInfo { user, error, statusCode in
+        viewModel.getUserInfo { user, error, statusCode in
             print("[MyInfo Page] statusCode", statusCode ?? 0)
-            
-            switch statusCode {
-            case 200:
-                if let user = user {
-                    self.user = user
-                    self.configureTableViewDataSource(user: user)
-                }
-            case 401:
-                print("[MyInfo Page] statusCode", statusCode ?? 0)
-                self.tableView.reloadData()
-            default:
-                print("[MyInfo Page] statusCode", statusCode ?? 0)
+
+            if let user = user {
+                self.user = user
+                self.configureTableViewDataSource(user: user)
             }
         }
     }
@@ -77,14 +68,13 @@ class MyInfoViewController: UIViewController {
     }
     
     private func configureTableViewDataSource(user: User) {
-        let viewModel = MyInfoViewModel(user: user)
         
         viewModel.myinfos
             .asDriver()
             .drive(tableView.rx.items) { (tableView, row, item) -> UITableViewCell in
                 if row == 0 {
                     let cell = tableView.dequeueReusableCell(withIdentifier: MyInfoHeaderTableViewCell.identifier, for: IndexPath.init(row: row, section: 0)) as! MyInfoHeaderTableViewCell
-                    cell.updateUI(myInfo: item)
+                    cell.updateUI(user: user, myInfo: item)
                     return cell
                 } else {
                     let cell = tableView.dequeueReusableCell(withIdentifier: MyInfoTableViewCell.identifier, for: IndexPath(row: row, section: 0)) as! MyInfoTableViewCell

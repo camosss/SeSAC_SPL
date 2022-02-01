@@ -56,8 +56,8 @@ class MyInfoHeaderTableViewCell: UITableViewCell {
         }
     }
     
-    func updateUI(myInfo: MyInfo) {
+    func updateUI(user: User, myInfo: MyInfo) {
         myinfoView.titleImageView.image = myInfo.image
-        myinfoView.titleLabel.text = myInfo.item
+        myinfoView.titleLabel.text = user.nick
     }
 }

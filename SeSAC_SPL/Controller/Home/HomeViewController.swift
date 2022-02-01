@@ -52,7 +52,6 @@ class HomeViewController: UIViewController {
         [mapView, actionButton, buttonView].forEach {
             view.addSubview($0)
         }
-        
         mapView.frame = view.bounds
         
         actionButton.snp.makeConstraints { make in
@@ -69,9 +68,8 @@ class HomeViewController: UIViewController {
         }
     }
     
-    private func setAnnotation(title: String, location: CLLocationCoordinate2D) {
+    private func setAnnotation(location: CLLocationCoordinate2D) {
         let annotation = MKPointAnnotation()
-        annotation.title = title
         annotation.coordinate = location
         mapView.addAnnotation(annotation)
     }
@@ -126,7 +124,7 @@ class HomeViewController: UIViewController {
                                                  longitudinalMeters: regionInMeters)
             mapView.setRegion(region, animated: true)
             
-            setAnnotation(title: "현재 위치", location: location)
+            setAnnotation(location: location)
         }
     }
     
@@ -137,7 +135,7 @@ class HomeViewController: UIViewController {
                                         longitudinalMeters: regionInMeters)
         mapView.setRegion(region, animated: true)
 
-        setAnnotation(title: "영등포 캠퍼스", location: coordinate)
+        setAnnotation(location: coordinate)
     }
 
 }

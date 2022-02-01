@@ -13,7 +13,7 @@ class EmailViewController: UIViewController {
     // MARK: - Properties
     
     let authView = AuthView()
-    let viewModel = ValidationViewModel()
+    let viewModel = EmailViewModel()
     let disposeBag = DisposeBag()
     
     // MARK: - Lifecycle
@@ -44,14 +44,29 @@ class EmailViewController: UIViewController {
     }
     
     private func handleButtonEvent() {
-        let input = ValidationViewModel.Input(text: authView.inputTextField.rx.text, tap: authView.nextButton.rx.tap)
+        let input = EmailViewModel.Input(text: authView.inputTextField.rx.text, tap: authView.nextButton.rx.tap)
         let output = viewModel.emailTransform(input: input)
         
-        Helper.handleButtonEvent(authView: authView, output: output, disposeBag: disposeBag) {
-            UserDefaults.standard.set(self.authView.inputTextField.text, forKey: "email")
+        output.validStatus
+            .map { $0 ? R.color.green() : R.color.gray6() }
+            .bind(to: authView.nextButton.rx.backgroundColor)
+            .disposed(by: disposeBag)
+        
+        output.validStatus
+            .bind(to: authView.nextButton.rx.isEnabled)
+            .disposed(by: disposeBag)
 
-            let controller = GenderViewController()
-            self.navigationController?.pushViewController(controller, animated: true)
-        }
+        output.validText
+            .asDriver()
+            .drive(authView.inputTextField.rx.text)
+            .disposed(by: disposeBag)
+
+        output.sceneTransition
+            .subscribe { _ in
+                UserDefaults.standard.set(self.authView.inputTextField.text, forKey: "email")
+
+                let controller = GenderViewController()
+                self.navigationController?.pushViewController(controller, animated: true)
+            }.disposed(by: disposeBag)
     }
 }

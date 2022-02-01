@@ -1,17 +1,38 @@
 //
-//  AuthViewModel.swift
+//  ConfirmationViewModel.swift
 //  SeSAC_SPL
 //
-//  Created by 강호성 on 2022/01/24.
+//  Created by 강호성 on 2022/02/01.
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 import FirebaseAuth
 import Alamofire
 
-class AuthViewModel {
-        
-    // MARK: - Request, Get Verification Code
+class ConfirmationViewModel: CommonViewModel {
+    
+    var validText = BehaviorRelay<String>(value: "")
+
+    struct Input {
+        let text: ControlProperty<String?>
+        let tap: ControlEvent<Void>
+    }
+    
+    struct Output {
+        let validStatus: Observable<Bool>
+        let validText: BehaviorRelay<String>
+        let sceneTransition: ControlEvent<Void>
+    }
+    
+    func certificationTransform(input: Input) -> Output {
+        let result = input.text
+            .orEmpty
+            .map { $0.isVaildVerificationCode() }
+            .share(replay: 1, scope: .whileConnected)
+        return Output(validStatus: result, validText: validText, sceneTransition: input.tap)
+    }
     
     func requestVerificationCode(phoneNumber: String, completion: @escaping (String?, Error?) -> Void) {
         Auth.auth().languageCode = "ko"
@@ -52,8 +73,6 @@ class AuthViewModel {
         }
     }
     
-    // MARK: - API
-    
     func getUserInfo(completion: @escaping (User?, Error?, Int?) -> Void) {
         let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
 
@@ -80,52 +99,4 @@ class AuthViewModel {
         }
     }
     
-    func signUpUserInfo(completion: @escaping (Error?, Int?) -> Void) {
-        let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
-
-        APIService.signUpUserInfo(idToken: idToken) { error, statusCode in
-            
-            switch statusCode {
-            case 200:
-                UserDefaults.standard.set("alreadySignUp", forKey: "startView")
-            case 401:
-                Helper.getIDTokenRefresh {
-                    print("[signUpUserInfo] 토큰 갱신 실패", statusCode ?? 0)
-                } onSuccess: {
-                    print("[signUpUserInfo] 토큰 갱신 성공", statusCode ?? 0)
-                }
-
-            default:
-                print("signUpUserInfo - statusCode", statusCode ?? 0)
-            }
-            
-            completion(error, statusCode)
-        }
-    }
-    
-    func withdrawUser(completion: @escaping (Error?, Int?) -> Void) {
-        let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
-
-        APIService.withdrawSignUp(idToken: idToken) { error, statusCode in
-            
-            switch statusCode {
-            case 200:
-                UserDefaults.standard.set("withdrawUser", forKey: "startView")
-            case 406:
-                UserDefaults.standard.set("withdrawUser", forKey: "startView")
-            default:
-                print("withdrawUser - statusCode", statusCode ?? 0)
-            }
-            
-            completion(error, statusCode)
-        }
-    }
-    
-    func updateFCMtoken(completion: @escaping (Error?, Int?) -> Void) {
-        let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
-        
-        APIService.updateFCMtoken(idToken: idToken) { error, statusCode in
-            completion(error, statusCode)
-        }
-    }
 }

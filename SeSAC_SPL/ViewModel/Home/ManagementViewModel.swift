@@ -9,14 +9,11 @@ import UIKit
 import IAMPopup
 
 // ViewModel - Model을 업데이트하고 그 결과를 다시 받아서 View에 전달하여 UI를 업데이트
-
 class ManagementViewModel: NSObject {
     
     // MARK: - Properties
     
     let alertView = AlertView()
-    let authViewModel = AuthViewModel()
-    
     var items = [ManagementViewModelItem]()
     
     var user: User
@@ -55,13 +52,13 @@ class ManagementViewModel: NSObject {
     
     // 회원 탈퇴
     @objc func clickeOk() {
-        self.authViewModel.withdrawUser { error, statusCode in
+        self.withdrawUser { error, statusCode in
             if let error = error {
                 print(error); return
             }
 
             // FCM 토큰 갱신
-            self.authViewModel.updateFCMtoken { error, statusCode in
+            self.updateFCMtoken { error, statusCode in
                 switch statusCode {
                 case 200:
                     print("\(statusCode ?? 0) 토큰 갱신 성공")
@@ -90,6 +87,32 @@ class ManagementViewModel: NSObject {
             self.alertView.snp.makeConstraints { make in
                 make.edges.equalToSuperview()
             }
+        }
+    }
+    
+    func withdrawUser(completion: @escaping (Error?, Int?) -> Void) {
+        let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
+
+        APIService.withdrawSignUp(idToken: idToken) { error, statusCode in
+            
+            switch statusCode {
+            case 200:
+                UserDefaults.standard.set("withdrawUser", forKey: "startView")
+            case 406:
+                UserDefaults.standard.set("withdrawUser", forKey: "startView")
+            default:
+                print("withdrawUser - statusCode", statusCode ?? 0)
+            }
+            
+            completion(error, statusCode)
+        }
+    }
+    
+    func updateFCMtoken(completion: @escaping (Error?, Int?) -> Void) {
+        let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
+        
+        APIService.updateFCMtoken(idToken: idToken) { error, statusCode in
+            completion(error, statusCode)
         }
     }
     

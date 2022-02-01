@@ -16,7 +16,7 @@ class ManagementInfoViewController: UIViewController {
     var expand = false
     
     let tableView = UITableView()
-    lazy var managementViewModel = ManagementViewModel(user: user, view: view, expand: expand)
+    lazy var viewModel = ManagementViewModel(user: user, view: view, expand: expand)
     
     // MARK: - Lifecycle
     
@@ -26,7 +26,7 @@ class ManagementInfoViewController: UIViewController {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError("init(coder:) has not been implemented") 
     }
     
     override func viewDidLoad() {
@@ -46,7 +46,7 @@ class ManagementInfoViewController: UIViewController {
     // MARK: - Action
     
     @objc func didTapSave() {
-        managementViewModel.updateMyPage { error, statusCode in
+        viewModel.updateMyPage { error, statusCode in
             switch statusCode {
             case 200:
                 print("업데이트 성공")
@@ -76,8 +76,8 @@ class ManagementInfoViewController: UIViewController {
         tableView.backgroundColor = .white
         tableView.separatorStyle = .none
 
-        tableView.dataSource = managementViewModel
-        tableView.delegate = managementViewModel
+        tableView.dataSource = viewModel
+        tableView.delegate = viewModel
         
         tableView.estimatedRowHeight = 310
         tableView.rowHeight = UITableView.automaticDimension

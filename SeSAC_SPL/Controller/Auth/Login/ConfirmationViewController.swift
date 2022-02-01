@@ -7,15 +7,13 @@
 
 import UIKit
 import RxSwift
-import FirebaseAuth
 
 class ConfirmationViewController: UIViewController {
     
     // MARK: - Properties
     
     let authView = AuthView()
-    let authViewModel = AuthViewModel()
-    let viewModel = ValidationViewModel()
+    let viewModel = ConfirmationViewModel()
     let disposeBag = DisposeBag()
     
     var timer: Timer!
@@ -60,7 +58,7 @@ class ConfirmationViewController: UIViewController {
     @objc func resendButtonClicked() {
         stopTimer()
         
-        authViewModel.requestVerificationCode(phoneNumber: phoneNumber) { verificationID, error in
+        viewModel.requestVerificationCode(phoneNumber: phoneNumber) { verificationID, error in
             if error == nil {
                 print("verificationID: \(verificationID ?? "")")
                 self.startTimer()
@@ -104,12 +102,27 @@ class ConfirmationViewController: UIViewController {
     }
     
     private func handleButtonEvent() {
-        let input = ValidationViewModel.Input(text: authView.inputTextField.rx.text, tap: authView.nextButton.rx.tap)
+        let input = ConfirmationViewModel.Input(text: authView.inputTextField.rx.text, tap: authView.nextButton.rx.tap)
         let output = viewModel.certificationTransform(input: input)
         
-        Helper.handleButtonEvent(authView: authView, output: output, disposeBag: disposeBag) {
-            self.getVerificationCode()
-        }
+        output.validStatus
+            .map { $0 ? R.color.green() : R.color.gray6() }
+            .bind(to: authView.nextButton.rx.backgroundColor)
+            .disposed(by: disposeBag)
+        
+        output.validStatus
+            .bind(to: authView.nextButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+
+        output.validText
+            .asDriver()
+            .drive(authView.inputTextField.rx.text)
+            .disposed(by: disposeBag)
+
+        output.sceneTransition
+            .subscribe { _ in
+                self.getVerificationCode()
+            }.disposed(by: disposeBag)
     }
     
     private func getVerificationCode() {
@@ -121,10 +134,10 @@ class ConfirmationViewController: UIViewController {
             self.view.makeToast("인증번호를 입력하세요.", position: .center); return
         }
         
-        authViewModel.getVerificationCode(verificationID: verificationID, verificationCode: verificationCode) { _, error in
+        viewModel.getVerificationCode(verificationID: verificationID, verificationCode: verificationCode) { _, error in
             if error != nil { self.view.makeToast("에러가 발생했습니다. 잠시 후 다시 시도해주세요", position: .center); return }
 
-            self.authViewModel.getUserInfo { user, error, statusCode in
+            self.viewModel.getUserInfo { user, error, statusCode in
                 switch statusCode {
                 case 200:
                     print("\(statusCode ?? 0) 성공")

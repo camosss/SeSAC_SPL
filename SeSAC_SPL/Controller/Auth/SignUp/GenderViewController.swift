@@ -20,7 +20,7 @@ class GenderViewController: UIViewController {
     var genderValue: Int = -1
     
     let authView = AuthView()
-    let authViewModel = AuthViewModel()
+    let viewModel = GenderViewModel()
     let disposeBag = DisposeBag()
     
     let manButton: GenderButton = {
@@ -103,7 +103,7 @@ class GenderViewController: UIViewController {
     }
     
     private func signUpUser(completion: @escaping () -> ()) {
-        authViewModel.signUpUserInfo { error, statusCode in
+        viewModel.signUpUserInfo { error, statusCode in
             switch statusCode {
             case 200:
                 print("\(statusCode ?? 0) 회원가입 성공")
@@ -122,11 +122,7 @@ class GenderViewController: UIViewController {
 
             case 401:
                 print("\(statusCode ?? 0) Firebase Token Error")
-                Helper.getIDTokenRefresh {
-                    self.view.makeToast("에러가 발생했습니다. 잠시 후 다시 시도해주세요.", position: .center); return
-                } onSuccess: {
-                    print("토큰 갱신 성공")
-                }
+                
             default:
                 print("Error Code:", statusCode ?? 0)
             }

@@ -13,7 +13,6 @@ class BirthViewController: UIViewController {
     // MARK: - Properties
         
     let birthView = BirthView()
-    let viewModel = ValidationViewModel()
     let disposeBag = DisposeBag()
     let datePicker = UIDatePicker()
     

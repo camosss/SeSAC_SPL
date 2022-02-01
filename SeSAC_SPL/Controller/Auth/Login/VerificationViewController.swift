@@ -8,16 +8,13 @@
 import UIKit
 import Toast_Swift
 import RxSwift
-import RxCocoa
-import FirebaseAuth
 
 class VerificationViewController: UIViewController {
     
     // MARK: - Properties
     
     let authView = AuthView()
-    let authViewModel = AuthViewModel()
-    let viewModel = ValidationViewModel()
+    let viewModel = VerificationViewModel()
     let disposeBag = DisposeBag()
 
     let onboardingService = OnboardingService()
@@ -69,20 +66,33 @@ class VerificationViewController: UIViewController {
     }
     
     private func handleButtonEvent() {
-        let input = ValidationViewModel.Input(text: authView.inputTextField.rx.text, tap: authView.nextButton.rx.tap)
+        let input = VerificationViewModel.Input(text: authView.inputTextField.rx.text, tap: authView.nextButton.rx.tap)
         let output = viewModel.phoneNumberTransform(input: input)
         
-        Helper.handleButtonEvent(authView: authView, output: output, disposeBag: disposeBag) {
-            self.requestVerification {
+        output.validStatus
+            .map { $0 ? R.color.green() : R.color.gray6() }
+            .bind(to: authView.nextButton.rx.backgroundColor)
+            .disposed(by: disposeBag)
+        
+        output.validStatus
+            .bind(to: authView.nextButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+
+        output.validText
+            .asDriver()
+            .drive(authView.inputTextField.rx.text)
+            .disposed(by: disposeBag)
+
+        output.sceneTransition
+            .subscribe { _ in
                 let controller = ConfirmationViewController()
                 controller.phoneNumber = self.phoneNumber
                 self.navigationController?.pushViewController(controller, animated: true)
-            }
-        }
+            }.disposed(by: disposeBag)
     }
     
     private func requestVerification(completion: @escaping () -> ()) {
-        authViewModel.requestVerificationCode(phoneNumber: phoneNumber) { verificationID, error in
+        viewModel.requestVerificationCode(phoneNumber: phoneNumber) { verificationID, error in
             if error == nil {
                 print("verificationID: \(verificationID ?? "")")
                 completion()
