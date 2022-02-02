@@ -13,7 +13,7 @@ class GenderViewModel {
         let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
         let request = SignUpRequest(phoneNumber: "", FCMtoken: "", nick: "", birth: "", email: "", gender: 0).toDomain
 
-        AuthAPI.signUpUser(idToken: idToken, request: request) { failed, statusCode in
+        UserAPI.signUpUser(idToken: idToken, request: request) { failed, statusCode in
             switch statusCode {
             case 200:
                 UserDefaults.standard.set("alreadySignUp", forKey: "startView")

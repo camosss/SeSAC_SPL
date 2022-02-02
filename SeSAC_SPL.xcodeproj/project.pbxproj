@@ -22,7 +22,7 @@
 		B40CA684279D6EB900B233D7 /* CommonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40CA683279D6EB900B233D7 /* CommonViewModel.swift */; };
 		B420EF0F279EC9A30084AE6A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B420EF0E279EC9A30084AE6A /* User.swift */; };
 		B420EF11279ECCB80084AE6A /* RegularExpression+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B420EF10279ECCB80084AE6A /* RegularExpression+Extension.swift */; };
-		B420EF15279EF4350084AE6A /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B420EF14279EF4350084AE6A /* AuthAPI.swift */; };
+		B420EF15279EF4350084AE6A /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B420EF14279EF4350084AE6A /* UserAPI.swift */; };
 		B420EF1D279FDC890084AE6A /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B420EF1C279FDC890084AE6A /* Helper.swift */; };
 		B420EF2127A04D460084AE6A /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B420EF2027A04D460084AE6A /* String+Extension.swift */; };
 		B420EF2827A0529A0084AE6A /* NotoSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = B420EF2627A0529A0084AE6A /* NotoSansKR-Medium.otf */; };
@@ -74,7 +74,7 @@
 		B4C01A7D27A91AD000973E79 /* EmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C01A7C27A91AD000973E79 /* EmailViewModel.swift */; };
 		B4C01A7F27A91B1E00973E79 /* GenderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C01A7E27A91B1E00973E79 /* GenderViewModel.swift */; };
 		B4C01A8427A93CE500973E79 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C01A8327A93CE500973E79 /* HomeViewModel.swift */; };
-		B4C01A8927AA464200973E79 /* AuthTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C01A8827AA464200973E79 /* AuthTarget.swift */; };
+		B4C01A8927AA464200973E79 /* UserTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C01A8827AA464200973E79 /* UserTarget.swift */; };
 		B4C01A8C27AA4DD700973E79 /* SignUpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C01A8B27AA4DD600973E79 /* SignUpRequest.swift */; };
 		B4C01A8E27AA4E5300973E79 /* FCMtokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C01A8D27AA4E5300973E79 /* FCMtokenRequest.swift */; };
 		B4C01A9027AA4E7700973E79 /* MypageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C01A8F27AA4E7700973E79 /* MypageRequest.swift */; };
@@ -97,7 +97,7 @@
 		B40CA683279D6EB900B233D7 /* CommonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewModel.swift; sourceTree = "<group>"; };
 		B420EF0E279EC9A30084AE6A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B420EF10279ECCB80084AE6A /* RegularExpression+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RegularExpression+Extension.swift"; sourceTree = "<group>"; };
-		B420EF14279EF4350084AE6A /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
+		B420EF14279EF4350084AE6A /* UserAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
 		B420EF1C279FDC890084AE6A /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		B420EF2027A04D460084AE6A /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		B420EF2627A0529A0084AE6A /* NotoSansKR-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSansKR-Medium.otf"; path = "SeSAC_SPL/Resource/NotoSansKR-Medium.otf"; sourceTree = SOURCE_ROOT; };
@@ -152,7 +152,7 @@
 		B4C01A7C27A91AD000973E79 /* EmailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailViewModel.swift; sourceTree = "<group>"; };
 		B4C01A7E27A91B1E00973E79 /* GenderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderViewModel.swift; sourceTree = "<group>"; };
 		B4C01A8327A93CE500973E79 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		B4C01A8827AA464200973E79 /* AuthTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTarget.swift; sourceTree = "<group>"; };
+		B4C01A8827AA464200973E79 /* UserTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTarget.swift; sourceTree = "<group>"; };
 		B4C01A8B27AA4DD600973E79 /* SignUpRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequest.swift; sourceTree = "<group>"; };
 		B4C01A8D27AA4E5300973E79 /* FCMtokenRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FCMtokenRequest.swift; sourceTree = "<group>"; };
 		B4C01A8F27AA4E7700973E79 /* MypageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageRequest.swift; sourceTree = "<group>"; };
@@ -210,7 +210,7 @@
 		B420EF17279EFE350084AE6A /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				B4C01A8727AA463100973E79 /* APIs */,
+				B4C01A9227AA788D00973E79 /* User */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -451,8 +451,8 @@
 		B4C01A8727AA463100973E79 /* APIs */ = {
 			isa = PBXGroup;
 			children = (
-				B4C01A8827AA464200973E79 /* AuthTarget.swift */,
-				B420EF14279EF4350084AE6A /* AuthAPI.swift */,
+				B4C01A8827AA464200973E79 /* UserTarget.swift */,
+				B420EF14279EF4350084AE6A /* UserAPI.swift */,
 				B4C01A8A27AA4DC400973E79 /* Models */,
 			);
 			path = APIs;
@@ -466,6 +466,14 @@
 				B4C01A8F27AA4E7700973E79 /* MypageRequest.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		B4C01A9227AA788D00973E79 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				B4C01A8727AA463100973E79 /* APIs */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		C57D1C8BA086EA77486AC432 /* Pods */ = {
@@ -670,9 +678,9 @@
 				B40CA684279D6EB900B233D7 /* CommonViewModel.swift in Sources */,
 				B40CA671279967F600B233D7 /* BirthViewController.swift in Sources */,
 				B40AC5F027A2E0FD0007B909 /* BackgroundImageView.swift in Sources */,
-				B420EF15279EF4350084AE6A /* AuthAPI.swift in Sources */,
+				B420EF15279EF4350084AE6A /* UserAPI.swift in Sources */,
 				B420EF3227A135A10084AE6A /* HomeViewController.swift in Sources */,
-				B4C01A8927AA464200973E79 /* AuthTarget.swift in Sources */,
+				B4C01A8927AA464200973E79 /* UserTarget.swift in Sources */,
 				B433B8C82798306600AEA607 /* OnboardingSlide.swift in Sources */,
 				B40AC5F927A2F4FA0007B909 /* TitleCollectionViewCell.swift in Sources */,
 				B4C01A8427A93CE500973E79 /* HomeViewModel.swift in Sources */,

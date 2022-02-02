@@ -1,5 +1,5 @@
 //
-//  APIService.swift
+//  UserAPI.swift
 //  SeSAC_SPL
 //
 //  Created by 강호성 on 2022/01/24.
@@ -8,9 +8,9 @@
 import Foundation
 import Moya
 
-class AuthAPI {
+class UserAPI {
     
-    static private let service = MoyaProvider<AuthTarget>()
+    static private let service = MoyaProvider<UserTarget>()
     
     static func getUser(idToken: String, completion: @escaping (_ succeed: User?, _ failed: Error?, _ statusCode: Int?) -> Void) {
         

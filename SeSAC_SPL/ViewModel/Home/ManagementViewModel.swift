@@ -91,7 +91,7 @@ class ManagementViewModel: NSObject {
     func withdrawUser(completion: @escaping (Error?, Int?) -> Void) {
         let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
 
-        AuthAPI.withdrawSignUp(idToken: idToken) { failed, statusCode in
+        UserAPI.withdrawSignUp(idToken: idToken) { failed, statusCode in
             
             switch statusCode {
             case 200:
@@ -110,7 +110,7 @@ class ManagementViewModel: NSObject {
         let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
         let request = FCMtokenRequest(FCMtoken: "").toDomain
         
-        AuthAPI.updateFCMtoken(idToken: idToken, request: request, completion: { failed, statusCode in
+        UserAPI.updateFCMtoken(idToken: idToken, request: request, completion: { failed, statusCode in
             completion(failed, statusCode)
         })
     }
@@ -119,7 +119,7 @@ class ManagementViewModel: NSObject {
         let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
         let request = MypageRequest(searchable: 0, ageMin: 0, ageMax: 0, gender: 0, hobby: "").toDomain
         
-        AuthAPI.updateMyPage(idToken: idToken, request: request) { failed, statusCode in
+        UserAPI.updateMyPage(idToken: idToken, request: request) { failed, statusCode in
             switch statusCode {
             case 200:
                 print("업데이트 성공")

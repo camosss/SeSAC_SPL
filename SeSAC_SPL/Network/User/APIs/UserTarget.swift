@@ -1,5 +1,5 @@
 //
-//  AuthTarget.swift
+//  UserTarget.swift
 //  SeSAC_SPL
 //
 //  Created by 강호성 on 2022/02/02.
@@ -7,7 +7,7 @@
 
 import Moya
 
-enum AuthTarget {
+enum UserTarget {
     case getUser(idToken: String)
     case signUp(idToken: String, SignUpRequest)
     case withdraw(idToken: String)
@@ -15,7 +15,7 @@ enum AuthTarget {
     case updateMypage(idToken: String, MypageRequest)
 }
 
-extension AuthTarget: TargetType {
+extension UserTarget: TargetType {
     var baseURL: URL {
         return URL(string: "http://test.monocoding.com:35484/")!
     }

@@ -75,7 +75,7 @@ class ConfirmationViewModel: CommonViewModel {
     func getUserInfo(completion: @escaping (User?, Error?, Int?) -> Void) {
         let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
 
-        AuthAPI.getUser(idToken: idToken) { succeed, failed, statusCode in
+        UserAPI.getUser(idToken: idToken) { succeed, failed, statusCode in
             switch statusCode {
             case 200:
                 UserDefaults.standard.set("alreadySignUp", forKey: "startView")
