@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import RxDataSources
 
 // MARK: - Type
 // 각 case는 각각의 TableViewCell이 필요한 데이터 형식을 나타낸다

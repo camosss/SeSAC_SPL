@@ -7,7 +7,6 @@
 
 import Foundation
 import RxCocoa
-import Alamofire
 
 class MyInfoViewModel: NSObject {
 
@@ -23,27 +22,30 @@ class MyInfoViewModel: NSObject {
     func getUserInfo(completion: @escaping (User?, Error?, Int?) -> Void) {
         let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
 
-        APIService.getUserInfo(idToken: idToken) { user, error, statusCode in
-            
+        AuthAPI.getUser(idToken: idToken) { succeed, failed, statusCode in
             switch statusCode {
             case 200:
                 UserDefaults.standard.set("alreadySignUp", forKey: "startView")
-                
+                completion(succeed, nil, statusCode)
+
             case 201:
                 UserDefaults.standard.set("successLogin", forKey: "startView")
-                
+                completion(succeed, nil, statusCode)
+
             case 401:
                 Helper.getIDTokenRefresh {
                     print("[getUserInfo] - 토큰 갱신 실패", statusCode ?? 0)
+                    completion(nil, failed, statusCode)
+
                 } onSuccess: {
                     print("[getUserInfo] - 토큰 갱신 성공", statusCode ?? 0)
+                    completion(succeed, nil, statusCode)
                 }
 
             default:
                 print("getUserInfo - statusCode", statusCode ?? 0)
+                completion(nil, failed, statusCode)
             }
-            
-            completion(user, error, statusCode)
         }
     }
 }

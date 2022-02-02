@@ -5,7 +5,7 @@
 //  Created by 강호성 on 2022/01/28.
 //
 
-import UIKit
+import Foundation
 import IAMPopup
 
 // ViewModel - Model을 업데이트하고 그 결과를 다시 받아서 View에 전달하여 UI를 업데이트
@@ -61,7 +61,7 @@ class ManagementViewModel: NSObject {
             self.updateFCMtoken { error, statusCode in
                 switch statusCode {
                 case 200, 403:
-                    print("\(statusCode ?? 0) 토큰 갱신 성공")
+                    print("\(statusCode ?? 0) FCMtoken 갱신 성공")
                     self.view.makeToast("새롭게 가입해보세요!", position: .center)
                     Helper.convertNavigationRootViewController(view: self.view, controller: VerificationViewController())
                 default:
@@ -91,7 +91,7 @@ class ManagementViewModel: NSObject {
     func withdrawUser(completion: @escaping (Error?, Int?) -> Void) {
         let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
 
-        APIService.withdrawSignUp(idToken: idToken) { error, statusCode in
+        AuthAPI.withdrawSignUp(idToken: idToken) { failed, statusCode in
             
             switch statusCode {
             case 200:
@@ -102,23 +102,40 @@ class ManagementViewModel: NSObject {
                 print("withdrawUser - statusCode", statusCode ?? 0)
             }
             
-            completion(error, statusCode)
+            completion(failed, statusCode)
         }
     }
     
     func updateFCMtoken(completion: @escaping (Error?, Int?) -> Void) {
         let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
+        let request = FCMtokenRequest(FCMtoken: "").toDomain
         
-        APIService.updateFCMtoken(idToken: idToken) { error, statusCode in
-            completion(error, statusCode)
-        }
+        AuthAPI.updateFCMtoken(idToken: idToken, request: request, completion: { failed, statusCode in
+            completion(failed, statusCode)
+        })
     }
     
     func updateMyPage(completion: @escaping (Error?, Int?) -> Void) {
         let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
-
-        APIService.updateMyPage(idToken: idToken) { error, statusCode in
-            completion(error, statusCode)
+        let request = MypageRequest(searchable: 0, ageMin: 0, ageMax: 0, gender: 0, hobby: "").toDomain
+        
+        AuthAPI.updateMyPage(idToken: idToken, request: request) { failed, statusCode in
+            switch statusCode {
+            case 200:
+                print("업데이트 성공")
+                completion(nil, statusCode)
+                
+            case 401:
+                print("\(statusCode ?? 0) Firebase Token Error")
+                Helper.getIDTokenRefresh {
+                    completion(failed, statusCode); return
+                } onSuccess: {
+                    print("토큰 갱신 성공")
+                }
+            default:
+                print("Error Code:", statusCode ?? 0)
+                completion(failed, statusCode)
+            }
         }
     }
 }

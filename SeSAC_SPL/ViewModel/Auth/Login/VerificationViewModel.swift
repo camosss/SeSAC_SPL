@@ -9,7 +9,6 @@ import Foundation
 import RxSwift
 import RxCocoa
 import FirebaseAuth
-import Alamofire
 
 class VerificationViewModel: CommonViewModel {
     

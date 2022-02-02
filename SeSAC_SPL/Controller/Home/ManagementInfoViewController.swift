@@ -47,20 +47,9 @@ class ManagementInfoViewController: UIViewController {
     
     @objc func didTapSave() {
         viewModel.updateMyPage { error, statusCode in
-            switch statusCode {
-            case 200:
-                print("업데이트 성공")
+            guard let _ = error else {
                 self.view.makeToast("내 정보 업데이트에 성공했습니다.", position: .center)
-                
-            case 401:
-                print("\(statusCode ?? 0) Firebase Token Error")
-                Helper.getIDTokenRefresh {
-                    self.view.makeToast("에러가 발생했습니다. 잠시 후 다시 시도해주세요.", position: .center); return
-                } onSuccess: {
-                    print("토큰 갱신 성공")
-                }
-            default:
-                print("Error Code:", statusCode ?? 0)
+                return
             }
         }
     }

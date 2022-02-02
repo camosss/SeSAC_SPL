@@ -119,9 +119,6 @@ class GenderViewController: UIViewController {
                 print("\(statusCode ?? 0) 사용할 수 없는 닉네임")
                 self.view.makeToast("사용할 수 없는 닉네임입니다.\n닉네임 설정 화면으로 이동합니다.", position: .center)
                 Helper.convertNavigationRootViewController(view: self.view, controller: NickNameViewController())
-
-            case 401:
-                print("\(statusCode ?? 0) Firebase Token Error")
                 
             default:
                 print("Error Code:", statusCode ?? 0)

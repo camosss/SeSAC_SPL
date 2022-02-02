@@ -22,8 +22,7 @@
 		B40CA684279D6EB900B233D7 /* CommonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40CA683279D6EB900B233D7 /* CommonViewModel.swift */; };
 		B420EF0F279EC9A30084AE6A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B420EF0E279EC9A30084AE6A /* User.swift */; };
 		B420EF11279ECCB80084AE6A /* RegularExpression+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B420EF10279ECCB80084AE6A /* RegularExpression+Extension.swift */; };
-		B420EF13279EF3150084AE6A /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B420EF12279EF3150084AE6A /* Endpoint.swift */; };
-		B420EF15279EF4350084AE6A /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B420EF14279EF4350084AE6A /* APIService.swift */; };
+		B420EF15279EF4350084AE6A /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B420EF14279EF4350084AE6A /* AuthAPI.swift */; };
 		B420EF1D279FDC890084AE6A /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B420EF1C279FDC890084AE6A /* Helper.swift */; };
 		B420EF2127A04D460084AE6A /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B420EF2027A04D460084AE6A /* String+Extension.swift */; };
 		B420EF2827A0529A0084AE6A /* NotoSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = B420EF2627A0529A0084AE6A /* NotoSansKR-Medium.otf */; };
@@ -75,6 +74,10 @@
 		B4C01A7D27A91AD000973E79 /* EmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C01A7C27A91AD000973E79 /* EmailViewModel.swift */; };
 		B4C01A7F27A91B1E00973E79 /* GenderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C01A7E27A91B1E00973E79 /* GenderViewModel.swift */; };
 		B4C01A8427A93CE500973E79 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C01A8327A93CE500973E79 /* HomeViewModel.swift */; };
+		B4C01A8927AA464200973E79 /* AuthTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C01A8827AA464200973E79 /* AuthTarget.swift */; };
+		B4C01A8C27AA4DD700973E79 /* SignUpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C01A8B27AA4DD600973E79 /* SignUpRequest.swift */; };
+		B4C01A8E27AA4E5300973E79 /* FCMtokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C01A8D27AA4E5300973E79 /* FCMtokenRequest.swift */; };
+		B4C01A9027AA4E7700973E79 /* MypageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C01A8F27AA4E7700973E79 /* MypageRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,8 +97,7 @@
 		B40CA683279D6EB900B233D7 /* CommonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewModel.swift; sourceTree = "<group>"; };
 		B420EF0E279EC9A30084AE6A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B420EF10279ECCB80084AE6A /* RegularExpression+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RegularExpression+Extension.swift"; sourceTree = "<group>"; };
-		B420EF12279EF3150084AE6A /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
-		B420EF14279EF4350084AE6A /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		B420EF14279EF4350084AE6A /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
 		B420EF1C279FDC890084AE6A /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		B420EF2027A04D460084AE6A /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		B420EF2627A0529A0084AE6A /* NotoSansKR-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSansKR-Medium.otf"; path = "SeSAC_SPL/Resource/NotoSansKR-Medium.otf"; sourceTree = SOURCE_ROOT; };
@@ -150,6 +152,10 @@
 		B4C01A7C27A91AD000973E79 /* EmailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailViewModel.swift; sourceTree = "<group>"; };
 		B4C01A7E27A91B1E00973E79 /* GenderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderViewModel.swift; sourceTree = "<group>"; };
 		B4C01A8327A93CE500973E79 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		B4C01A8827AA464200973E79 /* AuthTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTarget.swift; sourceTree = "<group>"; };
+		B4C01A8B27AA4DD600973E79 /* SignUpRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequest.swift; sourceTree = "<group>"; };
+		B4C01A8D27AA4E5300973E79 /* FCMtokenRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FCMtokenRequest.swift; sourceTree = "<group>"; };
+		B4C01A8F27AA4E7700973E79 /* MypageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageRequest.swift; sourceTree = "<group>"; };
 		F3473E80664E30059C9CFC26 /* Pods-SeSAC_SPL.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeSAC_SPL.release.xcconfig"; path = "Target Support Files/Pods-SeSAC_SPL/Pods-SeSAC_SPL.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -204,7 +210,7 @@
 		B420EF17279EFE350084AE6A /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				B420EF12279EF3150084AE6A /* Endpoint.swift */,
+				B4C01A8727AA463100973E79 /* APIs */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -305,15 +311,6 @@
 			path = Onboarding;
 			sourceTree = "<group>";
 		};
-		B433B8F3279923A000AEA607 /* Service */ = {
-			isa = PBXGroup;
-			children = (
-				B433B8EF27991D7900AEA607 /* OnboardingService.swift */,
-				B420EF14279EF4350084AE6A /* APIService.swift */,
-			);
-			path = Service;
-			sourceTree = "<group>";
-		};
 		B433B8FE27994C0C00AEA607 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
@@ -351,7 +348,6 @@
 				B437411B2797EAA9005E1CC7 /* SeSAC_SPL.entitlements */,
 				B43741192797EA7F005E1CC7 /* GoogleService-Info.plist */,
 				B420EF17279EFE350084AE6A /* Network */,
-				B433B8F3279923A000AEA607 /* Service */,
 				B437411C2797F0FF005E1CC7 /* Extension */,
 				B43741182797E984005E1CC7 /* Resource */,
 			);
@@ -378,6 +374,7 @@
 				B433B8FC279949AA00AEA607 /* Utility.swift */,
 				B420EF1C279FDC890084AE6A /* Helper.swift */,
 				B43741202797FAFF005E1CC7 /* R.generated.swift */,
+				B433B8EF27991D7900AEA607 /* OnboardingService.swift */,
 				B420EF2027A04D460084AE6A /* String+Extension.swift */,
 				B433B8C427982F7600AEA607 /* UIView+Extension.swift */,
 				B42BAFA227A239E5009DB0E4 /* UIViewController+Extension.swift */,
@@ -449,6 +446,26 @@
 				B4C01A7E27A91B1E00973E79 /* GenderViewModel.swift */,
 			);
 			path = SignUp;
+			sourceTree = "<group>";
+		};
+		B4C01A8727AA463100973E79 /* APIs */ = {
+			isa = PBXGroup;
+			children = (
+				B4C01A8827AA464200973E79 /* AuthTarget.swift */,
+				B420EF14279EF4350084AE6A /* AuthAPI.swift */,
+				B4C01A8A27AA4DC400973E79 /* Models */,
+			);
+			path = APIs;
+			sourceTree = "<group>";
+		};
+		B4C01A8A27AA4DC400973E79 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B4C01A8B27AA4DD600973E79 /* SignUpRequest.swift */,
+				B4C01A8D27AA4E5300973E79 /* FCMtokenRequest.swift */,
+				B4C01A8F27AA4E7700973E79 /* MypageRequest.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		C57D1C8BA086EA77486AC432 /* Pods */ = {
@@ -607,14 +624,15 @@
 				B4C01A7227A7F7B600973E79 /* MapButtonView.swift in Sources */,
 				B433B9082799570C00AEA607 /* GenderButton+Extension.swift in Sources */,
 				B4C01A7727A918F600973E79 /* ConfirmationViewModel.swift in Sources */,
+				B4C01A9027AA4E7700973E79 /* MypageRequest.swift in Sources */,
 				B433B8EE2799195900AEA607 /* VerificationViewController.swift in Sources */,
 				B43741052797E756005E1CC7 /* AppDelegate.swift in Sources */,
 				B40AC5FB27A2FFF20007B909 /* TitleCollectionViewHeader.swift in Sources */,
 				B420EF3427A135A70084AE6A /* ShopViewController.swift in Sources */,
 				B40AC5FD27A30D190007B909 /* TitleReviewCollectionViewCell.swift in Sources */,
-				B420EF13279EF3150084AE6A /* Endpoint.swift in Sources */,
 				B433B9022799558B00AEA607 /* NickNameViewController.swift in Sources */,
 				B433B8C527982F7600AEA607 /* UIView+Extension.swift in Sources */,
+				B4C01A8E27AA4E5300973E79 /* FCMtokenRequest.swift in Sources */,
 				B49F16D227A41EDB00052507 /* AgeTableViewCell.swift in Sources */,
 				B40CA679279D21BB00B233D7 /* Date+Extension.swift in Sources */,
 				B40CA682279D6BA600B233D7 /* MyInfoViewController.swift in Sources */,
@@ -622,6 +640,7 @@
 				B433B8FD279949AA00AEA607 /* Utility.swift in Sources */,
 				B433B90027994C5100AEA607 /* ConfirmationViewController.swift in Sources */,
 				B433B9042799561700AEA607 /* EmailViewController.swift in Sources */,
+				B4C01A8C27AA4DD700973E79 /* SignUpRequest.swift in Sources */,
 				B433B8F027991D7900AEA607 /* OnboardingService.swift in Sources */,
 				B420EF1D279FDC890084AE6A /* Helper.swift in Sources */,
 				B433B8BD2798253700AEA607 /* AuthView.swift in Sources */,
@@ -651,8 +670,9 @@
 				B40CA684279D6EB900B233D7 /* CommonViewModel.swift in Sources */,
 				B40CA671279967F600B233D7 /* BirthViewController.swift in Sources */,
 				B40AC5F027A2E0FD0007B909 /* BackgroundImageView.swift in Sources */,
-				B420EF15279EF4350084AE6A /* APIService.swift in Sources */,
+				B420EF15279EF4350084AE6A /* AuthAPI.swift in Sources */,
 				B420EF3227A135A10084AE6A /* HomeViewController.swift in Sources */,
+				B4C01A8927AA464200973E79 /* AuthTarget.swift in Sources */,
 				B433B8C82798306600AEA607 /* OnboardingSlide.swift in Sources */,
 				B40AC5F927A2F4FA0007B909 /* TitleCollectionViewCell.swift in Sources */,
 				B4C01A8427A93CE500973E79 /* HomeViewModel.swift in Sources */,

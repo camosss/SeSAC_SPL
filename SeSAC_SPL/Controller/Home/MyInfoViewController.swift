@@ -68,7 +68,6 @@ class MyInfoViewController: UIViewController {
     }
     
     private func configureTableViewDataSource(user: User) {
-        
         viewModel.myinfos
             .asDriver()
             .drive(tableView.rx.items) { (tableView, row, item) -> UITableViewCell in
