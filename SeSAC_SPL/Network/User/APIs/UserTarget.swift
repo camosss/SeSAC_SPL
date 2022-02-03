@@ -39,7 +39,7 @@ extension UserTarget: TargetType {
         case .updateMypage: return .post
         }
     }
-        
+    
     var task: Task {
         switch self {
         case .getUser:
@@ -76,7 +76,7 @@ extension UserTarget: TargetType {
     
     var headers: [String : String]? {
         switch self {
-        case .getUser(idToken: let idToken):
+        case .getUser(let idToken):
             return [
                 "idtoken": idToken
             ]
@@ -101,6 +101,4 @@ extension UserTarget: TargetType {
             ]
         }
     }
-    
-    
 }

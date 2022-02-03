@@ -7,6 +7,14 @@
 
 import UIKit
 import MapKit
+import RxSwift
+import RxCocoa
+
+enum HomeFilter {
+    case total
+    case man
+    case woman
+}
 
 class HomeViewController: UIViewController {
     
@@ -18,7 +26,8 @@ class HomeViewController: UIViewController {
     let regionInMeters: Double = 700
     
     let buttonView = MapButtonView()
-    
+    let disposeBag = DisposeBag()
+
     private let actionButton: UIButton = {
         let button = Utility.actionButton()
         button.addTarget(self, action: #selector(actionButtonTapped), for: .touchUpInside)
@@ -33,6 +42,7 @@ class HomeViewController: UIViewController {
         
         setMapView()
         checkLocationService()
+        handleTapFilterBtn()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,13 +52,36 @@ class HomeViewController: UIViewController {
     
     // MARK: - Action
     
+    @objc func clickedGpsBtn() {
+        print("gps")
+    }
+    
     @objc func actionButtonTapped() {
         print("action")
     }
     
     // MARK: - Helper
     
+    private func handleTapFilterBtn() {
+        // [수정해야함] "전체" 버튼이 시작으로 고정
+        
+        Observable.merge(
+            buttonView.totalButton.rx.tap.map { _ in HomeFilter.total },
+            buttonView.manButton.rx.tap.map { _ in HomeFilter.man },
+            buttonView.womanButton.rx.tap.map { _ in HomeFilter.woman }
+        ).subscribe(onNext: {
+            switch $0 {
+            case .total: Helper.switchFilterButton(self.buttonView.totalButton, self.buttonView.manButton, self.buttonView.womanButton)
+            case .man: Helper.switchFilterButton(self.buttonView.manButton, self.buttonView.totalButton, self.buttonView.womanButton)
+            case .woman: Helper.switchFilterButton(self.buttonView.womanButton, self.buttonView.manButton, self.buttonView.totalButton)
+            }
+        }).disposed(by: disposeBag)
+        
+    }
+    
     private func setMapView() {
+        buttonView.gpsButton.addTarget(self, action: #selector(clickedGpsBtn), for: .touchUpInside)
+        
         [mapView, actionButton, buttonView].forEach {
             view.addSubview($0)
         }

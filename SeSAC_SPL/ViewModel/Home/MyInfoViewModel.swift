@@ -28,7 +28,7 @@ class MyInfoViewModel: NSObject {
                 UserDefaults.standard.set("alreadySignUp", forKey: "startView")
                 completion(succeed, nil, statusCode)
 
-            case 201:
+            case 406:
                 UserDefaults.standard.set("successLogin", forKey: "startView")
                 completion(succeed, nil, statusCode)
 
@@ -36,10 +36,12 @@ class MyInfoViewModel: NSObject {
                 Helper.getIDTokenRefresh {
                     print("[getUserInfo] - 토큰 갱신 실패", statusCode ?? 0)
                     completion(nil, failed, statusCode)
-
-                } onSuccess: {
+                } onSuccess: { idtoken in
                     print("[getUserInfo] - 토큰 갱신 성공", statusCode ?? 0)
-                    completion(succeed, nil, statusCode)
+                    
+                    UserAPI.getUser(idToken: idtoken) { succeed, failed, statusCode in
+                        completion(succeed, nil, statusCode)
+                    }
                 }
 
             default:

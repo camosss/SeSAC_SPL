@@ -58,6 +58,11 @@
 		B437411A2797EA7F005E1CC7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B43741192797EA7F005E1CC7 /* GoogleService-Info.plist */; };
 		B43741212797FAFF005E1CC7 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43741202797FAFF005E1CC7 /* R.generated.swift */; };
 		B45F326427A198850091D1BA /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B433B8F127991E4800AEA607 /* Onboarding.storyboard */; };
+		B464052B27AC2ADA00FF4A6F /* QueueTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B464052A27AC2ADA00FF4A6F /* QueueTarget.swift */; };
+		B464052D27AC2AE200FF4A6F /* QueueAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B464052C27AC2AE200FF4A6F /* QueueAPI.swift */; };
+		B464053127AC2E0F00FF4A6F /* FindFriendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B464053027AC2E0F00FF4A6F /* FindFriendRequest.swift */; };
+		B464053327AC2E2600FF4A6F /* SearchFriendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B464053227AC2E2600FF4A6F /* SearchFriendRequest.swift */; };
+		B464053727AC2E7900FF4A6F /* HobbyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B464053627AC2E7900FF4A6F /* HobbyRequest.swift */; };
 		B49F16CB27A3F03E00052507 /* GenderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49F16CA27A3F03E00052507 /* GenderTableViewCell.swift */; };
 		B49F16CD27A3F04400052507 /* HobbyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49F16CC27A3F04400052507 /* HobbyTableViewCell.swift */; };
 		B49F16D027A41ED100052507 /* AllowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49F16CF27A41ED100052507 /* AllowTableViewCell.swift */; };
@@ -136,6 +141,11 @@
 		B43741192797EA7F005E1CC7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B437411B2797EAA9005E1CC7 /* SeSAC_SPL.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SeSAC_SPL.entitlements; sourceTree = "<group>"; };
 		B43741202797FAFF005E1CC7 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
+		B464052A27AC2ADA00FF4A6F /* QueueTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueTarget.swift; sourceTree = "<group>"; };
+		B464052C27AC2AE200FF4A6F /* QueueAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueAPI.swift; sourceTree = "<group>"; };
+		B464053027AC2E0F00FF4A6F /* FindFriendRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindFriendRequest.swift; sourceTree = "<group>"; };
+		B464053227AC2E2600FF4A6F /* SearchFriendRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFriendRequest.swift; sourceTree = "<group>"; };
+		B464053627AC2E7900FF4A6F /* HobbyRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HobbyRequest.swift; sourceTree = "<group>"; };
 		B49F16CA27A3F03E00052507 /* GenderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderTableViewCell.swift; sourceTree = "<group>"; };
 		B49F16CC27A3F04400052507 /* HobbyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HobbyTableViewCell.swift; sourceTree = "<group>"; };
 		B49F16CF27A41ED100052507 /* AllowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllowTableViewCell.swift; sourceTree = "<group>"; };
@@ -211,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				B4C01A9227AA788D00973E79 /* User */,
+				B464052927AC2ABC00FF4A6F /* Queue */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -345,11 +356,11 @@
 				B433B8BA2798240900AEA607 /* View */,
 				B40CA67E279D6AEC00B233D7 /* ViewModel */,
 				B433B8BB2798252A00AEA607 /* Controller */,
-				B437411B2797EAA9005E1CC7 /* SeSAC_SPL.entitlements */,
-				B43741192797EA7F005E1CC7 /* GoogleService-Info.plist */,
 				B420EF17279EFE350084AE6A /* Network */,
 				B437411C2797F0FF005E1CC7 /* Extension */,
 				B43741182797E984005E1CC7 /* Resource */,
+				B437411B2797EAA9005E1CC7 /* SeSAC_SPL.entitlements */,
+				B43741192797EA7F005E1CC7 /* GoogleService-Info.plist */,
 			);
 			path = SeSAC_SPL;
 			sourceTree = "<group>";
@@ -383,6 +394,34 @@
 				B420EF10279ECCB80084AE6A /* RegularExpression+Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		B464052927AC2ABC00FF4A6F /* Queue */ = {
+			isa = PBXGroup;
+			children = (
+				B464052F27AC2DE100FF4A6F /* APIs */,
+			);
+			path = Queue;
+			sourceTree = "<group>";
+		};
+		B464052E27AC2DDA00FF4A6F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B464053027AC2E0F00FF4A6F /* FindFriendRequest.swift */,
+				B464053227AC2E2600FF4A6F /* SearchFriendRequest.swift */,
+				B464053627AC2E7900FF4A6F /* HobbyRequest.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B464052F27AC2DE100FF4A6F /* APIs */ = {
+			isa = PBXGroup;
+			children = (
+				B464052A27AC2ADA00FF4A6F /* QueueTarget.swift */,
+				B464052C27AC2AE200FF4A6F /* QueueAPI.swift */,
+				B464052E27AC2DDA00FF4A6F /* Models */,
+			);
+			path = APIs;
 			sourceTree = "<group>";
 		};
 		B49F16CE27A41EB400052507 /* TableViewCell */ = {
@@ -625,6 +664,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4C01A7B27A91A7300973E79 /* BirthViewModel.swift in Sources */,
+				B464052B27AC2ADA00FF4A6F /* QueueTarget.swift in Sources */,
 				B420EF2F27A134EC0084AE6A /* MainTapController.swift in Sources */,
 				B4C01A7D27A91AD000973E79 /* EmailViewModel.swift in Sources */,
 				B420EF3E27A17E000084AE6A /* MyInfo.swift in Sources */,
@@ -633,11 +673,13 @@
 				B433B9082799570C00AEA607 /* GenderButton+Extension.swift in Sources */,
 				B4C01A7727A918F600973E79 /* ConfirmationViewModel.swift in Sources */,
 				B4C01A9027AA4E7700973E79 /* MypageRequest.swift in Sources */,
+				B464053727AC2E7900FF4A6F /* HobbyRequest.swift in Sources */,
 				B433B8EE2799195900AEA607 /* VerificationViewController.swift in Sources */,
 				B43741052797E756005E1CC7 /* AppDelegate.swift in Sources */,
 				B40AC5FB27A2FFF20007B909 /* TitleCollectionViewHeader.swift in Sources */,
 				B420EF3427A135A70084AE6A /* ShopViewController.swift in Sources */,
 				B40AC5FD27A30D190007B909 /* TitleReviewCollectionViewCell.swift in Sources */,
+				B464053327AC2E2600FF4A6F /* SearchFriendRequest.swift in Sources */,
 				B433B9022799558B00AEA607 /* NickNameViewController.swift in Sources */,
 				B433B8C527982F7600AEA607 /* UIView+Extension.swift in Sources */,
 				B4C01A8E27AA4E5300973E79 /* FCMtokenRequest.swift in Sources */,
@@ -662,6 +704,7 @@
 				B4C01A7527A9184200973E79 /* VerificationViewModel.swift in Sources */,
 				B40CA67327999D1F00B233D7 /* BirthView.swift in Sources */,
 				B433B8C127982BBD00AEA607 /* OnboardingViewController.swift in Sources */,
+				B464053127AC2E0F00FF4A6F /* FindFriendRequest.swift in Sources */,
 				B420EF3C27A17DC70084AE6A /* MyInfoViewModel.swift in Sources */,
 				B40AC60027A3E7370007B909 /* ManagementViewModel.swift in Sources */,
 				B40AC5F727A2E8960007B909 /* TitleTableViewCell.swift in Sources */,
@@ -685,6 +728,7 @@
 				B40AC5F927A2F4FA0007B909 /* TitleCollectionViewCell.swift in Sources */,
 				B4C01A8427A93CE500973E79 /* HomeViewModel.swift in Sources */,
 				B43741072797E756005E1CC7 /* SceneDelegate.swift in Sources */,
+				B464052D27AC2AE200FF4A6F /* QueueAPI.swift in Sources */,
 				B49F16CD27A3F04400052507 /* HobbyTableViewCell.swift in Sources */,
 				B433B9062799567700AEA607 /* GenderViewController.swift in Sources */,
 				B49F16D027A41ED100052507 /* AllowTableViewCell.swift in Sources */,

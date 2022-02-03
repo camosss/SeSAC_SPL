@@ -20,6 +20,7 @@ class UserAPI {
                 completion(try? response.map(User.self), nil, response.statusCode)
                 
             case .failure(let error):
+                print("[getUser] response error", error)
                 completion(nil, error, error.response?.statusCode)
             }
         }
@@ -30,11 +31,10 @@ class UserAPI {
         service.request(.signUp(idToken: idToken, request)) { result in
             switch result {
             case .success(let response):
-                print("response", response.statusCode)
                 completion(nil, response.statusCode)
 
             case .failure(let error):
-                print("error", error)
+                print("[signUpUser] response error", error)
                 completion(error, error.response?.statusCode)
             }
         }
@@ -43,7 +43,6 @@ class UserAPI {
     static func withdrawSignUp(idToken: String, completion: @escaping (_ failed: Error?, _ statusCode: Int?) -> Void) {
         
         service.request(.withdraw(idToken: idToken)) { result in
-            print("result", result)
             switch result {
             case .success(let response):
                 completion(nil, response.statusCode)

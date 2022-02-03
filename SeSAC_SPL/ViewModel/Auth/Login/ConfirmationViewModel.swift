@@ -61,7 +61,7 @@ class ConfirmationViewModel: CommonViewModel {
 
                 Helper.getIDTokenRefresh {
                     completion(nil ,error); return
-                } onSuccess: {
+                } onSuccess: { _ in
                     completion(success, nil)
                 }
 
@@ -81,7 +81,7 @@ class ConfirmationViewModel: CommonViewModel {
                 UserDefaults.standard.set("alreadySignUp", forKey: "startView")
                 completion(succeed, nil, statusCode)
 
-            case 201:
+            case 406:
                 UserDefaults.standard.set("successLogin", forKey: "startView")
                 completion(succeed, nil, statusCode)
 
@@ -90,10 +90,9 @@ class ConfirmationViewModel: CommonViewModel {
                     print("[getUserInfo] - 토큰 갱신 실패", statusCode ?? 0)
                     completion(nil, failed, statusCode)
 
-                } onSuccess: {
+                } onSuccess: { _ in
                     print("[getUserInfo] - 토큰 갱신 성공", statusCode ?? 0)
                     completion(succeed, nil, statusCode)
-
                 }
 
             default:

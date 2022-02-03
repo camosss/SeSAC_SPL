@@ -92,7 +92,6 @@ class ManagementViewModel: NSObject {
         let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
 
         UserAPI.withdrawSignUp(idToken: idToken) { failed, statusCode in
-            
             switch statusCode {
             case 200:
                 UserDefaults.standard.set("withdrawUser", forKey: "startView")
@@ -129,8 +128,13 @@ class ManagementViewModel: NSObject {
                 print("\(statusCode ?? 0) Firebase Token Error")
                 Helper.getIDTokenRefresh {
                     completion(failed, statusCode); return
-                } onSuccess: {
+                } onSuccess: { idtoken in
                     print("토큰 갱신 성공")
+                    UserAPI.getUser(idToken: idtoken) { succeed, failed, statusCode in
+                        if let succeed = succeed {
+                            self.user = succeed
+                        }
+                    }
                 }
             default:
                 print("Error Code:", statusCode ?? 0)

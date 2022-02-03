@@ -35,6 +35,16 @@ class Helper {
         unclicked.backgroundColor = R.color.white()
     }
     
+    static func switchFilterButton(_ clicked: UIButton, _ unclicked1: UIButton, _ unclicked2: UIButton) {
+        clicked.setTitleColor(R.color.white(), for: .normal)
+        clicked.backgroundColor = R.color.green()
+        
+        unclicked1.setTitleColor(R.color.black(), for: .normal)
+        unclicked1.backgroundColor = R.color.white()
+        unclicked2.setTitleColor(R.color.black(), for: .normal)
+        unclicked2.backgroundColor = R.color.white()
+    }
+    
     static func templateNavigationController(image: UIImage, title: String, rootViewController: UIViewController) -> UINavigationController {
         let nav = UINavigationController(rootViewController: rootViewController)
         nav.tabBarItem.image = image
@@ -42,7 +52,7 @@ class Helper {
         return nav
     }
     
-    static func getIDTokenRefresh(onError: @escaping () -> (), onSuccess: @escaping () -> ()) {
+    static func getIDTokenRefresh(onError: @escaping () -> (), onSuccess: @escaping (String) -> ()) {
         let currentUser = Auth.auth().currentUser
         currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
 
@@ -51,9 +61,9 @@ class Helper {
             }
 
             if let idToken = idToken {
-                print("idToken: ", idToken)
+                print("갱신 idToken: ", idToken)
                 UserDefaults.standard.set(idToken, forKey: "idToken")
-                onSuccess()
+                onSuccess(idToken)
             }
         }
     }
