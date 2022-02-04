@@ -40,7 +40,6 @@ class BirthViewController: UIViewController {
     // MARK: - Action
     
     @objc func datePickerValueChanged(sender: UIDatePicker) {
-        handleNextButton()
         birthDateString = (sender.date).toBirthString(dateValue: sender.date)
         
         let dateString = sender.date.toString(dateValue: sender.date)
@@ -49,6 +48,8 @@ class BirthViewController: UIViewController {
         if dateArray[0] >= "2006" {
             self.view.makeToast("만 17세 이상만 사용할 수 있습니다.", position: .center)
         } else {
+            handleNextButton()
+
             birthView.yearTextField.text = dateArray[0]
             birthView.monthTextField.text = dateArray[1]
             birthView.dayTextField.text = dateArray[2]

@@ -56,21 +56,8 @@ class ManagementViewModel: NSObject {
             if let error = error {
                 print(error); return
             }
-
-            // idToken 삭제
-            UserDefaults.standard.removeObject(forKey: "idToken")
-            
-            // FCM 토큰 갱신
-            self.updateFCMtoken { error, statusCode in
-                switch statusCode {
-                case 200, 403:
-                    print("\(statusCode ?? 0) FCMtoken 갱신 성공")
-                    self.view.makeToast("새롭게 가입해보세요!", position: .center)
-                    Helper.convertNavigationRootViewController(view: self.view, controller: VerificationViewController())
-                default:
-                    print("update token Error Code:", statusCode ?? 0)
-                }
-            }
+            self.view.makeToast("새롭게 가입해보세요!", position: .center)
+            Helper.convertNavigationRootViewController(view: self.view, controller: VerificationViewController())
         }
     }
     
