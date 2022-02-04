@@ -78,12 +78,6 @@ class HomeViewController: UIViewController {
         }).disposed(by: disposeBag)
     }
     
-    private func setAnnotation(location: CLLocationCoordinate2D) {
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = location
-        homeView.mapView.addAnnotation(annotation)
-    }
-    
     private func checkLocationService() {
         let authorizationStatus: CLAuthorizationStatus
         
@@ -127,15 +121,13 @@ class HomeViewController: UIViewController {
         }
     }
     
-    // 위치 허용: 현 위치
+    // 위치 허용: 현 위치 // 테스트는 영등포
     private func centerViewOnUserLocation() {
         if let location = locationManager.location?.coordinate {
             let region = MKCoordinateRegion.init(center: location,
                                              latitudinalMeters: regionInMeters,
                                                  longitudinalMeters: regionInMeters)
             homeView.mapView.setRegion(region, animated: true)
-            
-            setAnnotation(location: location)
         }
     }
     
@@ -146,8 +138,6 @@ class HomeViewController: UIViewController {
                                         latitudinalMeters: regionInMeters,
                                         longitudinalMeters: regionInMeters)
         homeView.mapView.setRegion(region, animated: true)
-
-        setAnnotation(location: coordinate)
     }
     
     // 움직임에 따른 중앙 위치 (사용자가 현 위치를 이동할 때마다 서버에 요청하기 위함)
@@ -156,10 +146,9 @@ class HomeViewController: UIViewController {
         let longitude = mapView.centerCoordinate.longitude
         let region = Helper.convertRegion(lat: latitude, long: longitude)
         
-        print("lat", latitude, "long", longitude)
-        print("region", region)
-        
-        searchFriend(region: region, lat: latitude, long: longitude)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+            self.searchFriend(region: region, lat: latitude, long: longitude)
+        }
         
         return CLLocation(latitude: latitude, longitude: longitude)
     }
@@ -192,20 +181,6 @@ extension HomeViewController: CLLocationManagerDelegate {
 // MARK: - MKMapViewDelegate
 
 extension HomeViewController: MKMapViewDelegate {
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        guard !(annotation is MKUserLocation) else { return nil }
-        
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "custom")
-        
-        if annotationView == nil {
-            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "custom")
-        } else {
-            annotationView?.annotation = annotation
-        }
-        annotationView?.image = R.image.annotation()
-        return annotationView
-    }
-    
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         _ = getPinCenterLocation(for: mapView)
     }

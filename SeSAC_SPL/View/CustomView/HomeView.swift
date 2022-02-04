@@ -13,6 +13,13 @@ class HomeView: UIView {
     // MARK: - Properties
     
     let mapView = MKMapView()
+    
+    let centerImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.image = R.image.annotation()
+        return iv
+    }()
+    
     let actionButton = Utility.actionButton()
     
     let totalButton = Utility.mapGenderButton(title: "전체")
@@ -58,6 +65,11 @@ class HomeView: UIView {
         
         mapView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
+        }
+        
+        mapView.addSubview(centerImageView)
+        centerImageView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
         }
         
         actionButton.snp.makeConstraints { make in
