@@ -57,6 +57,9 @@ class ManagementViewModel: NSObject {
                 print(error); return
             }
 
+            // idToken 삭제
+            UserDefaults.standard.removeObject(forKey: "idToken")
+            
             // FCM 토큰 갱신
             self.updateFCMtoken { error, statusCode in
                 switch statusCode {
@@ -93,9 +96,7 @@ class ManagementViewModel: NSObject {
 
         UserAPI.withdrawSignUp(idToken: idToken) { failed, statusCode in
             switch statusCode {
-            case 200:
-                UserDefaults.standard.set("withdrawUser", forKey: "startView")
-            case 406:
+            case 200, 403, 406:
                 UserDefaults.standard.set("withdrawUser", forKey: "startView")
             default:
                 print("withdrawUser - statusCode", statusCode ?? 0)

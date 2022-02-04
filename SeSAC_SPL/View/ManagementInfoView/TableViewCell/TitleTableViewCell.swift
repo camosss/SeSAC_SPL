@@ -13,10 +13,14 @@ class TitleTableViewCell: UITableViewCell {
     
     static let identifier = String(describing: TitleTableViewCell.self)
     
+    var reputation = Array<Int>()
+    
     var item: ManagementViewModelItem? {
         didSet {
             guard let item = item as? TitleItem else { return }
             usernameLabel.text = item.username
+            reputation = item.reputation
+            print("reputation", reputation)
         }
     }
     

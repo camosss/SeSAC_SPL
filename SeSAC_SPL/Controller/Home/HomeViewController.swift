@@ -20,27 +20,18 @@ class HomeViewController: UIViewController {
     
     // MARK: - Properties
     
-    let mapView = MKMapView()
-    let locationManager = CLLocationManager()
-
+    let homeView = HomeView()
     let regionInMeters: Double = 700
+    let locationManager = CLLocationManager()
     
-    let buttonView = MapButtonView()
+    let viewModel = HomeViewModel()
     let disposeBag = DisposeBag()
 
-    private let actionButton: UIButton = {
-        let button = Utility.actionButton()
-        button.addTarget(self, action: #selector(actionButtonTapped), for: .touchUpInside)
-        return button
-    }()
-    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        
-        setMapView()
+        setView()
         checkLocationService()
         handleTapFilterBtn()
     }
@@ -62,49 +53,35 @@ class HomeViewController: UIViewController {
     
     // MARK: - Helper
     
-    private func handleTapFilterBtn() {
-        // [수정해야함] "전체" 버튼이 시작으로 고정
+    private func setView() {
+        view.backgroundColor = .white
+        view.addSubview(homeView)
+        homeView.frame = view.bounds
         
-        Observable.merge(
-            buttonView.totalButton.rx.tap.map { _ in HomeFilter.total },
-            buttonView.manButton.rx.tap.map { _ in HomeFilter.man },
-            buttonView.womanButton.rx.tap.map { _ in HomeFilter.woman }
-        ).subscribe(onNext: {
-            switch $0 {
-            case .total: Helper.switchFilterButton(self.buttonView.totalButton, self.buttonView.manButton, self.buttonView.womanButton)
-            case .man: Helper.switchFilterButton(self.buttonView.manButton, self.buttonView.totalButton, self.buttonView.womanButton)
-            case .woman: Helper.switchFilterButton(self.buttonView.womanButton, self.buttonView.manButton, self.buttonView.totalButton)
-            }
-        }).disposed(by: disposeBag)
-        
+        homeView.gpsButton.addTarget(self, action: #selector(actionButtonTapped), for: .touchUpInside)
+        homeView.actionButton.addTarget(self, action: #selector(actionButtonTapped), for: .touchUpInside)
     }
     
-    private func setMapView() {
-        buttonView.gpsButton.addTarget(self, action: #selector(clickedGpsBtn), for: .touchUpInside)
-        
-        [mapView, actionButton, buttonView].forEach {
-            view.addSubview($0)
-        }
-        mapView.frame = view.bounds
-        
-        actionButton.snp.makeConstraints { make in
-            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-16)
-            make.trailing.equalTo(-16)
-            make.width.height.equalTo(64)
-        }
-        
-        buttonView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide)
-            make.leading.equalTo(16)
-            make.width.equalTo(48)
-            make.height.equalTo(208)
-        }
+    private func handleTapFilterBtn() {
+        // [수정해야함] "전체" 버튼이 시작으로 고정
+        // 컴바인 라티스트 스타트 위드
+        Observable.merge(
+            homeView.totalButton.rx.tap.map { _ in HomeFilter.total },
+            homeView.manButton.rx.tap.map { _ in HomeFilter.man },
+            homeView.womanButton.rx.tap.map { _ in HomeFilter.woman }
+        ).subscribe(onNext: {
+            switch $0 {
+            case .total: Helper.switchFilterButton(self.homeView.totalButton, self.homeView.manButton, self.homeView.womanButton)
+            case .man: Helper.switchFilterButton(self.homeView.manButton, self.homeView.totalButton, self.homeView.womanButton)
+            case .woman: Helper.switchFilterButton(self.homeView.womanButton, self.homeView.manButton, self.homeView.totalButton)
+            }
+        }).disposed(by: disposeBag)
     }
     
     private func setAnnotation(location: CLLocationCoordinate2D) {
         let annotation = MKPointAnnotation()
         annotation.coordinate = location
-        mapView.addAnnotation(annotation)
+        homeView.mapView.addAnnotation(annotation)
     }
     
     private func checkLocationService() {
@@ -124,14 +101,14 @@ class HomeViewController: UIViewController {
     private func setupLoactionManager() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest // 정확도
-        mapView.delegate = self
+        homeView.mapView.delegate = self
     }
     
     private func checkLocationAuthorization(_ authorizationStatus: CLAuthorizationStatus) {
         switch authorizationStatus {
         case .authorizedWhenInUse:
             print("앱 사용중 허용")
-            mapView.showsUserLocation = true // 현위치
+            homeView.mapView.showsUserLocation = true // 현위치
             centerViewOnUserLocation()
             locationManager.startUpdatingLocation()
             
@@ -150,25 +127,49 @@ class HomeViewController: UIViewController {
         }
     }
     
+    // 위치 허용: 현 위치
     private func centerViewOnUserLocation() {
         if let location = locationManager.location?.coordinate {
             let region = MKCoordinateRegion.init(center: location,
                                              latitudinalMeters: regionInMeters,
                                                  longitudinalMeters: regionInMeters)
-            mapView.setRegion(region, animated: true)
+            homeView.mapView.setRegion(region, animated: true)
             
             setAnnotation(location: location)
         }
     }
     
+    // 위치 거부: 영등포 캠퍼스
     private func defaultLocation() {
         let coordinate = CLLocationCoordinate2D(latitude: 37.517819364682694, longitude: 126.88647317074734)
         let region = MKCoordinateRegion(center: coordinate,
                                         latitudinalMeters: regionInMeters,
                                         longitudinalMeters: regionInMeters)
-        mapView.setRegion(region, animated: true)
+        homeView.mapView.setRegion(region, animated: true)
 
         setAnnotation(location: coordinate)
+    }
+    
+    // 움직임에 따른 중앙 위치 (사용자가 현 위치를 이동할 때마다 서버에 요청하기 위함)
+    private func getPinCenterLocation(for mapView: MKMapView) -> CLLocation {
+        let latitude = mapView.centerCoordinate.latitude
+        let longitude = mapView.centerCoordinate.longitude
+        let region = Helper.convertRegion(lat: latitude, long: longitude)
+        
+        print("lat", latitude, "long", longitude)
+        print("region", region)
+        
+        searchFriend(region: region, lat: latitude, long: longitude)
+        
+        return CLLocation(latitude: latitude, longitude: longitude)
+    }
+    
+    // MARK: - API
+    
+    private func searchFriend(region: Int, lat: Double, long: Double) {
+        viewModel.searchFriend(region: region, lat: lat, long: long) { error, statusCode in
+            print("statusCode", statusCode ?? 0)
+        }
     }
 
 }
@@ -180,7 +181,7 @@ extension HomeViewController: CLLocationManagerDelegate {
         guard let location = locations.last else { return }
         let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
-        mapView.setRegion(region, animated: true)
+        homeView.mapView.setRegion(region, animated: true)
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -203,5 +204,9 @@ extension HomeViewController: MKMapViewDelegate {
         }
         annotationView?.image = R.image.annotation()
         return annotationView
+    }
+    
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        _ = getPinCenterLocation(for: mapView)
     }
 }

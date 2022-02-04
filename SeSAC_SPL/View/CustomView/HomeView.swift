@@ -1,21 +1,27 @@
 //
-//  MapButtonView.swift
+//  HomeView.swift
 //  SeSAC_SPL
 //
-//  Created by 강호성 on 2022/01/31.
+//  Created by 강호성 on 2022/02/04.
 //
 
 import UIKit
+import MapKit
 
-class MapButtonView: UIView {
+class HomeView: UIView {
     
     // MARK: - Properties
+    
+    let mapView = MKMapView()
+    let actionButton = Utility.actionButton()
     
     let totalButton = Utility.mapGenderButton(title: "전체")
     let manButton = Utility.mapGenderButton(title: "남자")
     let womanButton = Utility.mapGenderButton(title: "여자")
     
     lazy var genderButtonStack = Utility.stackView(axis: .vertical, spacing: 0, distribution: .fillEqually, arrangedSubviews: [totalButton, manButton, womanButton])
+    
+    // 컨테이너뷰에 버튼 스택넣고 쉐도우
     
     let gpsButton: UIButton = {
         let button = UIButton()
@@ -25,6 +31,8 @@ class MapButtonView: UIView {
         button.heightAnchor.constraint(equalToConstant: 48).isActive = true
         return button
     }()
+    
+    lazy var buttonView = Utility.stackView(axis: .vertical, spacing: 16, distribution: .fillProportionally, arrangedSubviews: [genderButtonStack, gpsButton])
     
     // MARK: - Lifecycle
     
@@ -40,18 +48,29 @@ class MapButtonView: UIView {
     // MARK: - Helper
     
     func setupConstraints() {
-        addSubview(genderButtonStack)
         genderButtonStack.clipsToBounds = true
         genderButtonStack.cornerRadius = 8
-        genderButtonStack.snp.makeConstraints { make in
-            make.top.leading.trailing.equalToSuperview()
+        gpsButton.cornerRadius = 8
+        
+        [mapView, actionButton, buttonView].forEach {
+            addSubview($0)
         }
         
-        addSubview(gpsButton)
-        gpsButton.cornerRadius = 8
-        gpsButton.snp.makeConstraints { make in
-            make.top.equalTo(genderButtonStack.snp.bottom).offset(16)
-            make.leading.trailing.equalToSuperview()
+        mapView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        actionButton.snp.makeConstraints { make in
+            make.bottom.equalTo(safeAreaLayoutGuide).offset(-16)
+            make.trailing.equalTo(-16)
+            make.width.height.equalTo(64)
+        }
+        
+        buttonView.snp.makeConstraints { make in
+            make.top.equalTo(safeAreaLayoutGuide)
+            make.leading.equalTo(16)
+            make.width.equalTo(48)
+            make.height.equalTo(208)
         }
     }
 }

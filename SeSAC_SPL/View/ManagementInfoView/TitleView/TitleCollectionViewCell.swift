@@ -53,8 +53,8 @@ extension TitleTableViewCell: UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitleCollectionViewCell.identifier, for: indexPath) as! TitleCollectionViewCell
-            cell.backgroundColor = R.color.green()
             cell.label.text = Utility.titles[indexPath.row]
+            cell.backgroundColor = R.color.green()
             cell.cornerRadius = 8
             return cell
         } else {

@@ -37,6 +37,7 @@
 		B420EF4027A183500084AE6A /* MyInfoHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B420EF3F27A183500084AE6A /* MyInfoHeaderTableViewCell.swift */; };
 		B420EF4227A184830084AE6A /* MyInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B420EF4127A184830084AE6A /* MyInfoView.swift */; };
 		B420EF4427A189A00084AE6A /* ManagementInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B420EF4327A189A00084AE6A /* ManagementInfoViewController.swift */; };
+		B42B6D4D27AD458100DF0251 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42B6D4C27AD458100DF0251 /* HomeView.swift */; };
 		B42BAFA327A239E5009DB0E4 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42BAFA227A239E5009DB0E4 /* UIViewController+Extension.swift */; };
 		B433B8BD2798253700AEA607 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B8BC2798253700AEA607 /* AuthView.swift */; };
 		B433B8C127982BBD00AEA607 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B433B8C027982BBD00AEA607 /* OnboardingViewController.swift */; };
@@ -71,7 +72,6 @@
 		B49F16D727A4239700052507 /* ManagementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49F16D627A4239700052507 /* ManagementModel.swift */; };
 		B49F16DA27A4246B00052507 /* ManagementItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49F16D927A4246B00052507 /* ManagementItem.swift */; };
 		B4C01A7027A694DD00973E79 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C01A6F27A694DD00973E79 /* AlertView.swift */; };
-		B4C01A7227A7F7B600973E79 /* MapButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C01A7127A7F7B600973E79 /* MapButtonView.swift */; };
 		B4C01A7527A9184200973E79 /* VerificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C01A7427A9184200973E79 /* VerificationViewModel.swift */; };
 		B4C01A7727A918F600973E79 /* ConfirmationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C01A7627A918F600973E79 /* ConfirmationViewModel.swift */; };
 		B4C01A7927A919FE00973E79 /* NickNameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C01A7827A919FE00973E79 /* NickNameViewModel.swift */; };
@@ -117,6 +117,7 @@
 		B420EF3F27A183500084AE6A /* MyInfoHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		B420EF4127A184830084AE6A /* MyInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoView.swift; sourceTree = "<group>"; };
 		B420EF4327A189A00084AE6A /* ManagementInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagementInfoViewController.swift; sourceTree = "<group>"; };
+		B42B6D4C27AD458100DF0251 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B42BAFA227A239E5009DB0E4 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		B433B8BC2798253700AEA607 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		B433B8C027982BBD00AEA607 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
@@ -154,7 +155,6 @@
 		B49F16D627A4239700052507 /* ManagementModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagementModel.swift; sourceTree = "<group>"; };
 		B49F16D927A4246B00052507 /* ManagementItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagementItem.swift; sourceTree = "<group>"; };
 		B4C01A6F27A694DD00973E79 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
-		B4C01A7127A7F7B600973E79 /* MapButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapButtonView.swift; sourceTree = "<group>"; };
 		B4C01A7427A9184200973E79 /* VerificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewModel.swift; sourceTree = "<group>"; };
 		B4C01A7627A918F600973E79 /* ConfirmationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationViewModel.swift; sourceTree = "<group>"; };
 		B4C01A7827A919FE00973E79 /* NickNameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NickNameViewModel.swift; sourceTree = "<group>"; };
@@ -308,7 +308,7 @@
 				B420EF4127A184830084AE6A /* MyInfoView.swift */,
 				B40AC5EF27A2E0FD0007B909 /* BackgroundImageView.swift */,
 				B4C01A6F27A694DD00973E79 /* AlertView.swift */,
-				B4C01A7127A7F7B600973E79 /* MapButtonView.swift */,
+				B42B6D4C27AD458100DF0251 /* HomeView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -669,7 +669,7 @@
 				B4C01A7D27A91AD000973E79 /* EmailViewModel.swift in Sources */,
 				B420EF3E27A17E000084AE6A /* MyInfo.swift in Sources */,
 				B420EF4027A183500084AE6A /* MyInfoHeaderTableViewCell.swift in Sources */,
-				B4C01A7227A7F7B600973E79 /* MapButtonView.swift in Sources */,
+				B42B6D4D27AD458100DF0251 /* HomeView.swift in Sources */,
 				B433B9082799570C00AEA607 /* GenderButton+Extension.swift in Sources */,
 				B4C01A7727A918F600973E79 /* ConfirmationViewModel.swift in Sources */,
 				B4C01A9027AA4E7700973E79 /* MypageRequest.swift in Sources */,

@@ -85,4 +85,15 @@ class Helper {
         }
     }
     
+    static func convertRegion(lat: Double, long: Double) -> Int {
+        let numberFomatter = NumberFormatter()
+        numberFomatter.roundingMode = .floor
+        numberFomatter.maximumSignificantDigits = 5
+        
+        let latitude = numberFomatter.string(for: lat + 90) ?? ""
+        let longitude = numberFomatter.string(for: long + 180) ?? ""
+        
+        let region = Int("\(latitude)\(longitude)".components(separatedBy: ["."]).joined()) ?? 0
+        return region
+    }
 }
