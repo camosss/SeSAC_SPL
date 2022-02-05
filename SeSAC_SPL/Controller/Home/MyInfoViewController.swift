@@ -26,7 +26,7 @@ class MyInfoViewController: UIViewController {
         super.viewDidLoad()
         title = "내정보"
         view.backgroundColor = .white
-        
+
         setUpTableView()
         fetchUser()
     }
@@ -51,8 +51,8 @@ class MyInfoViewController: UIViewController {
     
     private func fetchUser() {
         viewModel.getUserInfo { user, error, statusCode in
-            print("[MyInfo Page] statusCode", statusCode ?? 0)
-
+            print("[MyInfo Page] fetchUser statusCode", statusCode ?? 0)
+            
             if let user = user {
                 self.user = user
                 self.configureTableViewDataSource(user: user)
@@ -61,10 +61,14 @@ class MyInfoViewController: UIViewController {
     }
     
     private func presentDetail() {
-        guard let user = user else { return }
-
-        let controler = ManagementInfoViewController(user: user)
-        self.navigationController?.pushViewController(controler, animated: true)
+        viewModel.getUserInfo { user, error, statusCode in
+            print("[MyInfo Page] presentDetail statusCode", statusCode ?? 0)
+            
+            if let user = user {
+                let controler = ManagementInfoViewController(user: user)
+                self.navigationController?.pushViewController(controler, animated: true)
+            }
+        }
     }
     
     private func configureTableViewDataSource(user: User) {

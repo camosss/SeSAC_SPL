@@ -20,7 +20,6 @@ class TitleTableViewCell: UITableViewCell {
             guard let item = item as? TitleItem else { return }
             usernameLabel.text = item.username
             reputation = item.reputation
-            print("reputation", reputation)
         }
     }
     

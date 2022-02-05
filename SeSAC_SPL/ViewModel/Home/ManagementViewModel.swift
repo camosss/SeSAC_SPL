@@ -56,6 +56,8 @@ class ManagementViewModel: NSObject {
             if let error = error {
                 print(error); return
             }
+            
+            UserDefaults.standard.removeObject(forKey: "idToken")
             self.view.makeToast("새롭게 가입해보세요!", position: .center)
             Helper.convertNavigationRootViewController(view: self.view, controller: VerificationViewController())
         }

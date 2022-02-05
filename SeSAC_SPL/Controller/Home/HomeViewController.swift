@@ -63,10 +63,8 @@ class HomeViewController: UIViewController {
     }
     
     private func handleTapFilterBtn() {
-        // [수정해야함] "전체" 버튼이 시작으로 고정
-        // 컴바인 라티스트 스타트 위드
         Observable.merge(
-            homeView.totalButton.rx.tap.map { _ in HomeFilter.total },
+            homeView.totalButton.rx.tap.map { _ in HomeFilter.total }.startWith(HomeFilter.total),
             homeView.manButton.rx.tap.map { _ in HomeFilter.man },
             homeView.womanButton.rx.tap.map { _ in HomeFilter.woman }
         ).subscribe(onNext: {
@@ -103,7 +101,10 @@ class HomeViewController: UIViewController {
         case .authorizedWhenInUse:
             print("앱 사용중 허용")
             homeView.mapView.showsUserLocation = true // 현위치
-            centerViewOnUserLocation()
+            
+//            centerViewOnUserLocation()
+            defaultLocation() // 영등포 캠퍼스를 시작점으로 테스트
+            
             locationManager.startUpdatingLocation()
             
         case .denied, .restricted:
@@ -166,13 +167,6 @@ class HomeViewController: UIViewController {
 // MARK: - CLLocationManagerDelegate
 
 extension HomeViewController: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.last else { return }
-        let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
-        homeView.mapView.setRegion(region, animated: true)
-    }
-    
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         checkLocationAuthorization(status)
     }
