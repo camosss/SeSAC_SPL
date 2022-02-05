@@ -487,7 +487,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 24 images.
+  /// This `R.image` struct is generated, and contains static references to 29 images.
   struct image {
     /// Image `Onboarding1`.
     static let onboarding1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "Onboarding1")
@@ -527,6 +527,16 @@ struct R: Rswift.Validatable {
     static let profileImg = Rswift.ImageResource(bundle: R.hostingBundle, name: "profileImg")
     /// Image `qna`.
     static let qna = Rswift.ImageResource(bundle: R.hostingBundle, name: "qna")
+    /// Image `sesac0`.
+    static let sesac0 = Rswift.ImageResource(bundle: R.hostingBundle, name: "sesac0")
+    /// Image `sesac1`.
+    static let sesac1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "sesac1")
+    /// Image `sesac2`.
+    static let sesac2 = Rswift.ImageResource(bundle: R.hostingBundle, name: "sesac2")
+    /// Image `sesac3`.
+    static let sesac3 = Rswift.ImageResource(bundle: R.hostingBundle, name: "sesac3")
+    /// Image `sesac4`.
+    static let sesac4 = Rswift.ImageResource(bundle: R.hostingBundle, name: "sesac4")
     /// Image `sesac`.
     static let sesac = Rswift.ImageResource(bundle: R.hostingBundle, name: "sesac")
     /// Image `settingAlarm`.
@@ -675,6 +685,41 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "sesac", bundle: ..., traitCollection: ...)`
     static func sesac(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.sesac, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "sesac0", bundle: ..., traitCollection: ...)`
+    static func sesac0(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.sesac0, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "sesac1", bundle: ..., traitCollection: ...)`
+    static func sesac1(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.sesac1, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "sesac2", bundle: ..., traitCollection: ...)`
+    static func sesac2(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.sesac2, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "sesac3", bundle: ..., traitCollection: ...)`
+    static func sesac3(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.sesac3, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "sesac4", bundle: ..., traitCollection: ...)`
+    static func sesac4(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.sesac4, compatibleWith: traitCollection)
     }
     #endif
 

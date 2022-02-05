@@ -9,15 +9,15 @@ import Foundation
 
 class HomeViewModel {
     
-    func searchFriend(region: Int, lat: Double, long: Double, completion: @escaping (Error?, Int?) -> Void) {
+    func searchFriend(region: Int, lat: Double, long: Double, completion: @escaping (SearchFriendResponse? ,Error?, Int?) -> Void) {
         let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
         let request = SearchFriendRequest(region: region, lat: lat, long: long)
         
-        QueueAPI.searchFriend(idToken: idToken, request: request) { failed, statusCode in
+        QueueAPI.searchFriend(idToken: idToken, request: request) { succeed, failed, statusCode in
             switch statusCode {
             case 200:
                 print("취미 함께할 친구 검색 성공")
-                completion(nil, statusCode)
+                completion(succeed, nil, statusCode)
             case 401:
                 Helper.getIDTokenRefresh {
                     print("[signUpUserInfo] 토큰 갱신 실패", statusCode ?? 0)
@@ -26,7 +26,7 @@ class HomeViewModel {
                 }
             default:
                 print("searchFriend - statusCode", statusCode ?? 0)
-                completion(failed, statusCode)
+                completion(nil, failed, statusCode)
             }
         }
     }

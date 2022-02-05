@@ -40,16 +40,16 @@ class QueueAPI {
         }
     }
     
-    static func searchFriend(idToken: String, request: SearchFriendRequest, completion: @escaping (_ failed: Error?, _ statusCode: Int?) -> Void) {
+    static func searchFriend(idToken: String, request: SearchFriendRequest, completion: @escaping (_ succeed: SearchFriendResponse?, _ failed: Error?, _ statusCode: Int?) -> Void) {
         
         service.request(.searchFriend(idToken: idToken, request)) { result in
             switch result {
             case .success(let response):
-                completion(nil, response.statusCode)
+                completion(try? response.map(SearchFriendResponse.self), nil, response.statusCode)
 
             case .failure(let error):
                 print("[searchFriend] response error", error)
-                completion(error, error.response?.statusCode)
+                completion(nil, error, error.response?.statusCode)
             }
         }
     }

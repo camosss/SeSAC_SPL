@@ -26,7 +26,9 @@ class HomeViewController: UIViewController {
     
     let viewModel = HomeViewModel()
     let disposeBag = DisposeBag()
-
+    
+    var friends = [FromQueueDB]()
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -122,7 +124,7 @@ class HomeViewController: UIViewController {
         }
     }
     
-    // 위치 허용: 현 위치 // 테스트는 영등포
+    // 위치 허용: 현 위치
     private func centerViewOnUserLocation() {
         if let location = locationManager.location?.coordinate {
             let region = MKCoordinateRegion.init(center: location,
@@ -154,14 +156,24 @@ class HomeViewController: UIViewController {
         return CLLocation(latitude: latitude, longitude: longitude)
     }
     
-    // MARK: - API
-    
     private func searchFriend(region: Int, lat: Double, long: Double) {
-        viewModel.searchFriend(region: region, lat: lat, long: long) { error, statusCode in
-            print("statusCode", statusCode ?? 0)
+        viewModel.searchFriend(region: region, lat: lat, long: long) { friends, error, statusCode in
+            if let friends = friends {
+                self.friends = friends.fromQueueDB
+                self.searchFriendAnnotations()
+            }
         }
     }
-
+    
+    private func searchFriendAnnotations() {
+        for location in friends {
+            let friendsCoordinate = CLLocationCoordinate2D(latitude: location.lat, longitude: location.long)
+            let friendsAnnotation = MKPointAnnotation()
+            
+            friendsAnnotation.coordinate = friendsCoordinate
+            homeView.mapView.addAnnotation(friendsAnnotation)
+        }
+    }
 }
 
 // MARK: - CLLocationManagerDelegate
@@ -177,5 +189,22 @@ extension HomeViewController: CLLocationManagerDelegate {
 extension HomeViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         _ = getPinCenterLocation(for: mapView)
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard !(annotation is MKUserLocation) else { return nil }
+        
+        var annotationView = homeView.mapView.dequeueReusableAnnotationView(withIdentifier: "custom")
+        
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "custom")
+        } else {
+            annotationView?.annotation = annotation
+        }
+        
+        annotationView?.image = R.image.sesac0()
+        annotationView?.frame.size = CGSize(width: 83, height: 83)
+
+        return annotationView
     }
 }
