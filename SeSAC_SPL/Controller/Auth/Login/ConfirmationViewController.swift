@@ -68,7 +68,7 @@ class ConfirmationViewController: UIViewController {
                 if error?.localizedDescription == "Invalid format." {
                     self.view.makeToast("유효하지 않은 전화번호 형식입니다. 다시 한번 입력해주세요.", position: .center)
                 } else {
-                    self.view.makeToast("에러가 발생했습니다.\n다시 시도해주세요", position: .center)
+                    self.view.makeToast("인증번호를 다시한번 확인해주세요.", position: .center)
                 }
             }
         }

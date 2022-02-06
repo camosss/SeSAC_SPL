@@ -14,6 +14,14 @@ enum HomeFilter {
     case total
     case man
     case woman
+    
+    var gender: Int {
+        switch self {
+        case .total: return 2
+        case .man: return 1
+        case .woman: return 0
+        }
+    }
 }
 
 class HomeViewController: UIViewController {
@@ -46,7 +54,23 @@ class HomeViewController: UIViewController {
     // MARK: - Action
     
     @objc func clickedGpsBtn() {
-        print("gps")
+        switch locationManager.authorizationStatus {
+        case .authorizedWhenInUse:
+            print("앱 사용중 허용")
+            //centerViewOnUserLocation()
+            defaultLocation() // 영등포 캠퍼스를 시작점으로 테스트
+            
+        case .denied, .restricted:
+            print("권한 요청 거부")
+            self.view.makeToast("위치 서비스 권한을 허용해주세요.", position: .center)
+
+        case .notDetermined:
+            print("결정되지 않음 -> 권한 요청")
+            locationManager.requestWhenInUseAuthorization()
+
+        default:
+            print("GPS: Default")
+        }
     }
     
     @objc func actionButtonTapped() {
@@ -60,7 +84,7 @@ class HomeViewController: UIViewController {
         view.addSubview(homeView)
         homeView.frame = view.bounds
         
-        homeView.gpsButton.addTarget(self, action: #selector(actionButtonTapped), for: .touchUpInside)
+        homeView.gpsButton.addTarget(self, action: #selector(clickedGpsBtn), for: .touchUpInside)
         homeView.actionButton.addTarget(self, action: #selector(actionButtonTapped), for: .touchUpInside)
     }
     
@@ -71,9 +95,17 @@ class HomeViewController: UIViewController {
             homeView.womanButton.rx.tap.map { _ in HomeFilter.woman }
         ).subscribe(onNext: {
             switch $0 {
-            case .total: Helper.switchFilterButton(self.homeView.totalButton, self.homeView.manButton, self.homeView.womanButton)
-            case .man: Helper.switchFilterButton(self.homeView.manButton, self.homeView.totalButton, self.homeView.womanButton)
-            case .woman: Helper.switchFilterButton(self.homeView.womanButton, self.homeView.manButton, self.homeView.totalButton)
+            case .total:
+                Helper.switchFilterButton(self.homeView.totalButton, self.homeView.manButton, self.homeView.womanButton)
+                self.searchFriendAllAnnotations()
+                
+            case .man:
+                Helper.switchFilterButton(self.homeView.manButton, self.homeView.totalButton, self.homeView.womanButton)
+                self.searchFriendGenderAnnotations($0.gender)
+
+            case .woman:
+                Helper.switchFilterButton(self.homeView.womanButton, self.homeView.manButton, self.homeView.totalButton)
+                self.searchFriendGenderAnnotations($0.gender)
             }
         }).disposed(by: disposeBag)
     }
@@ -88,7 +120,7 @@ class HomeViewController: UIViewController {
             setupLoactionManager()
             checkLocationAuthorization(authorizationStatus)
         } else {
-            // 권한 요청 알림
+            self.view.makeToast("위치 서비스 권한을 허용해주세요.", position: .center)
         }
     }
     
@@ -104,7 +136,7 @@ class HomeViewController: UIViewController {
             print("앱 사용중 허용")
             homeView.mapView.showsUserLocation = true // 현위치
             
-//            centerViewOnUserLocation()
+            //centerViewOnUserLocation()
             defaultLocation() // 영등포 캠퍼스를 시작점으로 테스트
             
             locationManager.startUpdatingLocation()
@@ -117,8 +149,6 @@ class HomeViewController: UIViewController {
             print("결정되지 않음 -> 권한 요청")
             locationManager.requestWhenInUseAuthorization()
             
-        case .authorizedAlways:
-            print("항상 허용")
         default:
             print("GPS: Default")
         }
@@ -160,18 +190,36 @@ class HomeViewController: UIViewController {
         viewModel.searchFriend(region: region, lat: lat, long: long) { friends, error, statusCode in
             if let friends = friends {
                 self.friends = friends.fromQueueDB
-                self.searchFriendAnnotations()
+                self.searchFriendAllAnnotations()
             }
         }
     }
     
-    private func searchFriendAnnotations() {
+    private func searchFriendAllAnnotations() {
+        let annotations = homeView.mapView.annotations
+        homeView.mapView.removeAnnotations(annotations)
+        
         for location in friends {
             let friendsCoordinate = CLLocationCoordinate2D(latitude: location.lat, longitude: location.long)
             let friendsAnnotation = MKPointAnnotation()
             
             friendsAnnotation.coordinate = friendsCoordinate
             homeView.mapView.addAnnotation(friendsAnnotation)
+        }
+    }
+    
+    private func searchFriendGenderAnnotations(_ gender: Int) {
+        let annotations = homeView.mapView.annotations
+        homeView.mapView.removeAnnotations(annotations)
+        
+        for location in friends {
+            if location.gender == gender {
+                let friendsCoordinate = CLLocationCoordinate2D(latitude: location.lat, longitude: location.long)
+                let friendsAnnotation = MKPointAnnotation()
+                
+                friendsAnnotation.coordinate = friendsCoordinate
+                homeView.mapView.addAnnotation(friendsAnnotation)
+            }
         }
     }
 }
@@ -202,9 +250,10 @@ extension HomeViewController: MKMapViewDelegate {
             annotationView?.annotation = annotation
         }
         
+        // friends.sesac 값에 따른 이미지 분기처리
         annotationView?.image = R.image.sesac0()
         annotationView?.frame.size = CGSize(width: 83, height: 83)
-
+        
         return annotationView
     }
 }
