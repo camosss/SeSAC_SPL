@@ -11,7 +11,7 @@ class GenderViewModel {
     
     func signUpUserInfo(completion: @escaping (Error?, Int?) -> Void) {
         let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
-        let request = SignUpRequest(phoneNumber: "", FCMtoken: "", nick: "", birth: "", email: "", gender: 0).toDomain
+        let request = SignUpRequest(phoneNumber: "", FCMtoken: "", nick: "", birth: "", email: "", gender: -1).toDomain
 
         UserAPI.signUpUser(idToken: idToken, request: request) { failed, statusCode in
             switch statusCode {

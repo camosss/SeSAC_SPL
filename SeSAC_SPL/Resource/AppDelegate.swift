@@ -17,6 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         UIBarButtonItem.appearance().tintColor = .black
+        UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: -1000.0, vertical: 0.0), for: .default)
+
         UITabBar.appearance().backgroundColor = .white
         UITabBar.appearance().tintColor = R.color.green()
 

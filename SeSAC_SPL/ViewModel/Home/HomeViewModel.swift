@@ -9,6 +9,38 @@ import Foundation
 
 class HomeViewModel {
     
+    func getUserInfo(completion: @escaping (User?, Error?, Int?) -> Void) {
+        let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
+
+        UserAPI.getUser(idToken: idToken) { succeed, failed, statusCode in
+            switch statusCode {
+            case 200:
+                UserDefaults.standard.set("alreadySignUp", forKey: "startView")
+                completion(succeed, nil, statusCode)
+
+            case 406:
+                UserDefaults.standard.set("successLogin", forKey: "startView")
+                completion(succeed, nil, statusCode)
+
+            case 401:
+                Helper.getIDTokenRefresh {
+                    print("[getUserInfo] - 토큰 갱신 실패", statusCode ?? 0)
+                    completion(nil, failed, statusCode)
+                } onSuccess: { idtoken in
+                    print("[getUserInfo] - 토큰 갱신 성공", statusCode ?? 0)
+                    
+                    UserAPI.getUser(idToken: idtoken) { succeed, failed, statusCode in
+                        completion(succeed, nil, statusCode)
+                    }
+                }
+
+            default:
+                print("getUserInfo - statusCode", statusCode ?? 0)
+                completion(nil, failed, statusCode)
+            }
+        }
+    }
+
     func searchFriend(region: Int, lat: Double, long: Double, completion: @escaping (SearchFriendResponse? ,Error?, Int?) -> Void) {
         let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
         let request = SearchFriendRequest(region: region, lat: lat, long: long)
@@ -30,7 +62,4 @@ class HomeViewModel {
             }
         }
     }
-    
-    
-    
 }

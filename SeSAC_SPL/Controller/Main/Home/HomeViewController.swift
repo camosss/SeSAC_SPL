@@ -27,7 +27,7 @@ enum HomeFilter {
 class HomeViewController: UIViewController {
     
     // MARK: - Properties
-    
+        
     let homeView = HomeView()
     let regionInMeters: Double = 700
     let locationManager = CLLocationManager()
@@ -37,7 +37,13 @@ class HomeViewController: UIViewController {
     
     var friends = [FromQueueDB]()
     
+    let authorizationStatus = UserDefaults.standard.bool(forKey: "authorizationStatus")
+
     // MARK: - Lifecycle
+    
+    override func loadView() {
+        self.view = homeView
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,36 +60,41 @@ class HomeViewController: UIViewController {
     // MARK: - Action
     
     @objc func clickedGpsBtn() {
-        switch locationManager.authorizationStatus {
-        case .authorizedWhenInUse:
-            print("앱 사용중 허용")
+        if authorizationStatus {
             //centerViewOnUserLocation()
             defaultLocation() // 영등포 캠퍼스를 시작점으로 테스트
-            
-        case .denied, .restricted:
-            print("권한 요청 거부")
+        } else {
             self.view.makeToast("위치 서비스 권한을 허용해주세요.", position: .center)
-
-        case .notDetermined:
-            print("결정되지 않음 -> 권한 요청")
-            locationManager.requestWhenInUseAuthorization()
-
-        default:
-            print("GPS: Default")
         }
     }
     
     @objc func actionButtonTapped() {
-        print("action")
+        viewModel.getUserInfo { user, error, statusCode in
+            if let user = user {
+                if user.gender == -1 {
+                    self.view.makeToast("새싹 찾기 기능을 이용하기 위해서는 성별이 필요해요!", position: .center)
+                    
+                    let controller = ManagementInfoViewController(user: user)
+                    self.navigationController?.pushViewController(controller, animated: true)
+                    
+                } else if !self.authorizationStatus {
+                    self.view.makeToast("위치 서비스 권한을 허용해주세요.", position: .center)
+                    
+                } else {
+        //            일반 상태: 검색 아이콘
+        //            매칭 대기중 상태: 와이파이 아이콘
+        //            매칭된 상태: 메시지 아이콘
+                    
+                    let controller = SearchViewController()
+                    self.navigationController?.pushViewController(controller, animated: true)
+                }
+            }
+        }
     }
     
     // MARK: - Helper
     
     private func setView() {
-        view.backgroundColor = .white
-        view.addSubview(homeView)
-        homeView.frame = view.bounds
-        
         homeView.gpsButton.addTarget(self, action: #selector(clickedGpsBtn), for: .touchUpInside)
         homeView.actionButton.addTarget(self, action: #selector(actionButtonTapped), for: .touchUpInside)
     }
@@ -119,8 +130,10 @@ class HomeViewController: UIViewController {
         if CLLocationManager.locationServicesEnabled() {
             setupLoactionManager()
             checkLocationAuthorization(authorizationStatus)
+            UserDefaults.standard.set(true, forKey: "authorizationStatus")
         } else {
             self.view.makeToast("위치 서비스 권한을 허용해주세요.", position: .center)
+            UserDefaults.standard.set(false, forKey: "authorizationStatus")
         }
     }
     

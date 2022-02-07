@@ -59,6 +59,9 @@
 		B43741112797E758005E1CC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B437410F2797E758005E1CC7 /* LaunchScreen.storyboard */; };
 		B437411A2797EA7F005E1CC7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B43741192797EA7F005E1CC7 /* GoogleService-Info.plist */; };
 		B43741212797FAFF005E1CC7 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43741202797FAFF005E1CC7 /* R.generated.swift */; };
+		B44A75F827B0F87E00DC41AB /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44A75F727B0F87E00DC41AB /* SearchViewController.swift */; };
+		B44A75FD27B1036900DC41AB /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44A75FC27B1036900DC41AB /* SearchCollectionViewCell.swift */; };
+		B44A75FF27B11FE000DC41AB /* LeftAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44A75FE27B11FE000DC41AB /* LeftAlignedCollectionViewFlowLayout.swift */; };
 		B45F326427A198850091D1BA /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B433B8F127991E4800AEA607 /* Onboarding.storyboard */; };
 		B464052B27AC2ADA00FF4A6F /* QueueTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B464052A27AC2ADA00FF4A6F /* QueueTarget.swift */; };
 		B464052D27AC2AE200FF4A6F /* QueueAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B464052C27AC2AE200FF4A6F /* QueueAPI.swift */; };
@@ -144,6 +147,9 @@
 		B43741192797EA7F005E1CC7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B437411B2797EAA9005E1CC7 /* SeSAC_SPL.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SeSAC_SPL.entitlements; sourceTree = "<group>"; };
 		B43741202797FAFF005E1CC7 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
+		B44A75F727B0F87E00DC41AB /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		B44A75FC27B1036900DC41AB /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = "<group>"; };
+		B44A75FE27B11FE000DC41AB /* LeftAlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		B464052A27AC2ADA00FF4A6F /* QueueTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueTarget.swift; sourceTree = "<group>"; };
 		B464052C27AC2AE200FF4A6F /* QueueAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueAPI.swift; sourceTree = "<group>"; };
 		B464053027AC2E0F00FF4A6F /* FindFriendRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindFriendRequest.swift; sourceTree = "<group>"; };
@@ -248,16 +254,16 @@
 			path = SignUp;
 			sourceTree = "<group>";
 		};
-		B420EF3027A135820084AE6A /* Home */ = {
+		B420EF3027A135820084AE6A /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				B420EF3127A135A10084AE6A /* HomeViewController.swift */,
+				B44A75F627B0F84500DC41AB /* Home */,
 				B420EF3327A135A70084AE6A /* ShopViewController.swift */,
 				B420EF3527A135AE0084AE6A /* FriendViewController.swift */,
 				B40CA681279D6BA600B233D7 /* MyInfoViewController.swift */,
 				B420EF4327A189A00084AE6A /* ManagementInfoViewController.swift */,
 			);
-			path = Home;
+			path = Main;
 			sourceTree = "<group>";
 		};
 		B420EF4527A18A620084AE6A /* MyInfo */ = {
@@ -276,6 +282,7 @@
 				B433B8EC2799193500AEA607 /* Onboarding */,
 				B420EF4527A18A620084AE6A /* MyInfo */,
 				B40AC5F127A2E5040007B909 /* ManagementInfoView */,
+				B44A75FB27B1033300DC41AB /* Search */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -286,7 +293,7 @@
 				B433B8C027982BBD00AEA607 /* OnboardingViewController.swift */,
 				B420EF2E27A134EC0084AE6A /* MainTapController.swift */,
 				B433B8FE27994C0C00AEA607 /* Auth */,
-				B420EF3027A135820084AE6A /* Home */,
+				B420EF3027A135820084AE6A /* Main */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -394,8 +401,26 @@
 				B433B9072799570C00AEA607 /* GenderButton+Extension.swift */,
 				B40CA678279D21BB00B233D7 /* Date+Extension.swift */,
 				B420EF10279ECCB80084AE6A /* RegularExpression+Extension.swift */,
+				B44A75FE27B11FE000DC41AB /* LeftAlignedCollectionViewFlowLayout.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		B44A75F627B0F84500DC41AB /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				B420EF3127A135A10084AE6A /* HomeViewController.swift */,
+				B44A75F727B0F87E00DC41AB /* SearchViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		B44A75FB27B1033300DC41AB /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				B44A75FC27B1036900DC41AB /* SearchCollectionViewCell.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		B464052927AC2ABC00FF4A6F /* Queue */ = {
@@ -708,6 +733,7 @@
 				B4C01A7527A9184200973E79 /* VerificationViewModel.swift in Sources */,
 				B40CA67327999D1F00B233D7 /* BirthView.swift in Sources */,
 				B433B8C127982BBD00AEA607 /* OnboardingViewController.swift in Sources */,
+				B44A75FD27B1036900DC41AB /* SearchCollectionViewCell.swift in Sources */,
 				B464053127AC2E0F00FF4A6F /* FindFriendRequest.swift in Sources */,
 				B420EF3C27A17DC70084AE6A /* MyInfoViewModel.swift in Sources */,
 				B40AC60027A3E7370007B909 /* ManagementViewModel.swift in Sources */,
@@ -727,10 +753,12 @@
 				B40AC5F027A2E0FD0007B909 /* BackgroundImageView.swift in Sources */,
 				B420EF15279EF4350084AE6A /* UserAPI.swift in Sources */,
 				B420EF3227A135A10084AE6A /* HomeViewController.swift in Sources */,
+				B44A75F827B0F87E00DC41AB /* SearchViewController.swift in Sources */,
 				B4C01A8927AA464200973E79 /* UserTarget.swift in Sources */,
 				B433B8C82798306600AEA607 /* OnboardingSlide.swift in Sources */,
 				B40AC5F927A2F4FA0007B909 /* TitleCollectionViewCell.swift in Sources */,
 				B4C01A8427A93CE500973E79 /* HomeViewModel.swift in Sources */,
+				B44A75FF27B11FE000DC41AB /* LeftAlignedCollectionViewFlowLayout.swift in Sources */,
 				B43741072797E756005E1CC7 /* SceneDelegate.swift in Sources */,
 				B464052D27AC2AE200FF4A6F /* QueueAPI.swift in Sources */,
 				B49F16CD27A3F04400052507 /* HobbyTableViewCell.swift in Sources */,
