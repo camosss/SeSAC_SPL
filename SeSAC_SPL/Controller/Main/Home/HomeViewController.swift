@@ -38,6 +38,10 @@ class HomeViewController: UIViewController {
     var friends = [FromQueueDB]()
     
     let authorizationStatus = UserDefaults.standard.bool(forKey: "authorizationStatus")
+    
+    var region: Int?
+    var lat: Double?
+    var long: Double?
 
     // MARK: - Lifecycle
     
@@ -85,8 +89,11 @@ class HomeViewController: UIViewController {
         //            매칭 대기중 상태: 와이파이 아이콘
         //            매칭된 상태: 메시지 아이콘
                     
-                    let controller = SearchViewController()
-                    self.navigationController?.pushViewController(controller, animated: true)
+                    if let region = self.region, let lat = self.lat, let long = self.long {
+                        let controller = SearchViewController(region: region, lat: lat, long: long)
+                        self.navigationController?.pushViewController(controller, animated: true)
+                    }
+                    
                 }
             }
         }
@@ -191,8 +198,12 @@ class HomeViewController: UIViewController {
         let latitude = mapView.centerCoordinate.latitude
         let longitude = mapView.centerCoordinate.longitude
         let region = Helper.convertRegion(lat: latitude, long: longitude)
-        
+                
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+            self.region = region
+            self.lat = latitude
+            self.long = longitude
+            
             self.searchFriend(region: region, lat: latitude, long: longitude)
         }
         
