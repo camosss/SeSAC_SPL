@@ -203,7 +203,7 @@ class HomeViewController: UIViewController {
             self.region = region
             self.lat = latitude
             self.long = longitude
-            
+
             self.searchFriend(region: region, lat: latitude, long: longitude)
         }
         
@@ -213,6 +213,7 @@ class HomeViewController: UIViewController {
     private func searchFriend(region: Int, lat: Double, long: Double) {
         viewModel.searchFriend(region: region, lat: lat, long: long) { friends, error, statusCode in
             if let friends = friends {
+                print(friends)
                 self.friends = friends.fromQueueDB
                 self.searchFriendAllAnnotations()
             }
@@ -274,10 +275,8 @@ extension HomeViewController: MKMapViewDelegate {
             annotationView?.annotation = annotation
         }
         
-        // friends.sesac 값에 따른 이미지 분기처리
         annotationView?.image = R.image.sesac0()
         annotationView?.frame.size = CGSize(width: 83, height: 83)
-        
         return annotationView
     }
 }

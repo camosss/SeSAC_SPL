@@ -54,8 +54,14 @@ extension TitleTableViewCell: UICollectionViewDataSource, UICollectionViewDelega
         if indexPath.section == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitleCollectionViewCell.identifier, for: indexPath) as! TitleCollectionViewCell
             cell.label.text = Utility.titles[indexPath.row]
-            cell.backgroundColor = R.color.green()
             cell.cornerRadius = 8
+            
+            let reputation = reputation[indexPath.row]
+            cell.label.textColor = reputation == 0 ? R.color.black() : R.color.white()
+            cell.backgroundColor = reputation == 0 ? R.color.white() : R.color.green()
+            cell.layer.borderWidth = 1
+            cell.layer.borderColor = reputation == 0 ? R.color.gray3()?.cgColor : R.color.green()?.cgColor
+            
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitleReviewCollectionViewCell.identifier, for: indexPath) as! TitleReviewCollectionViewCell
