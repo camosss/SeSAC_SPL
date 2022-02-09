@@ -9,6 +9,9 @@ import Foundation
 
 class SearchViewModel {
     
+    var aroundItems = [Hobby]()
+    var wantItems: [String] = ["넷플릭스", "풋살"]
+
     func searchFriend(region: Int, lat: Double, long: Double, completion: @escaping (SearchFriendResponse? ,Error?, Int?) -> Void) {
         let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
         let request = SearchFriendRequest(region: region, lat: lat, long: long)
@@ -17,6 +20,11 @@ class SearchViewModel {
             switch statusCode {
             case 200:
                 print("취미 함께할 친구 검색 성공")
+                
+                let recommend = succeed?.fromRecommend.map{ Hobby(name: $0, type: .recommend) } ?? []
+                let hf = succeed?.fromQueueDB.map{$0.hf}.flatMap{$0}.map{Hobby(name: $0, type: .hf)} ?? []
+                self.aroundItems = recommend + hf
+                
                 completion(succeed, nil, statusCode)
             case 401:
                 Helper.getIDTokenRefresh {

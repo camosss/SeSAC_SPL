@@ -275,6 +275,7 @@ extension HomeViewController: MKMapViewDelegate {
             annotationView?.annotation = annotation
         }
         
+        // friends.sesac 값에 따른 이미지 분기처리
         annotationView?.image = R.image.sesac0()
         annotationView?.frame.size = CGSize(width: 83, height: 83)
         return annotationView

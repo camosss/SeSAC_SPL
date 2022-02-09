@@ -41,8 +41,6 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        searchView.searchButton.addTarget(self, action: #selector(clickedSearchBtn), for: .touchUpInside)
-        
         setSearchBar()
         searchFriend(region: region, lat: lat, long: long)
     }
@@ -65,17 +63,36 @@ class SearchViewController: UIViewController {
     
     // MARK: - Helper
     
-    func setSearchBar() {
+    private func setSearchBar() {
         searchBar.delegate = self
         searchBar.placeholder = "띄어쓰기로 복수 입력이 가능해요"
         self.navigationItem.titleView = searchBar
     }
     
+    private func setSearchView() {
+        searchView.searchButton.addTarget(self, action: #selector(clickedSearchBtn), for: .touchUpInside)
+
+        searchView.collectionView.dataSource = self
+        searchView.collectionView.delegate = self
+        
+        searchView.collectionView.register(SearchCollectionViewCell.self, forCellWithReuseIdentifier: SearchCollectionViewCell.identifier)
+        searchView.collectionView.register(TitleCollectionViewHeader.self,
+                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                withReuseIdentifier: TitleCollectionViewHeader.identifier)
+    }
+    
+    private func setCellBtn(_ cell: SearchCollectionViewCell, border: CGColor?, text: UIColor?) {
+        cell.layer.borderColor = border
+        cell.label.textColor = text
+        cell.layer.borderWidth = 1
+        cell.cornerRadius = 8
+    }
+    
     private func searchFriend(region: Int, lat: Double, long: Double) {
         viewModel.searchFriend(region: region, lat: lat, long: long) { friends, error, statusCode in
             if let friends = friends {
-                // rx로 값받아오기 [recommend]
                 self.friends = friends
+                self.setSearchView()
             }
         }
     }
@@ -91,5 +108,68 @@ extension SearchViewController: UISearchBarDelegate {
         // [내가 하고 싶은] 섹션에 이미 8개의 취미가 등록되어 있다면, “취미를 더 이상 추가할 수 없습니다” 토스트 메시지
         // 여러 단어를 입력할 경우 띄워쓰기 기준으로 취미가 추가
         
+    }
+}
+
+
+// MARK: - UICollectionViewDataSource, UICollectionViewDelegate
+
+extension SearchViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    func numberOfSections(in collectionView: UICollectionView) -> Int { 2 }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: TitleCollectionViewHeader.identifier, for: indexPath) as! TitleCollectionViewHeader
+        header.label.text = indexPath.section == 0 ? "지금 주변에는" : "내가 하고 싶은"
+        return header
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return section == 0 ? viewModel.aroundItems.count : viewModel.wantItems.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchCollectionViewCell.identifier, for: indexPath) as! SearchCollectionViewCell
+        
+        let aroundItems = viewModel.aroundItems[indexPath.row]
+        cell.label.text = indexPath.section == 0 ? aroundItems.name : viewModel.wantItems[indexPath.row]
+        
+        if indexPath.section == 0 {
+            switch aroundItems.type {
+            case .recommend:
+                self.setCellBtn(cell, border: R.color.error()?.cgColor, text: R.color.error())
+            case .hf:
+                self.setCellBtn(cell, border: R.color.gray4()?.cgColor, text: R.color.black())
+            }
+        } else {
+            self.setCellBtn(cell, border: R.color.green()?.cgColor, text: R.color.green())
+        }
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("tap cell")
+    }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+
+extension SearchViewController: UICollectionViewDelegateFlowLayout {
+    
+    // 섹션 간격
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets.init(top: 0, left: 0, bottom: 24, right: 0)
+    }
+    
+    // Header View 크기
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.frame.size.width, height: 34)
+    }
+    
+    // Cell 크기
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let label = UILabel(frame: CGRect.zero)
+        label.text = indexPath.section == 0 ? viewModel.aroundItems[indexPath.row].name : viewModel.wantItems[indexPath.row]
+        label.sizeToFit()
+        return CGSize(width: label.frame.width + 30, height: 32)
     }
 }
