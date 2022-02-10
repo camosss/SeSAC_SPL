@@ -37,7 +37,9 @@
 | 진행사항 | 진행기간 | 세부사항 |
 |:---:| :--- | :--- |
 | 휴대폰 인증 및 회원가입 | 2022.01.19~22.01.25 | Firebase 전화번호 인증, [SceneDelegate] UI Life Cycle 분기 처리 |
-| 내 정보 | 2022.01.26~현재 | RxSwift로 TableView 구현 |
+| 프로필 | 2022.01.26~22.01.30 | RxSwift로 TableView 구현(내정보), 여러개의 Cell Type을 가진 TableView 구성(MVVM)(정보 관리), User 네트워크 구조 설계 (Moya) |
+| 홈 | 2022.01.31~현재 | Queue 네트워크 구조 설계 (Moya), MapKit(홈 화면) |
+
  
 <br>
 <br>
