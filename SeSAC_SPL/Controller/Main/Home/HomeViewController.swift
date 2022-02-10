@@ -90,10 +90,10 @@ class HomeViewController: UIViewController {
         //            매칭된 상태: 메시지 아이콘
                     
                     if let region = self.region, let lat = self.lat, let long = self.long {
-                        let controller = SearchViewController(region: region, lat: lat, long: long)
+                        let controller = SearchViewController()
+                        controller.requests = SearchFriendRequest(region: region, lat: lat, long: long)
                         self.navigationController?.pushViewController(controller, animated: true)
                     }
-                    
                 }
             }
         }

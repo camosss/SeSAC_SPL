@@ -12,27 +12,13 @@ class SearchViewController: UIViewController {
     // MARK: - Properties
     
     var friends: SearchFriendResponse?
-    
-    var region: Int
-    var lat: Double
-    var long: Double
+    var requests: SearchFriendRequest?
     
     let searchView = SearchView()
     let searchBar = UISearchBar()
     let viewModel = SearchViewModel()
 
     // MARK: - Lifecycle
-    
-    init(region: Int, lat: Double, long: Double) {
-        self.region = region
-        self.lat = lat
-        self.long = long
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     override func loadView() {
         self.view = searchView
@@ -42,7 +28,7 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         setSearchBar()
-        searchFriend(region: region, lat: lat, long: long)
+        searchFriend()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -88,8 +74,10 @@ class SearchViewController: UIViewController {
         cell.cornerRadius = 8
     }
     
-    private func searchFriend(region: Int, lat: Double, long: Double) {
-        viewModel.searchFriend(region: region, lat: lat, long: long) { friends, error, statusCode in
+    private func searchFriend() {
+        guard let requests = requests else { return }
+
+        viewModel.searchFriend(region: requests.region, lat: requests.lat, long: requests.long) { friends, error, statusCode in
             if let friends = friends {
                 self.friends = friends
                 self.setSearchView()
