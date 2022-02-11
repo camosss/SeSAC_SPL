@@ -213,7 +213,6 @@ class HomeViewController: UIViewController {
     private func searchFriend(region: Int, lat: Double, long: Double) {
         viewModel.searchFriend(region: region, lat: lat, long: long) { friends, error, statusCode in
             if let friends = friends {
-                print(friends)
                 self.friends = friends.fromQueueDB
                 self.searchFriendAllAnnotations()
             }

@@ -25,4 +25,10 @@ extension String {
         let pred = NSPredicate(format:"SELF MATCHES %@", emailRegex)
         return pred.evaluate(with: self)
     }
+    
+    func isValidHobby() -> Bool {
+        let nicknameRegEx = "[가-힣ㄱ-ㅎㅏ-ㅣA-Za-z0-9]{1,8}"
+        let nicknameTest = NSPredicate(format:"SELF MATCHES %@", nicknameRegEx)
+        return nicknameTest.evaluate(with: self)
+    }
 }

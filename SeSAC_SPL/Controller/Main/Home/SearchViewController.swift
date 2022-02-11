@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class SearchViewController: UIViewController {
     
@@ -17,6 +18,9 @@ class SearchViewController: UIViewController {
     let searchView = SearchView()
     let searchBar = UISearchBar()
     let viewModel = SearchViewModel()
+    
+    var addHobbyText = [String]()
+    let disposeBag = DisposeBag()
 
     // MARK: - Lifecycle
     
@@ -50,9 +54,65 @@ class SearchViewController: UIViewController {
     // MARK: - Helper
     
     private func setSearchBar() {
-        searchBar.delegate = self
         searchBar.placeholder = "띄어쓰기로 복수 입력이 가능해요"
         self.navigationItem.titleView = searchBar
+        handleSearchBar()
+    }
+    
+    private func handleSearchBar() {
+        
+        searchBar.rx.text
+            .orEmpty
+            .subscribe(onNext: { query in
+                
+                query.components(separatedBy: " ").forEach {
+                    if $0.count > 8 {
+                        self.view.makeToast("최소 한 자 이상, 최대 8글자까지 작성 가능합니다", position: .center)
+                    } else if self.viewModel.wantItems.contains($0) {
+                        self.view.makeToast("이미 등록된 취미입니다", position: .center)
+                    }
+                }
+                
+                self.addHobbyText = query.components(separatedBy: " ").filter{ $0.isValidHobby() }
+
+            }).disposed(by: disposeBag)
+        
+        
+        searchBar.rx.searchButtonClicked
+            .subscribe(onNext: {
+                self.searchBar.text = nil
+                
+                self.addHobbyText.forEach { addHobby in
+                    
+                    if self.viewModel.wantItems.contains(addHobby) {
+                        self.addHobbyText.remove(at: self.addHobbyText.firstIndex(of: addHobby)!)
+                        
+                    } else {
+                        if (self.viewModel.wantItems.count + self.addHobbyText.count) > 8 {
+                            
+                            let limit = 8 - self.viewModel.wantItems.count
+                            var addHobby = [String]()
+                            
+                            for idx in stride(from: 0, to: limit, by: 1) {
+                                addHobby.append(self.addHobbyText[idx])
+                            }
+                            
+                            addHobby.forEach {
+                                self.viewModel.wantItems.append($0)
+                            }
+                            self.searchView.collectionView.reloadData()
+                            self.view.makeToast("취미를 더 이상 추가할 수 없습니다", position: .center)
+                            
+                        } else {
+                            self.addHobbyText.forEach {
+                                self.viewModel.wantItems.append($0)
+                            }
+                            self.searchView.collectionView.reloadData()
+                        }
+                    }
+                }
+                
+            }).disposed(by: disposeBag)
     }
     
     private func setSearchView() {
@@ -85,20 +145,6 @@ class SearchViewController: UIViewController {
         }
     }
 }
-
-// MARK: - UISearchBarDelegate
-
-extension SearchViewController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        // 취미 조건 최소 1자리 최대 8자리
-        // “최소 한 자 이상, 최대 8글자까지 작성 가능합니다” 토스트 메시지
-        // [내가 하고 싶은] 섹션에 이미 8개의 취미가 등록되어 있다면, “취미를 더 이상 추가할 수 없습니다” 토스트 메시지
-        // 여러 단어를 입력할 경우 띄워쓰기 기준으로 취미가 추가
-        
-    }
-}
-
 
 // MARK: - UICollectionViewDataSource, UICollectionViewDelegate
 
