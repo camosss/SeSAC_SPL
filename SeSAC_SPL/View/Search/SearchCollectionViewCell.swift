@@ -20,14 +20,27 @@ class SearchCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    let removeButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "xmark"), for: .normal)
+        button.tintColor = R.color.green()
+        return button
+    }()
+    
     // MARK: - Lifecycle
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(label)
-        label.snp.makeConstraints { make in
+        
+        let stack = UIStackView(arrangedSubviews: [label, removeButton])
+        stack.axis = .horizontal
+        stack.spacing = 6.75
+        
+        addSubview(stack)
+        stack.snp.makeConstraints { make in
             make.centerX.centerY.equalToSuperview()
         }
+        
     }
 
     required init?(coder: NSCoder) {

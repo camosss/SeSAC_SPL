@@ -16,3 +16,9 @@ enum HobbyModelType {
     case recommend
     case hf
 }
+
+extension Hobby: Equatable {
+    static func ==(lhs: Hobby, rhs: Hobby) -> Bool {
+        return lhs.name == rhs.name && lhs.type == rhs.type
+    }
+}

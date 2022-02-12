@@ -127,11 +127,12 @@ class SearchViewController: UIViewController {
                                 withReuseIdentifier: TitleCollectionViewHeader.identifier)
     }
     
-    private func setCellBtn(_ cell: SearchCollectionViewCell, border: CGColor?, text: UIColor?) {
+    private func setCellBtn(_ cell: SearchCollectionViewCell, border: CGColor?, text: UIColor?, btn: Bool) {
         cell.layer.borderColor = border
         cell.label.textColor = text
         cell.layer.borderWidth = 1
         cell.cornerRadius = 8
+        cell.removeButton.isHidden = btn
     }
     
     private func searchFriend() {
@@ -170,18 +171,39 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
         if indexPath.section == 0 {
             switch aroundItems.type {
             case .recommend:
-                self.setCellBtn(cell, border: R.color.error()?.cgColor, text: R.color.error())
+                self.setCellBtn(cell, border: R.color.error()?.cgColor, text: R.color.error(), btn: true)
             case .hf:
-                self.setCellBtn(cell, border: R.color.gray4()?.cgColor, text: R.color.black())
+                self.setCellBtn(cell, border: R.color.gray4()?.cgColor, text: R.color.black(), btn: true)
             }
         } else {
-            self.setCellBtn(cell, border: R.color.green()?.cgColor, text: R.color.green())
+            self.setCellBtn(cell, border: R.color.green()?.cgColor, text: R.color.green(), btn: false)
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("tap cell")
+        
+        if indexPath.section == 0 {            
+            let addHobbyCell = viewModel.aroundItems[indexPath.row].name
+            
+            // "내가 하고 싶은"에 추가
+            if self.viewModel.wantItems.contains(addHobbyCell) {
+                self.view.makeToast("이미 등록된 취미입니다", position: .center)
+            } else if self.viewModel.wantItems.count >= 8 {
+                self.view.makeToast("취미를 더 이상 추가할 수 없습니다", position: .center)
+            } else {
+                viewModel.aroundItems.remove(at: indexPath.row)
+                self.viewModel.wantItems.append(addHobbyCell)
+            }
+            
+            print(self.viewModel.aroundItems.count)
+
+            self.searchView.collectionView.reloadData()
+        } else {
+            self.viewModel.wantItems.remove(at: indexPath.row)
+            self.searchView.collectionView.reloadData()
+            
+        }
     }
 }
 
@@ -204,6 +226,6 @@ extension SearchViewController: UICollectionViewDelegateFlowLayout {
         let label = UILabel(frame: CGRect.zero)
         label.text = indexPath.section == 0 ? viewModel.aroundItems[indexPath.row].name : viewModel.wantItems[indexPath.row]
         label.sizeToFit()
-        return CGSize(width: label.frame.width + 30, height: 32)
+        return CGSize(width: label.frame.width + 50, height: 32)
     }
 }

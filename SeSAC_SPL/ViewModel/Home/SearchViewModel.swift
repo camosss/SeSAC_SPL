@@ -10,7 +10,7 @@ import Foundation
 class SearchViewModel {
     
     var aroundItems = [Hobby]()
-    var wantItems: [String] = ["넷플릭스", "풋살"]
+    var wantItems = [String]()
 
     func searchFriend(region: Int, lat: Double, long: Double, completion: @escaping (SearchFriendResponse? ,Error?, Int?) -> Void) {
         let idToken = UserDefaults.standard.string(forKey: "idToken") ?? ""
@@ -22,8 +22,21 @@ class SearchViewModel {
                 print("취미 함께할 친구 검색 성공")
                 
                 let recommend = succeed?.fromRecommend.map{ Hobby(name: $0, type: .recommend) } ?? []
-                let hf = succeed?.fromQueueDB.map{$0.hf}.flatMap{$0}.map{Hobby(name: $0, type: .hf)} ?? []
+                var hf = succeed?.fromQueueDB.map{ $0.hf }.flatMap{$0}.map{ Hobby(name: $0, type: .hf) } ?? []
+                
+                // hf 안의 중복 제거해야함
+                
+                // "지금 주변에는", "내가 하고 싶은" 중복 제거
+                recommend.forEach { recommendValue in
+                    hf.forEach { hfValue in
+                        if recommendValue.name == hfValue.name {
+                            hf.removeAll(where: {$0.name == hfValue.name})
+                        }
+                    }
+                }
+                
                 self.aroundItems = recommend + hf
+                self.aroundItems.removeAll(where: { $0.name == "anything" })
                 
                 completion(succeed, nil, statusCode)
             case 401:
