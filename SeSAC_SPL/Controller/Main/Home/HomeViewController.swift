@@ -59,6 +59,7 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         networkMoniter()
+        setActionBtn()
     }
     
     // MARK: - Action
@@ -85,12 +86,8 @@ class HomeViewController: UIViewController {
                     self.view.makeToast("위치 서비스 권한을 허용해주세요.", position: .center)
                     
                 } else {
-        //            일반 상태: 검색 아이콘
-        //            매칭 대기중 상태: 와이파이 아이콘
-        //            매칭된 상태: 메시지 아이콘
-                    
                     if let region = self.region, let lat = self.lat, let long = self.long {
-                        let controller = SearchViewController()
+                        let controller = InputHobbyController()
                         controller.requests = SearchFriendRequest(region: region, lat: lat, long: long)
                         self.navigationController?.pushViewController(controller, animated: true)
                     }
@@ -104,6 +101,19 @@ class HomeViewController: UIViewController {
     private func setView() {
         homeView.gpsButton.addTarget(self, action: #selector(clickedGpsBtn), for: .touchUpInside)
         homeView.actionButton.addTarget(self, action: #selector(actionButtonTapped), for: .touchUpInside)
+    }
+    
+    private func setActionBtn() {
+        // 플로팅 버튼 분기 처리
+        let floating = UserDefaults.standard.integer(forKey: "floatingButton")
+        
+        // 일반 상태(1): 검색 아이콘, 매칭 대기중 상태(2): 와이파이 아이콘, 매칭된 상태(3): 메시지 아이콘
+        switch floating {
+        case 1: homeView.actionButton.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
+        case 2: homeView.actionButton.setImage(UIImage(systemName: "antenna.radiowaves.left.and.right"), for: .normal)
+        case 3: homeView.actionButton.setImage(UIImage(systemName: "envelope"), for: .normal)
+        default:  homeView.actionButton.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
+        }
     }
     
     private func handleTapFilterBtn() {

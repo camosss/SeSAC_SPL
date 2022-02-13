@@ -1,5 +1,5 @@
 //
-//  SearchCollectionViewCell.swift
+//  InputHobbyCollectionViewCell.swift
 //  SeSAC_SPL
 //
 //  Created by 강호성 on 2022/02/07.
@@ -7,11 +7,11 @@
 
 import UIKit
 
-class SearchCollectionViewCell: UICollectionViewCell {
+class InputHobbyCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
     
-    static let identifier = String(describing: SearchCollectionViewCell.self)
+    static let identifier = String(describing: InputHobbyCollectionViewCell.self)
         
     let label: UILabel = {
         let label = UILabel()

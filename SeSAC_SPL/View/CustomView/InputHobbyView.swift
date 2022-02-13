@@ -1,5 +1,5 @@
 //
-//  SearchView.swift
+//  InputHobbyView.swift
 //  SeSAC_SPL
 //
 //  Created by 강호성 on 2022/02/07.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchView: UIView {
+class InputHobbyView: UIView {
     
     // MARK: - Properties
     

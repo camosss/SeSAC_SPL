@@ -52,7 +52,7 @@ extension QueueTarget: TargetType {
                 "lat": request.lat,
                 "long": request.long,
                 "hf": request.hf
-            ], encoding: URLEncoding.default)
+            ], encoding: URLEncoding(arrayEncoding: .noBrackets))
             
         case .stopFindFriend:
             return .requestPlain

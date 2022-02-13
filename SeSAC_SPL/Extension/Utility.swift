@@ -107,7 +107,6 @@ class Utility {
         button.tintColor = .white
         button.backgroundColor = R.color.black()
         button.layer.cornerRadius = 64/2
-        button.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
         return button
     }
     
