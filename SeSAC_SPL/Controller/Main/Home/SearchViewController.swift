@@ -47,9 +47,7 @@ class SearchViewController: TabmanViewController {
             switch statusCode {
             case 200:
                 UserDefaults.standard.set(1, forKey: "floatingButton")
-                
-                let viewControllers : [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
-                self.navigationController?.popToViewController(viewControllers[viewControllers.count - 3], animated: true)
+                self.navigationController?.popViewController(animated: true)
             default:
                 self.view.makeToast("새싹 찾기 중단을 실패하였습니다.")
             }

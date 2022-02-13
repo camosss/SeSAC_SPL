@@ -214,6 +214,7 @@ extension InputHobbyController: UICollectionViewDataSource, UICollectionViewDele
         if indexPath.section == 0 {            
             let addHobbyCell = viewModel.aroundItems[indexPath.row].name
 //            print(self.viewModel.aroundItems.count)
+            
             // "내가 하고 싶은"에 추가
             if self.viewModel.wantItems.contains(addHobbyCell) {
                 self.view.makeToast("이미 등록된 취미입니다", position: .center)
