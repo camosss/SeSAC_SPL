@@ -127,13 +127,12 @@ class InputHobbyController: UIViewController {
                             addHobby.forEach {
                                 self.viewModel.wantItems.append($0)
                             }
+                            
                             self.inputHobbyView.collectionView.reloadData()
                             self.view.makeToast("취미를 더 이상 추가할 수 없습니다", position: .center)
                             
                         } else {
-                            self.addHobbyText.forEach {
-                                self.viewModel.wantItems.append($0)
-                            }
+                            self.viewModel.wantItems.append(addHobby)
                             self.inputHobbyView.collectionView.reloadData()
                         }
                     }
@@ -193,7 +192,6 @@ extension InputHobbyController: UICollectionViewDataSource, UICollectionViewDele
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InputHobbyCollectionViewCell.identifier, for: indexPath) as! InputHobbyCollectionViewCell
         
         let aroundItems = viewModel.aroundItems[indexPath.row]
-//        print(aroundItems)
         cell.label.text = indexPath.section == 0 ? aroundItems.name : viewModel.wantItems[indexPath.row]
         
         if indexPath.section == 0 {
@@ -213,7 +211,6 @@ extension InputHobbyController: UICollectionViewDataSource, UICollectionViewDele
         
         if indexPath.section == 0 {            
             let addHobbyCell = viewModel.aroundItems[indexPath.row].name
-//            print(self.viewModel.aroundItems.count)
             
             // "내가 하고 싶은"에 추가
             if self.viewModel.wantItems.contains(addHobbyCell) {
@@ -228,7 +225,7 @@ extension InputHobbyController: UICollectionViewDataSource, UICollectionViewDele
             self.inputHobbyView.collectionView.reloadData()
             
         } else {
-            self.viewModel.wantItems.remove(at: indexPath.row)
+            self.viewModel.aroundItems.remove(at: indexPath.row)
             self.inputHobbyView.collectionView.reloadData()
             
         }
