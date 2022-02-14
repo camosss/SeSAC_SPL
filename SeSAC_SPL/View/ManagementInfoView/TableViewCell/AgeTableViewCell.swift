@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RangeSeekSlider
 
 class AgeTableViewCell: UITableViewCell {
     
@@ -21,18 +22,27 @@ class AgeTableViewCell: UITableViewCell {
         return label
     }()
     
-    let sliderView: UISlider = {
-        let slider = Utility.sliderView()
-        slider.addTarget(self, action: #selector(updateAgeValue), for: .valueChanged)
+    let sliderView: RangeSeekSlider = {
+        let slider = RangeSeekSlider()
+        slider.minValue = 18
+        slider.maxValue = 65
+        slider.selectedMinValue = 18
+        slider.selectedMaxValue = 65
+        slider.hideLabels = true
+        slider.handleColor = R.color.green()
+        slider.tintColor = R.color.gray2()
+        slider.colorBetweenHandles = R.color.green()
+        slider.handleBorderColor = R.color.white()
+        slider.handleBorderWidth = 1
         return slider
     }()
     
     var item: ManagementViewModelItem? {
         didSet {
             guard let item = item as? AgeItem else { return }
-
             ageRangeLabel.text = "\(item.ageMin) - \(item.ageMax)"
-            sliderView.value = Float(item.ageMax)
+            sliderView.selectedMinValue = CGFloat(item.ageMin)
+            sliderView.selectedMaxValue = CGFloat(item.ageMax)
         }
     }
     
@@ -47,17 +57,11 @@ class AgeTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Action
-    
-    @objc func updateAgeValue(_ sender: UISlider) {
-        ageRangeLabel.text = "\(18) - \(Int(sender.value))"
-        UserDefaults.standard.set(18, forKey: "ageMin")
-        UserDefaults.standard.set(Int(sender.value), forKey: "ageMax")
-    }
-    
     // MARK: - Helper
     
     private func setAgeView() {
+        sliderView.delegate = self
+
         [titleLabel, ageRangeLabel, sliderView].forEach {
             contentView.addSubview($0)
         }
@@ -73,8 +77,19 @@ class AgeTableViewCell: UITableViewCell {
         }
         
         sliderView.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(14)
-            make.leading.trailing.equalToSuperview().inset(28)
+            make.top.equalTo(titleLabel.snp.bottom).offset(8)
+            make.leading.trailing.equalToSuperview().inset(14)
+            make.height.equalTo(30)
         }
+    }
+}
+
+// MARK: - RangeSeekSliderDelegate
+
+extension AgeTableViewCell: RangeSeekSliderDelegate {
+    func rangeSeekSlider(_ slider: RangeSeekSlider, didChange minValue: CGFloat, maxValue: CGFloat) {
+        ageRangeLabel.text = "\(Int(minValue)) - \(Int(maxValue))"
+        UserDefaults.standard.set(Int(minValue), forKey: "ageMin")
+        UserDefaults.standard.set(Int(maxValue), forKey: "ageMax")
     }
 }

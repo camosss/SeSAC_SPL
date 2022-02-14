@@ -46,7 +46,7 @@ class SearchViewController: TabmanViewController {
         viewModel.stopFindFriend { error, statusCode in
             switch statusCode {
             case 200:
-                UserDefaults.standard.set(1, forKey: "floatingButton")
+                UserDefaults.standard.set(0, forKey: "floatingButton")
                 self.navigationController?.popViewController(animated: true)
             default:
                 self.view.makeToast("새싹 찾기 중단을 실패하였습니다.")

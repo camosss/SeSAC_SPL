@@ -57,6 +57,7 @@ class VerificationViewController: UIViewController {
     private func configureAuthView() {
         view.backgroundColor = .white
         authView.subTitleLabel.isHidden = true
+        authView.inputTextField.keyboardType = .phonePad
         
         authView.titleLabel.text = "새싹 서비스 이용을 위해\n휴대폰 번호를 입력해주세요"
         authView.inputTextField.placeholder = "휴대폰 번호(-없이 숫자만 입력)"

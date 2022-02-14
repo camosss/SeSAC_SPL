@@ -87,21 +87,21 @@ class HomeViewController: UIViewController {
                     
                 } else {
                     let floating = UserDefaults.standard.integer(forKey: "floatingButton")
-                    
+                    print(floating)
                     switch floating {
-                    case 1:
+                    case 0:
                         if let region = self.region, let lat = self.lat, let long = self.long {
                             let controller = InputHobbyController()
                             controller.requests = SearchFriendRequest(region: region, lat: lat, long: long)
                             self.navigationController?.pushViewController(controller, animated: true)
                         }
-                    case 2:
+                    case 1:
                         print("새싹 찾기 화면(1_3_near_user)으로 전환")
 
                         let controller = SearchViewController()
                         self.navigationController?.pushViewController(controller, animated: true)
 
-                    case 3:
+                    case 2:
                         print("채팅 화면(1_5_chatting)으로 전환")
                     default:
                         print("floating default")
@@ -125,10 +125,10 @@ class HomeViewController: UIViewController {
 
         // 일반 상태(1): 검색 아이콘, 매칭 대기중 상태(2): 와이파이 아이콘, 매칭된 상태(3): 메시지 아이콘
         switch floating {
-        case 1: homeView.actionButton.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
-        case 2: homeView.actionButton.setImage(UIImage(systemName: "antenna.radiowaves.left.and.right"), for: .normal)
-        case 3: homeView.actionButton.setImage(UIImage(systemName: "envelope"), for: .normal)
-        default:  homeView.actionButton.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
+        case 0: homeView.actionButton.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
+        case 1: homeView.actionButton.setImage(UIImage(systemName: "antenna.radiowaves.left.and.right"), for: .normal)
+        case 2: homeView.actionButton.setImage(UIImage(systemName: "envelope"), for: .normal)
+        default: homeView.actionButton.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
         }
     }
     

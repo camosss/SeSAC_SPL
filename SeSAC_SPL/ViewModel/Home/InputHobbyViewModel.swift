@@ -52,7 +52,7 @@ class InputHobbyViewModel {
             switch statusCode {
             case 200:
                 print("새싹 찾기 화면(1_3_near_user & 1_4_accept)으로 전환")
-                UserDefaults.standard.set(2, forKey: "floatingButton")
+                UserDefaults.standard.set(1, forKey: "floatingButton")
                 completion(nil, statusCode)
             case 201:
                 print("“신고가 누적되어 이용하실 수 없습니다” 토스트 메시지")

@@ -81,6 +81,7 @@ class ConfirmationViewController: UIViewController {
         authView.subTitleLabel.text = "(최대 소모 20초)"
         authView.inputTextField.placeholder = "인증번호 입력"
         authView.nextButton.setTitle("인증하고 시작하기", for: .normal)
+        authView.inputTextField.keyboardType = .phonePad
     }
     
     private func configureConfirmationView() {

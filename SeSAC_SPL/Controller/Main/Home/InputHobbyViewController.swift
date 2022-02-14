@@ -73,6 +73,7 @@ class InputHobbyController: UIViewController {
                 }
             default:
                 // 취미를 하나도 등록 하지 않은 경우에는, “Anything” 가 추가된 배열을 내부적으로 서버에 보냅니다.
+                // 배열에 Anything 보내기
                 print("[ViewModel]findFriend", statusCode ?? 0)
             }
         }
@@ -225,7 +226,7 @@ extension InputHobbyController: UICollectionViewDataSource, UICollectionViewDele
             self.inputHobbyView.collectionView.reloadData()
             
         } else {
-            self.viewModel.aroundItems.remove(at: indexPath.row)
+            self.viewModel.wantItems.remove(at: indexPath.row)
             self.inputHobbyView.collectionView.reloadData()
             
         }
